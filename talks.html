@@ -1,0 +1,23 @@
+---
+layout: default
+title: Talks
+permalink: /talks
+---
+
+<h1>Talks</h1>
+
+<dl>
+{% for item in site.data.talks %}
+  <dt>{{ item.year }}</dt>
+  <dd>
+    <strong>{{ item.event }}</strong>
+    {% if item.greek %} 
+      <img style="margin-left:1em;padding:0px;" 
+            src="/assets/images/ingreek.png"> 
+    {% endif %}
+    <br> {{item.title}} &nbsp;
+    <small><a href="{{ item.pdf }}">pdf</a></small>
+  </dd>
+{% endfor %}
+</dl>
+

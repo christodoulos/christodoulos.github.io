@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,700&display=swap&subset=greek");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700, 400italic");
+
+body {
+  font-family: "IBM Plex Sans";
+}
+
+h1,
+h2,
+h3 {
+  font-family: "IBM Plex Sans";
+  font-weight: normal;
+}
+
+.remark-code,
+.remark-inline-code {
+  font-family: "Ubuntu Mono";
+}
+
+.col6 {
+  width: 50%;
+}

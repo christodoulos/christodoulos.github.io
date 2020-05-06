@@ -1,0 +1,25 @@
+---
+math-css:
+  - "/css/katex.min.css"
+math-js:
+  - "katex.min.js"
+  - "auto-render.min.js"
+---
+
+<!doctype html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+    <div class="navigation">
+      {% include navigation.html %}
+    </div>
+    <div class="content">
+      {{ content }}
+    </div>
+
+    {% include footer-scripts.html %}
+
+  </body>
+</html>

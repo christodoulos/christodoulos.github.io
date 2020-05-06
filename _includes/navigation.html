@@ -1,0 +1,16 @@
+{% for item in site.data.navigation %}
+  {% if item.link == "/#" %}
+    <h4>{{ item.name }}</h4>
+  {% else %}
+  <a href="{{ item.link }}"
+    {% if page.url == item.link %}
+      class="current"
+    {% endif %}
+      {% if item.active == False %}
+        disabled
+      {% endif %}
+   >
+    {{ item.name }}
+  </a>
+  {% endif %}
+{% endfor %}

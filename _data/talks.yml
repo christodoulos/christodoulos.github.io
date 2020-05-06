@@ -1,0 +1,36 @@
+- event: 'Philonnet CAE Conference'
+  pdf: /talks/philonnet-2013.pdf
+  title: 'Engineering Simulation done in NTUA''s cloud enabled Computer Center <br>
+    (The systems administrator''s perspective)'
+  year: 2013
+- event: 'Athens Colloquium on Algorithms and Complexity'
+  pdf: /talks/acac2007.pdf
+  title: 'Maximizing the Guarder Boundary of an Art Gallery is APX complete'
+  year: 2007
+- event: '<a href="http://corelab.ntua.gr">CORELAB</a> seminar on Advanced Data Structures'
+  pdf: /talks/corelab-2007.pdf
+  title: 'Orthogonal Range Searching'
+  year: 2007
+- event: 'My PhD defence talk'
+  greek: true
+  pdf: /talks/phd-defence-2007.pdf
+  title: 'Σχεδόν βέλτιστοι αλγόριθμοι και αποτελέσματα μη προσέγγισης για προβλήματα
+    κάλυψης πολυγωνικών περιοχών'
+  year: 2007
+- event: 'European Workshop on Computational Geometry'
+  pdf: /talks/ewcg2006.pdf
+  title: 'Maximizing the Guarder Interior of an Art Gallery'
+  year: 2006
+- event: 'Panhellenic Conference on Informatics'
+  pdf: /talks/pci2005.pdf
+  title: 'How to Place Efficiently Guards and Paintings in an Art Gallery'
+  year: 2005
+- event: '<a href="http://semfe.ntua.gr/en">SEMFE</a> Computational Geometry guest
+    talk'
+  pdf: /talks/embed-2004.pdf
+  title: 'On the Embeddability of Graphs in Euclidean Spaces'
+  year: 2004
+- event: 'Balcan Conference of Informatics'
+  pdf: /talks/bci-2003.pdf
+  title: 'Budgeted Coverage of a Maximum Part of a Polygonal Area'
+  year: 2003

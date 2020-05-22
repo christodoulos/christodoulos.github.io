@@ -3,8 +3,6 @@ title: VIM tips
 tags: linux, vim, tip
 ---
 
-# How to strip DOS line endings
-
 In vim's command mode, type:
 
 ```

@@ -10,17 +10,17 @@
 - active: true
   link: "/#"
   name: Academic
-- active: true
-  link: /research/
-  name: Research
+# - active: true
+#   link: /research/
+#   name: Research
+# - active: false
+#   link: /publications/
+#   name: Publications
 - active: false
-  link: /publications/
-  name: Publications
-- active: false
-  link: /talks/
+  link: /talks.html
   name: Talks
 - active: false
-  link: /teaching/
+  link: /teaching.html
   name: Teaching
 - active: false
   link: "/#"

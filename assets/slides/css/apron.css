@@ -201,6 +201,11 @@ html {
   margin-top: 0px;
   padding: 0px;
 }
+.remark-slide-content.img-right img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 .remark-slide-content.img-left > p:first-of-type {
   height: 100%;
   float: left;

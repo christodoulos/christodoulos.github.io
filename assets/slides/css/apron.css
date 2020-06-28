@@ -200,11 +200,14 @@ html {
   margin-left: 2rem;
   margin-top: 0px;
   padding: 0px;
+  position: relative;
 }
-.remark-slide-content.img-right img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.remark-slide-content.img-right > p:first-of-type > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .remark-slide-content.img-left > p:first-of-type {
   height: 100%;

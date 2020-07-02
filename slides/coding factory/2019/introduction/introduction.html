@@ -271,15 +271,15 @@ class: compact
 Ο κώδικας της εφαρμογής Angular βρίσκεται στον κατάλογο `app` μέσα στον κατάλογο
 `src`:
 
-```
+```bash
 ...
 ├── src
-│   ├── app
-│   │   ├── app.component.css
-│   │   ├── app.component.html
-│   │   ├── app.component.spec.ts
-│   │   ├── app.component.ts
-│   │   └── app.module.ts
+│  ├── app
+│  │  ├── app.component.css
+│  │  ├── app.component.html
+│  │  ├── app.component.spec.ts
+│  │  ├── app.component.ts
+│  │  └── app.module.ts
 ... ...
 ```
 
@@ -319,7 +319,7 @@ class: compact
 
 # To `app.component.html` είναι μια *δυναμική σελίδα*
 
-* Παρατηρούμε πως η γραμμή της HTML: `<h2> This is {{{ title }}}! </h2>`
+* Παρατηρούμε πως η γραμμή της HTML: `<h2> This is {%raw%}{{title}}{%endraw%}! </h2>`
 * Εμφανίζεται σαν: **This is my-first-angular-app!**
 * Γιατί λειτουργεί σε συνδυασμό με το `app.component.ts`:
 
@@ -378,7 +378,7 @@ class: compact
 - Ο χώρος ανάμεσα στα {{}} **αντικατοπτρίζει άμεσα** οποιαδήποτε αλλαγή του
   ονόματος της μεταβλητής που περιέχει
 - Η αλλαγή της τιμής `title = 'Hello World Angular!';` εμφανίστηκε άμεσα στο
-  χώρο του template που τις αναλογεί, δηλαδή στο `{ { title } }`
+  χώρο του template που τις αναλογεί, δηλαδή στο `{%raw%}{{title}}{%endraw%}`
 
 # One way Data Binding
 
@@ -413,7 +413,7 @@ Angular template
 ```html
 <div style="text-align:center">
   <h1>Hello stranger!</h1>
-  <h2> This is {{ title }}!</h2>
+  <h2> This is {%raw%}{{title}}{%endraw%}!</h2>
 </div>
 <h2>Here are some links ... </h2>
 <ul>

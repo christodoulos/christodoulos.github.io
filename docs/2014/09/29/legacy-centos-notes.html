@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>CentOS 5.x notes - Christodoulos Fragkoudakis</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <!--
+              Heroicon name: menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+          <svg
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <!--
+              Heroicon name: x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+          <svg
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex-shrink-0 flex items-center text-white">
+          <div class="block md:hidden w-auto">
+            <div class="flex flex-col text-xs">
+              <div>Christodoulos</div>
+              <div>Fragkoudakis</div>
+            </div>
+          </div>
+          <div class="hidden md:block w-auto">Christodoulos Fragkoudakis</div>
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="/cv.html"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >CV</a
+            >
+            <a
+              href="/blog"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Blog</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <!-- <button
+          class="bg-gray-800 text-lg p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        >
+          <a class="pl-6" href="https://github.com/christodoulos">
+            <i class="fab fa-github"></i>
+          </a>
+        </button> -->
+
+        <!-- Profile dropdown -->
+        <div class="ml-3 relative">
+          <div>
+            <button
+              class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="user-menu"
+              aria-haspopup="true"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="/assets/img/avatar.jpg"
+                alt=""
+              />
+            </button>
+          </div>
+          <!--
+              Profile dropdown panel, show/hide based on dropdown state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          <div
+            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Your Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Settings</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
+  <div class="hidden sm:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a
+        href="#"
+        class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Dashboard</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Team</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Projects</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Calendar</a
+      >
+    </div>
+  </div>
+</nav>
+
+      <div class="md:flex md:flex-row">
+        <div class="md:w-3/4 mt-2">
+          <h2 class="text-2xl font-bold">CentOS 5.x notes</h2>
+          <article class="prose"><p>My personal notebook for CentOS 5.x installations.</p>
+
+<h1 id="enable-ldap-authentication">Enable LDAP authentication</h1>
+
+<p>If the IP of your LDAP server is <code class="language-plaintext highlighter-rouge">10.10.10.10</code> and your base dn is <code class="language-plaintext highlighter-rouge">ou=users,dc=yourdomain,dc=com</code> then the following command enables LDAP authentication:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>authconfig <span class="nt">--enableldap</span> <span class="nt">--enableldapauth</span> <span class="se">\</span>
+           <span class="nt">--ldapserver</span><span class="o">=</span>10.10.10.10      <span class="se">\</span>
+           <span class="nt">--ldapbasedn</span><span class="o">=</span><span class="nv">ou</span><span class="o">=</span><span class="nb">users</span>,dc<span class="o">=</span>yourdomain,dc<span class="o">=</span>com <span class="se">\</span>
+           <span class="nt">--enablecache</span> <span class="nt">--useshadow</span>                  <span class="se">\</span>
+           <span class="nt">--enablelocauthorize</span> <span class="nt">--enablemkhomedir</span> <span class="nt">--update</span>
+</code></pre></div></div>
+
+<h1 id="enable-network-bonding">Enable network bonding</h1>
+
+<p>You need two network interfaces. Interface <code class="language-plaintext highlighter-rouge">eth0</code> configuration recides in <code class="language-plaintext highlighter-rouge">/etc/sysconfig/network-scripts/ifcfg-eth0</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">DEVICE</span><span class="o">=</span>eth0
+<span class="nv">BOOTPROTO</span><span class="o">=</span>none
+<span class="nv">ONBOOT</span><span class="o">=</span><span class="nb">yes
+</span><span class="nv">MASTER</span><span class="o">=</span>bond0
+<span class="nv">SLAVE</span><span class="o">=</span><span class="nb">yes</span>
+</code></pre></div></div>
+
+<p>The same holds for <code class="language-plaintext highlighter-rouge">eth1</code> in <code class="language-plaintext highlighter-rouge">/etc/sysconfig/network-scripts/ifcfg-eth1</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">DEVICE</span><span class="o">=</span>eth1
+<span class="nv">BOOTPROTO</span><span class="o">=</span>none
+<span class="nv">ONBOOT</span><span class="o">=</span><span class="nb">yes
+</span><span class="nv">MASTER</span><span class="o">=</span>bond0
+<span class="nv">SLAVE</span><span class="o">=</span><span class="nb">yes</span>
+</code></pre></div></div>
+
+<p>The bonded interface is in <code class="language-plaintext highlighter-rouge">/etc/sysconfig/network-scripts/ifcfg-bond0</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">DEVICE</span><span class="o">=</span>bond0
+<span class="nv">BOOTPROTO</span><span class="o">=</span>dhcp
+<span class="nv">ONBOOT</span><span class="o">=</span><span class="nb">yes</span>
+</code></pre></div></div>
+
+<p>Finally the bonding mode is set in <code class="language-plaintext highlighter-rouge">/etc/modprobe.conf</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+<span class="nb">alias </span>bond0 bonding
+options bond0 <span class="nv">mode</span><span class="o">=</span>0 <span class="nv">miimon</span><span class="o">=</span>80
+</code></pre></div></div>
+
+<h1 id="permit-specific-incoming-connections">Permit specific incoming connections</h1>
+
+<p>The following script permits incoming connections from <code class="language-plaintext highlighter-rouge">192.168.3.10/32</code> and <code class="language-plaintext highlighter-rouge">192.168.3.3/32</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="c"># flush all current rules</span>
+iptables <span class="nt">-F</span>
+<span class="c"># permit ssh only from control station and sgd</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">-s</span> 192.168.3.10/255.255.255.255 <span class="nt">--dport</span> 22 <span class="nt">-j</span> ACCEPT
+iptables <span class="nt">-A</span> INPUT <span class="nt">-p</span> tcp <span class="nt">-s</span> 192.168.3.3/255.255.255.255 <span class="nt">--dport</span> 22 <span class="nt">-j</span> ACCEPT
+<span class="c"># drop any other traffic</span>
+iptables <span class="nt">-P</span> INPUT DROP
+iptables <span class="nt">-P</span> FORWARD DROP
+<span class="c"># permit all outbound traffic</span>
+iptables <span class="nt">-P</span> OUTPUT ACCEPT
+<span class="c"># do not block the lo interface</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-i</span> lo <span class="nt">-j</span> ACCEPT
+<span class="c"># do not block established or related traffic</span>
+iptables <span class="nt">-A</span> INPUT <span class="nt">-m</span> state <span class="nt">--state</span> ESTABLISHED,RELATED <span class="nt">-j</span> ACCEPT
+<span class="c"># save our settings</span>
+/sbin/service iptables save
+</code></pre></div></div>
+
+<h1 id="a-minimum-set-of-services">A minimum set of services</h1>
+
+<p>The following script disables a lot of services. Only the bare minimum is left active:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+chkconfig acpid off
+chkconfig anacron off
+chkconfig atd off
+chkconfig auditd off
+chkconfig autofs off
+chkconfig avahi-daemon off
+chkconfig bluetooth off
+chkconfig cpuspeed off
+chkconfig cups off
+chkconfig firstboot off
+chkconfig gpm off
+chkconfig haldaemon off
+chkconfig hidd off
+chkconfig hplip off
+chkconfig ip6tables off
+chkconfig isdn off
+chkconfig kudzu off
+chkconfig mcstrans off
+chkconfig mdmonitor off
+chkconfig messagebus off
+chkconfig pcscd off
+chkconfig rawdevices off
+chkconfig readahead_early off
+chkconfig restorecond off
+chkconfig rpcgssd off
+chkconfig rpcidmapd off
+chkconfig sendmail off
+chkconfig smartd off
+chkconfig xfs off
+chkconfig yum-updatesd off
+</code></pre></div></div>
+
+<h1 id="kill-zombie-gnome-processes">Kill zombie GNOME processes</h1>
+
+<p>VDI access left behind a lot of zombie processes. The following script kills all of them:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="k">for </span>P <span class="k">in</span> <span class="sb">`</span>ps <span class="nt">-ef</span> | <span class="nb">tr</span> <span class="nt">-s</span> <span class="s1">' '</span> | egrep <span class="nt">-v</span> <span class="s2">" ..:.. "</span> | egrep <span class="nt">-v</span> <span class="s2">"^UID|^root|^rpc|^ntp|^nscd"</span> | <span class="nb">tr</span> <span class="nt">-s</span> <span class="s1">' '</span> | <span class="nb">cut</span> <span class="nt">-d</span> <span class="s2">" "</span> <span class="nt">-f</span> 2<span class="sb">`</span>
+<span class="k">do
+        </span><span class="nb">kill</span> <span class="nt">-9</span> <span class="k">${</span><span class="nv">P</span><span class="k">}</span>
+<span class="k">done</span>
+</code></pre></div></div>
+</article>
+        </div>
+        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+          <!-- Sidebar Section -->
+<aside>
+<div class="flex flex-col p-4">
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="far fa-address-card mr-2"></i> Contact
+    </p>
+    <p class="text-sm pb-5"> NTUA, Computer Center<br />
+        Room 1.08<br />
+        9, Iroon Polytechniou str<br />
+        15780 Zogragou, Greece<br />
+        <a  href="mailto:christodoulos.fragkoudakis@gmail.com">
+          <i class="fas fa-at"></i>
+        </a>
+        <a  href="https://www.linkedin.com/in/fragkoudakis/">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a  href="https://github.com/christodoulos">
+          <i class="fab fa-github"></i>
+        </a>
+        <a  href="https://www.facebook.com/christodoulos.fragkoudakis">
+          <i class="fab fa-facebook"></i>
+        </a>
+    </p>
+
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="fas fa-university mr-2"></i> Academic
+    </p>
+    <p><a href="/talks.html">Talks</a> <a href="/teaching.html">Teaching</a></a></p>
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap">
+      <i class="fas fa-laptop-code mr-2"></i> Software
+    </p>
+    <p><a href="/software/ucc2stl.html">ucc2stl</a></p>
+
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap"><i class="fas fa-bolt mr-2"></i>Powered By</p>
+    <p><a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://tailwindcss.com/">tailwindcss</a></a></p>
+
+    <div class="mt-10 text-xs border-t-2 pt-1">
+      <p>Christodoulos Fragkoudakis<br/>
+      <pre>https://fragkoudakis.gr</pre></p>
+    </div>
+</div>
+</aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

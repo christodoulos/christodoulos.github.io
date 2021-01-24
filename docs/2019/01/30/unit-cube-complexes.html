@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Unit Cube Complexes - Christodoulos Fragkoudakis</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <!--
+              Heroicon name: menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+          <svg
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <!--
+              Heroicon name: x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+          <svg
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex-shrink-0 flex items-center text-white">
+          <div class="block md:hidden w-auto">
+            <div class="flex flex-col text-xs">
+              <div>Christodoulos</div>
+              <div>Fragkoudakis</div>
+            </div>
+          </div>
+          <div class="hidden md:block w-auto">Christodoulos Fragkoudakis</div>
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="/cv.html"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >CV</a
+            >
+            <a
+              href="/blog"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Blog</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <!-- <button
+          class="bg-gray-800 text-lg p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        >
+          <a class="pl-6" href="https://github.com/christodoulos">
+            <i class="fab fa-github"></i>
+          </a>
+        </button> -->
+
+        <!-- Profile dropdown -->
+        <div class="ml-3 relative">
+          <div>
+            <button
+              class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="user-menu"
+              aria-haspopup="true"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="/assets/img/avatar.jpg"
+                alt=""
+              />
+            </button>
+          </div>
+          <!--
+              Profile dropdown panel, show/hide based on dropdown state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          <div
+            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Your Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Settings</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
+  <div class="hidden sm:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a
+        href="#"
+        class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Dashboard</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Team</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Projects</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Calendar</a
+      >
+    </div>
+  </div>
+</nav>
+
+      <div class="md:flex md:flex-row">
+        <div class="md:w-3/4 mt-2">
+          <h2 class="text-2xl font-bold">Unit Cube Complexes</h2>
+          <article class="prose"><p class="abstract">The traditional Finite Element approach discetizes a continous orthogonal domain into smaller elements of a specific shape. We consider unit cube complexes (first picture below) that may be produced by Deep Learning methods as in \ref{kallioras}</p>
+
+<p><img src="/assets/images/ucc2stl/ucc.svg" alt="A unit cube complex" class="center-block" /></p>
+
+<h2 id="unit-cube-ordering-in-3d-space">Unit cube ordering in 3D space</h2>
+
+<p>Consider an axes aligned unit cube and that the $xz$ plane represents a traditional map where the four points of the horizon are defined by the common practice. There are six primal directions, north, south, east, west, top and bottom, towards each of which every cube’s face can be labeled according to the direction.</p>
+
+<p><img src="/assets/images/ucc2stl/uccpd.svg" alt="The six primal directions in 3D space" class="center-block" /></p>
+
+<p>Each of the labeled cube faces can be represented as a counterclockwise or clockwise list of its vertices regarding the cube’s interior. A counterclockwise listing is used when the interior is below, left of or behind the face and a clockwise listing is used when the interior is above, right or in front of the face (see the second figure above):</p>
+
+<ul>
+  <li>The <em>north face</em> is $0321$</li>
+  <li>The <em>south face</em> is $4567$</li>
+  <li>The <em>east face</em> is $6512$</li>
+  <li>The <em>west face</em> is $0473$</li>
+  <li>The <em>top face</em> is $3762$</li>
+  <li>The <em>bottom face</em> is $0154$</li>
+</ul>
+
+<p>Every unit cube in 3D space has a <em>centroid</em> whose coordinates can be calculated as a simple function of the coordinates of the cube vertices:</p>
+
+\[c=(x,y,z) = \left( \frac{\sum_{i=1}^8}{8}x_i, \frac{\sum_{i=1}^8}{8}y_i, \frac{\sum_{i=1}^8}{8}z_i \right)\]
+
+<p>The centroid can also be realized as the vector starting from $(0,0,0)$ towards $(x,y,z)$. Given two unit cubes $C_1$ and $C_2$ in 3D space there is a well defined ordering if we consider the relative positions of the cubes’ centroids: cube $C_2$ <em>is bigger</em> than cube $C_1$, i.e. $C_2$ is located (right / on top / in front) of $C_1$, if and only if $c_2=(x_2,y_2,x_2)&gt;c_1=(x_1,y_1,x_1)$. The same reasoning applies also when we try to locate the immediate next of the unit cube $C$ with centroid $(x,y,z)$ along each of the $x$, $y$, $z$ axes:</p>
+
+<p><img src="/assets/images/ucc2stl/uc-ordering.svg" alt="Unit cube ordering" class="center-block" /></p>
+
+<ul>
+  <li>the <em>west</em> cube is around $(x+1,y,z)$</li>
+  <li>the <em>top</em> cube is around $(x,y+1,z)$</li>
+  <li>the <em>south</em> cube is around $(x,y,z+1)$</li>
+  <li>similarly for <em>east</em>, <em>bottom</em> and <em>north</em></li>
+</ul>
+
+<h2 id="python-implementation">Python Implementation</h2>
+
+<p>We are going to describe in detail the implementation of the above ideas in the <em>Python</em> programming language.</p>
+
+<h2 id="a-python-class-for-3d-points">A Python class for 3D points</h2>
+
+<p>A Python class for 3D points that supports various methods and implements the usual lexicographic ordering is the following:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="s">"A class for 3D points"</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
+
+    <span class="o">@</span><span class="nb">classmethod</span>
+    <span class="k">def</span> <span class="nf">from_point</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+        <span class="s">"Initializes a 3D point from another point"</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">point</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">point</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">point</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="o">@</span><span class="nb">classmethod</span>
+    <span class="k">def</span> <span class="nf">from_tuple</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">tup</span><span class="p">):</span>
+        <span class="s">"Initializes a 3D point from a tuple of 3 values"</span>
+        <span class="k">return</span> <span class="n">cls</span><span class="p">(</span><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tup</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+    <span class="o">@</span><span class="nb">property</span>
+    <span class="k">def</span> <span class="nf">coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"Returns the coordinates of the 3D point"</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">'Point({0},{1},{2})'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="o">!=</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)[</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">]</span>
+        <span class="n">temp</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">temp</span>
+
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="p">.</span><span class="n">x</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span>
+        <span class="k">yield</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span>
+
+    <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="s">"Subtracts two points giving the vector that translates other to self"</span>
+        <span class="k">return</span> <span class="n">Vector</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+        <span class="s">"Translates self to another points using 'vector' vector"</span>
+        <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">vector</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">vector</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">z</span> <span class="o">+</span> <span class="n">vector</span><span class="p">.</span><span class="n">z</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Παράδειγμα χρήσης των παραπάνω κλάσεων:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">primitives</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="o">-</span><span class="n">b</span>
+<span class="n">Vector</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="o">-</span><span class="n">a</span>
+<span class="n">Vector</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">Vector</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">Point</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+</code></pre></div></div>
+</article>
+        </div>
+        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+          <!-- Sidebar Section -->
+<aside>
+<div class="flex flex-col p-4">
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="far fa-address-card mr-2"></i> Contact
+    </p>
+    <p class="text-sm pb-5"> NTUA, Computer Center<br />
+        Room 1.08<br />
+        9, Iroon Polytechniou str<br />
+        15780 Zogragou, Greece<br />
+        <a  href="mailto:christodoulos.fragkoudakis@gmail.com">
+          <i class="fas fa-at"></i>
+        </a>
+        <a  href="https://www.linkedin.com/in/fragkoudakis/">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a  href="https://github.com/christodoulos">
+          <i class="fab fa-github"></i>
+        </a>
+        <a  href="https://www.facebook.com/christodoulos.fragkoudakis">
+          <i class="fab fa-facebook"></i>
+        </a>
+    </p>
+
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="fas fa-university mr-2"></i> Academic
+    </p>
+    <p><a href="/talks.html">Talks</a> <a href="/teaching.html">Teaching</a></a></p>
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap">
+      <i class="fas fa-laptop-code mr-2"></i> Software
+    </p>
+    <p><a href="/software/ucc2stl.html">ucc2stl</a></p>
+
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap"><i class="fas fa-bolt mr-2"></i>Powered By</p>
+    <p><a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://tailwindcss.com/">tailwindcss</a></a></p>
+
+    <div class="mt-10 text-xs border-t-2 pt-1">
+      <p>Christodoulos Fragkoudakis<br/>
+      <pre>https://fragkoudakis.gr</pre></p>
+    </div>
+</div>
+</aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

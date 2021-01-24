@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Welcome - Christodoulos Fragkoudakis</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <!--
+              Heroicon name: menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+          <svg
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <!--
+              Heroicon name: x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+          <svg
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex-shrink-0 flex items-center text-white">
+          <div class="block md:hidden w-auto">
+            <div class="flex flex-col text-xs">
+              <div>Christodoulos</div>
+              <div>Fragkoudakis</div>
+            </div>
+          </div>
+          <div class="hidden md:block w-auto">Christodoulos Fragkoudakis</div>
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="/cv.html"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >CV</a
+            >
+            <a
+              href="/blog"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Blog</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <!-- <button
+          class="bg-gray-800 text-lg p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        >
+          <a class="pl-6" href="https://github.com/christodoulos">
+            <i class="fab fa-github"></i>
+          </a>
+        </button> -->
+
+        <!-- Profile dropdown -->
+        <div class="ml-3 relative">
+          <div>
+            <button
+              class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="user-menu"
+              aria-haspopup="true"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="/assets/img/avatar.jpg"
+                alt=""
+              />
+            </button>
+          </div>
+          <!--
+              Profile dropdown panel, show/hide based on dropdown state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          <div
+            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Your Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Settings</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
+  <div class="hidden sm:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a
+        href="#"
+        class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Dashboard</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Team</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Projects</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Calendar</a
+      >
+    </div>
+  </div>
+</nav>
+
+      <div class="md:flex md:flex-row">
+        <div class="md:w-3/4 mt-2">
+          <article class="prose"><h1 id="welcome">Welcome</h1>
+
+<p>My name is Christodoulos Fragkoudakis. I am the associate director of the central <a href="http://www.central.ntua.gr">Computer Center</a>
+facility of the National Technical University of Athens (<a href="http://www.ntua.gr">NTUA</a>) in
+Greece. For more than fifteen years in the computer center, I administer the
+systems and network infrastructure. I participate in an ongoing effort of
+a cloud computing transition. I design and <a href="https://ieeexplore.ieee.org/document/6681228">implement</a> cloud
+computing services on top of <a href="https://www.gnu.org/philosophy/floss-and-foss.html">free</a> operating systems and applications.
+Recently I joined the so-called “ΕΔΙΠ” faculty of NTUA.</p>
+
+<h2 id="about-me">About me</h2>
+
+<p>I am a Linux and Python enthusiast. I like long runs, and last year I finished
+my first marathon. I dislike many things around me, but I try to keep an <a href="https://quoteinvestigator.com/2014/04/13/open-mind/">open
+mind</a>. My daily life as a <a href="https://xkcd.com/705/">devoted to duty</a> administrator
+involves a lot of responsibilities and <a href="/2015/09/29/team-work.html">teamwork</a>. Last but not
+least, I can tie my <a href="/2017/04/18/how-to-tie-a-shoelace-really-fast.html">shoelaces</a> very fast.</p>
+
+<p>I obtained a Ph.D. in computer science from NTUA’s <a href="https://www.ece.ntua.gr/en">Electrical and Computer
+Engineering</a> Department in 2007. I studied computational geometry
+and specifically <a href="https://en.wikipedia.org/wiki/Art_gallery_problem">Art Gallery problems</a>. The connection between
+the art gallery problems and the fact that my <a href="http://michalakopoulou.gr">wife</a> is a painter is
+a pure coincidence. Since then, I worked as a short term assistant professor in
+the Department of Informatics and Telecommunications at the National University
+of Athens (NUA) and as a short term lecturer in the Department of Informatics
+at the Athens University of Economics and Business (AUEB). I instructed
+Computational Geometry, Discrete Mathematics, and Theory of Computation
+classes.</p>
+
+<p>I have been around in NTUA since 1994. I guess that makes me old. I was an
+active member of <a href="http://erga.di.uoa.gr/index.html">ΕρΓΑ</a> and <a href="http://corelab.ntua.gr/">CORELAB</a>. In a previous life,
+I have been a <a href="https://youtu.be/o4CFaClI4ow">geologist</a> (at least as an
+undergraduate in <a href="http://www.geol.uoa.gr/index.php/en/">NUA</a>).</p>
+
+<h2 id="is-it-fragoudakis-or-fragkoudakis">Is it Fragoudakis or Fragkoudakis?</h2>
+
+<p>The actual <em>Fragoudakis</em> that appears as an author in my publications
+(<a href="https://dblp.uni-trier.de/pers/hd/f/Fragoudakis:Christodoulos">here</a>, and <a href="https://www.igi-global.com/gateway/chapter/62221">here</a>) is me. That is because I used to use
+<em>Fragoudakis</em> as my surname during my early publishing attempts. Back then, the
+Greek authorities did not impose an English translation of names on the ID
+card. My name in Greek is <em>Χριστόδουλος Φραγκουδάκης</em>. The diphthong <em>γκ</em> in
+<em>Φραγκουδάκης</em> sounds in Greek like the letter g in almost every English word
+that I know. The Greek authorities decided to make a one to one correspondence
+from the Greek alphabet to the English one. So the Greek letter <em>γ</em> corresponds
+to <em>g</em> while <em>κ</em> corresponds to <em>k</em>. The latter explains the ugly and
+unpronounceable <em>Fragkoudakis</em> on my ID card.</p>
+
+</article>
+        </div>
+        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+          <!-- Sidebar Section -->
+<aside>
+<div class="flex flex-col p-4">
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="far fa-address-card mr-2"></i> Contact
+    </p>
+    <p class="text-sm pb-5"> NTUA, Computer Center<br />
+        Room 1.08<br />
+        9, Iroon Polytechniou str<br />
+        15780 Zogragou, Greece<br />
+        <a  href="mailto:christodoulos.fragkoudakis@gmail.com">
+          <i class="fas fa-at"></i>
+        </a>
+        <a  href="https://www.linkedin.com/in/fragkoudakis/">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a  href="https://github.com/christodoulos">
+          <i class="fab fa-github"></i>
+        </a>
+        <a  href="https://www.facebook.com/christodoulos.fragkoudakis">
+          <i class="fab fa-facebook"></i>
+        </a>
+    </p>
+
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="fas fa-university mr-2"></i> Academic
+    </p>
+    <p><a href="/talks.html">Talks</a> <a href="/teaching.html">Teaching</a></a></p>
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap">
+      <i class="fas fa-laptop-code mr-2"></i> Software
+    </p>
+    <p><a href="/software/ucc2stl.html">ucc2stl</a></p>
+
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap"><i class="fas fa-bolt mr-2"></i>Powered By</p>
+    <p><a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://tailwindcss.com/">tailwindcss</a></a></p>
+
+    <div class="mt-10 text-xs border-t-2 pt-1">
+      <p>Christodoulos Fragkoudakis<br/>
+      <pre>https://fragkoudakis.gr</pre></p>
+    </div>
+</div>
+</aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Implementing a noVNC websocket proxy - Christodoulos Fragkoudakis</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <!--
+              Heroicon name: menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+          <svg
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <!--
+              Heroicon name: x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+          <svg
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex-shrink-0 flex items-center text-white">
+          <div class="block md:hidden w-auto">
+            <div class="flex flex-col text-xs">
+              <div>Christodoulos</div>
+              <div>Fragkoudakis</div>
+            </div>
+          </div>
+          <div class="hidden md:block w-auto">Christodoulos Fragkoudakis</div>
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="/cv.html"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >CV</a
+            >
+            <a
+              href="/blog"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Blog</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <!-- <button
+          class="bg-gray-800 text-lg p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        >
+          <a class="pl-6" href="https://github.com/christodoulos">
+            <i class="fab fa-github"></i>
+          </a>
+        </button> -->
+
+        <!-- Profile dropdown -->
+        <div class="ml-3 relative">
+          <div>
+            <button
+              class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="user-menu"
+              aria-haspopup="true"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="/assets/img/avatar.jpg"
+                alt=""
+              />
+            </button>
+          </div>
+          <!--
+              Profile dropdown panel, show/hide based on dropdown state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          <div
+            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Your Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Settings</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
+  <div class="hidden sm:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a
+        href="#"
+        class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Dashboard</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Team</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Projects</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Calendar</a
+      >
+    </div>
+  </div>
+</nav>
+
+      <div class="md:flex md:flex-row">
+        <div class="md:w-3/4 mt-2">
+          <h2 class="text-2xl font-bold">Implementing a noVNC websocket proxy</h2>
+          <article class="prose"><h3 id="a-websockets-novnc-proxy">A websockets noVNC proxy</h3>
+
+<p>In computer networks, a proxy server is a server (a computer system or an application) that acts as an intermediary for requests from clients seeking resources from other servers. A client connects to the proxy server, requesting some service, such as a file, connection, web page, or other resource available from a different server and the proxy server evaluates the request as a way to simplify and control its complexity. Proxies were invented to add structure and encapsulation to distributed systems.[1] Today, most proxies are web proxies, facilitating access to content on the World Wide Web and providing anonymity.</p>
+
+<h3 id="the-vnc-dispatcher">The VNC dispatcher</h3>
+
+<p>The VNC dispatcher generated a random VNC password and a random socket identifier. Then uses the <code class="language-plaintext highlighter-rouge">cloudvnc</code> script to start the actual VNC server and deliver <code class="language-plaintext highlighter-rouge">Xvnc</code> process id along with the display number.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="k">async</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">async</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">http</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">crypto</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">sequest</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">sequest</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">mongodb</span><span class="dl">'</span><span class="p">).</span><span class="nx">MongoClient</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">mongodb</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">mongodb://localhost/vncDispatch</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">'</span><span class="s1">/vncdispatch/:username/:remoteip</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">client</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="nx">mongodb</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">db</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="dl">'</span><span class="s1">config</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">tokenizer</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="dl">'</span><span class="s1">tokenizer</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">tokenizer</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span><span class="na">username</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">username</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">doc</span><span class="p">.</span><span class="nx">remoteip</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">remoteip</span><span class="p">;</span>
+<span class="nx">tokenizer</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">doc</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">doc</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="k">async</span><span class="p">.</span><span class="nx">waterfall</span><span class="p">([</span>
+<span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">config</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">next_blade</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">blade_list</span> <span class="p">[</span>
+<span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">last_blade</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">num_of_blades</span>
+<span class="p">];</span>
+<span class="nx">crypto</span><span class="p">.</span><span class="nx">randomBytes</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">buf</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">token</span> <span class="o">=</span> <span class="nx">buf</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="dl">'</span><span class="s1">hex</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">next_blade</span><span class="p">,</span> <span class="nx">token</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">});</span>
+<span class="p">},</span>
+<span class="kd">function</span><span class="p">(</span><span class="nx">next_blade</span><span class="p">,</span> <span class="nx">token</span><span class="p">,</span> <span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">key</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">HOME</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">/.ssh/id_rsa</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">re</span> <span class="o">=</span> <span class="sr">/</span><span class="se">(</span><span class="sr">.*</span><span class="se">)</span><span class="sr"> </span><span class="se">(</span><span class="sr">.*</span><span class="se">)</span><span class="sr"> </span><span class="se">(</span><span class="sr">.*</span><span class="se">)</span><span class="sr">/</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">vncpasswd</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">().</span><span class="nx">toString</span><span class="p">(</span><span class="mi">36</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">command</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">su - </span><span class="dl">'</span> <span class="o">+</span>
+<span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">username</span> <span class="o">+</span>
+<span class="dl">'</span><span class="s1"> -c "cloudvnc </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">vncpasswd</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">" 2&gt;/dev/null</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">sequest</span><span class="p">(</span><span class="nx">next_blade</span><span class="p">,</span> <span class="p">{</span>
+<span class="na">command</span><span class="p">:</span> <span class="nx">command</span><span class="p">,</span>
+<span class="na">privateKey</span><span class="p">:</span> <span class="nx">key</span>
+<span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">stdout</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">re</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">stdout</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">blade</span> <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">pid</span> <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">display</span> <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="kd">var</span> <span class="nx">doc</span> <span class="o">=</span> <span class="p">{</span>
+<span class="dl">'</span><span class="s1">username</span><span class="dl">'</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span>
+<span class="dl">'</span><span class="s1">password</span><span class="dl">'</span><span class="p">:</span> <span class="nx">vncpasswd</span><span class="p">,</span>
+<span class="dl">'</span><span class="s1">token</span><span class="dl">'</span><span class="p">:</span> <span class="nx">token</span><span class="p">,</span>
+<span class="dl">'</span><span class="s1">blade</span><span class="dl">'</span><span class="p">:</span> <span class="nx">blade</span><span class="p">,</span>
+<span class="dl">'</span><span class="s1">display</span><span class="dl">'</span><span class="p">:</span> <span class="nx">display</span><span class="p">,</span>
+<span class="dl">'</span><span class="s1">vncpid</span><span class="dl">'</span><span class="p">:</span> <span class="nx">pid</span><span class="p">,</span>
+<span class="dl">'</span><span class="s1">remoteip</span><span class="dl">'</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">remoteip</span>
+<span class="p">};</span>
+<span class="nx">tokenizer</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">doc</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+<span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">doc</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">});</span>
+<span class="p">},</span>
+<span class="kd">function</span><span class="p">(</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">config</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">cdoc</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+<span class="nx">cdoc</span><span class="p">.</span><span class="nx">last_blade</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">config</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="nx">cdoc</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+<span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="nx">doc</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="p">});</span>
+<span class="p">}</span>
+<span class="p">]);</span>
+<span class="p">}</span>
+<span class="p">});</span>
+<span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3003</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="starting-the-actual-vnc-server">Starting the actual VNC server</h3>
+
+<p>Starting the VNC server is one of the application server’s job. We need to receive the automaticaly generated random password, create the VNC password file and finally start the VNC server. We use the following python script:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">environ</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">psutil</span>
+
+<span class="n">vncpasswd</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">environ</span><span class="p">[</span><span class="s">'HOME'</span><span class="p">]</span> <span class="o">+</span> <span class="s">'/.vncpasswd'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+<span class="n">vncpasswd_cmd</span> <span class="o">=</span> <span class="s">'echo %s | vncpasswd -f'</span> <span class="o">%</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">subprocess</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">vncpasswd_cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">vncpasswd</span><span class="p">)</span>
+
+<span class="n">vncserver_cmd</span> <span class="o">=</span> <span class="s">'vncserver -rfbauth %s/.vncpasswd -autokill'</span> <span class="o">%</span> <span class="n">environ</span><span class="p">[</span><span class="s">'HOME'</span><span class="p">]</span>
+<span class="n">subprocess</span><span class="p">.</span><span class="n">call</span><span class="p">(</span><span class="n">vncserver_cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">psutil</span><span class="p">.</span><span class="n">process_iter</span><span class="p">():</span>
+<span class="k">if</span> <span class="n">p</span><span class="p">.</span><span class="n">username</span><span class="o">==</span><span class="n">environ</span><span class="p">[</span><span class="s">'USER'</span><span class="p">]:</span>
+<span class="k">if</span> <span class="n">p</span><span class="p">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">'Xvnc'</span><span class="p">:</span>
+<span class="k">print</span> <span class="n">environ</span><span class="p">[</span><span class="s">'HOSTNAME'</span><span class="p">],</span> <span class="n">p</span><span class="p">.</span><span class="n">pid</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">cmdline</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span>
+</code></pre></div></div>
+</article>
+        </div>
+        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+          <!-- Sidebar Section -->
+<aside>
+<div class="flex flex-col p-4">
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="far fa-address-card mr-2"></i> Contact
+    </p>
+    <p class="text-sm pb-5"> NTUA, Computer Center<br />
+        Room 1.08<br />
+        9, Iroon Polytechniou str<br />
+        15780 Zogragou, Greece<br />
+        <a  href="mailto:christodoulos.fragkoudakis@gmail.com">
+          <i class="fas fa-at"></i>
+        </a>
+        <a  href="https://www.linkedin.com/in/fragkoudakis/">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a  href="https://github.com/christodoulos">
+          <i class="fab fa-github"></i>
+        </a>
+        <a  href="https://www.facebook.com/christodoulos.fragkoudakis">
+          <i class="fab fa-facebook"></i>
+        </a>
+    </p>
+
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="fas fa-university mr-2"></i> Academic
+    </p>
+    <p><a href="/talks.html">Talks</a> <a href="/teaching.html">Teaching</a></a></p>
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap">
+      <i class="fas fa-laptop-code mr-2"></i> Software
+    </p>
+    <p><a href="/software/ucc2stl.html">ucc2stl</a></p>
+
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap"><i class="fas fa-bolt mr-2"></i>Powered By</p>
+    <p><a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://tailwindcss.com/">tailwindcss</a></a></p>
+
+    <div class="mt-10 text-xs border-t-2 pt-1">
+      <p>Christodoulos Fragkoudakis<br/>
+      <pre>https://fragkoudakis.gr</pre></p>
+    </div>
+</div>
+</aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

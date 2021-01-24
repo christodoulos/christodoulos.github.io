@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Basic Linux Installation - Christodoulos Fragkoudakis</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <!--
+              Heroicon name: menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+          <svg
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <!--
+              Heroicon name: x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+          <svg
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex-shrink-0 flex items-center text-white">
+          <div class="block md:hidden w-auto">
+            <div class="flex flex-col text-xs">
+              <div>Christodoulos</div>
+              <div>Fragkoudakis</div>
+            </div>
+          </div>
+          <div class="hidden md:block w-auto">Christodoulos Fragkoudakis</div>
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="/cv.html"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >CV</a
+            >
+            <a
+              href="/blog"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Blog</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <!-- <button
+          class="bg-gray-800 text-lg p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        >
+          <a class="pl-6" href="https://github.com/christodoulos">
+            <i class="fab fa-github"></i>
+          </a>
+        </button> -->
+
+        <!-- Profile dropdown -->
+        <div class="ml-3 relative">
+          <div>
+            <button
+              class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="user-menu"
+              aria-haspopup="true"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="/assets/img/avatar.jpg"
+                alt=""
+              />
+            </button>
+          </div>
+          <!--
+              Profile dropdown panel, show/hide based on dropdown state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          <div
+            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Your Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Settings</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
+  <div class="hidden sm:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a
+        href="#"
+        class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Dashboard</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Team</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Projects</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Calendar</a
+      >
+    </div>
+  </div>
+</nav>
+
+      <div class="md:flex md:flex-row">
+        <div class="md:w-3/4 mt-2">
+          <h2 class="text-2xl font-bold">Basic Linux Installation</h2>
+          <article class="prose"><p>Table Of Contents</p>
+<ul id="markdown-toc">
+  <li><a href="#network-configuration" id="markdown-toc-network-configuration">Network configuration</a>    <ul>
+      <li><a href="#interface-setup-static-ip" id="markdown-toc-interface-setup-static-ip">Interface setup <em>(static IP)</em></a></li>
+      <li><a href="#setup-an-interface-as-a-gateway" id="markdown-toc-setup-an-interface-as-a-gateway">Setup an interface as a gateway</a></li>
+    </ul>
+  </li>
+  <li><a href="#screenshots" id="markdown-toc-screenshots">Screenshots</a>    <ul>
+      <li><a href="#debian" id="markdown-toc-debian">Debian</a></li>
+      <li><a href="#ubuntu" id="markdown-toc-ubuntu">Ubuntu</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="network-configuration">Network configuration</h2>
+
+<h3 id="interface-setup-static-ip">Interface setup <em>(static IP)</em></h3>
+
+<p>Adjust the following according to your network details:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>auto ens160
+iface ens160 inet static
+  address 192.168.170.100
+  netmask 255.255.255.0
+  network 192.168.170.0
+  broadcast 192.168.170.255
+  gateway 192.168.170.200
+  dns-nameservers &lt;ip of your domain dns&gt;
+  dns-search your.domain.com
+</code></pre></div></div>
+
+<h3 id="setup-an-interface-as-a-gateway">Setup an interface as a gateway</h3>
+
+<p>In the following setup interface <code class="language-plaintext highlighter-rouge">eth0</code> is connected to the internet while <code class="language-plaintext highlighter-rouge">eth1</code> is the gateway of the internal lan that forwards traffic to <code class="language-plaintext highlighter-rouge">eth0</code></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>auto eth0
+iface eth0 inet static
+  address 192.168.4.20
+  netmask 255.255.255.0
+  broadcast 192.168.4.255
+  network 192.168.4.0
+  gateway 192.168.4.1
+  dns-nameservers 147.102.222.210 147.102.222.220 147.102.222.230
+
+auto eth1
+iface eth1 inet static
+  address 192.168.253.1
+  netmask 255.255.255.0
+  broadcast 192.168.253.255
+  network 192.168.253.0
+  up iptables-restore &lt; /etc/ltsp/nat
+  up route add -net 192.168.248.0 netmask 255.255.252.0 gw 192.168.253.254
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">/etc/ltspnat</code> file should be something similar to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Generated by iptables-save v1.4.4 on Fri Nov  4 15:53:53 2011
+*nat
+:PREROUTING ACCEPT [4:1808]
+:POSTROUTING ACCEPT [1:116]
+:OUTPUT ACCEPT [1:116]
+-A POSTROUTING -s 192.168.253.0/24 -j MASQUERADE
+-A POSTROUTING -s 192.168.248.0/22 -j MASQUERADE
+COMMIT
+# Completed on Fri Nov  4 15:53:53 2011
+</code></pre></div></div>
+
+<p>IP forwarding should be enabled in <code class="language-plaintext highlighter-rouge">/etc/sysctl.conf</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+# Uncomment the next line to enable packet forwarding for IPv4
+net.ipv4.ip_forward=1
+...
+</code></pre></div></div>
+
+<h2 id="screenshots">Screenshots</h2>
+
+<h3 id="debian">Debian</h3>
+
+<iframe src="https://christodoulos.github.io/jekyll-slideshow/slides/debian-install.html" style="height:750px;width:800px;border:none;overflow:hidden"></iframe>
+
+<h3 id="ubuntu">Ubuntu</h3>
+
+<iframe src="https://christodoulos.github.io/jekyll-slideshow/slides/ubuntu-install.html" style="height:650px;width:800px;border:none;overflow:hidden"></iframe>
+</article>
+        </div>
+        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+          <!-- Sidebar Section -->
+<aside>
+<div class="flex flex-col p-4">
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="far fa-address-card mr-2"></i> Contact
+    </p>
+    <p class="text-sm pb-5"> NTUA, Computer Center<br />
+        Room 1.08<br />
+        9, Iroon Polytechniou str<br />
+        15780 Zogragou, Greece<br />
+        <a  href="mailto:christodoulos.fragkoudakis@gmail.com">
+          <i class="fas fa-at"></i>
+        </a>
+        <a  href="https://www.linkedin.com/in/fragkoudakis/">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a  href="https://github.com/christodoulos">
+          <i class="fab fa-github"></i>
+        </a>
+        <a  href="https://www.facebook.com/christodoulos.fragkoudakis">
+          <i class="fab fa-facebook"></i>
+        </a>
+    </p>
+
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="fas fa-university mr-2"></i> Academic
+    </p>
+    <p><a href="/talks.html">Talks</a> <a href="/teaching.html">Teaching</a></a></p>
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap">
+      <i class="fas fa-laptop-code mr-2"></i> Software
+    </p>
+    <p><a href="/software/ucc2stl.html">ucc2stl</a></p>
+
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap"><i class="fas fa-bolt mr-2"></i>Powered By</p>
+    <p><a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://tailwindcss.com/">tailwindcss</a></a></p>
+
+    <div class="mt-10 text-xs border-t-2 pt-1">
+      <p>Christodoulos Fragkoudakis<br/>
+      <pre>https://fragkoudakis.gr</pre></p>
+    </div>
+</div>
+</aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

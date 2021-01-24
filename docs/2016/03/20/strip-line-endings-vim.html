@@ -1,0 +1,9 @@
+<p>In vim’s command mode, type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:%s/^M$//
+</code></pre></div></div>
+
+<p>(To get <code class="language-plaintext highlighter-rouge">^M</code>, press <code class="language-plaintext highlighter-rouge">^V^M</code>, where <code class="language-plaintext highlighter-rouge">^</code> is <code class="language-plaintext highlighter-rouge">Ctrl</code> on most keyboards). In order to avoid the <code class="language-plaintext highlighter-rouge">^V^M</code> hassle you can also type (saves two characters):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>:%s/\r$
+</code></pre></div></div>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>LTSP setup for a university classroom - Christodoulos Fragkoudakis</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <!--
+              Heroicon name: menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+          <svg
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <!--
+              Heroicon name: x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+          <svg
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex-shrink-0 flex items-center text-white">
+          <div class="block md:hidden w-auto">
+            <div class="flex flex-col text-xs">
+              <div>Christodoulos</div>
+              <div>Fragkoudakis</div>
+            </div>
+          </div>
+          <div class="hidden md:block w-auto">Christodoulos Fragkoudakis</div>
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="/cv.html"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >CV</a
+            >
+            <a
+              href="/blog"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Blog</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <!-- <button
+          class="bg-gray-800 text-lg p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        >
+          <a class="pl-6" href="https://github.com/christodoulos">
+            <i class="fab fa-github"></i>
+          </a>
+        </button> -->
+
+        <!-- Profile dropdown -->
+        <div class="ml-3 relative">
+          <div>
+            <button
+              class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="user-menu"
+              aria-haspopup="true"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="/assets/img/avatar.jpg"
+                alt=""
+              />
+            </button>
+          </div>
+          <!--
+              Profile dropdown panel, show/hide based on dropdown state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          <div
+            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Your Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Settings</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
+  <div class="hidden sm:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a
+        href="#"
+        class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Dashboard</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Team</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Projects</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Calendar</a
+      >
+    </div>
+  </div>
+</nav>
+
+      <div class="md:flex md:flex-row">
+        <div class="md:w-3/4 mt-2">
+          <h2 class="text-2xl font-bold">LTSP setup for a university classroom</h2>
+          <article class="prose"><p>Warning: <em>This is my personal notepad for such installations.<br />
+Use it at your own risk!</em></p>
+
+<h2 id="first-steps">First steps</h2>
+
+<p>Start with a <em>fresh and minimal</em> ubuntu installation as it is depicted <a href="#!linux/install/install.md#Ubuntu">here</a>. A functional (but with limited functionality) LTSP server is just a matter of the following commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt get update
+<span class="nb">sudo </span>apt get upgrade
+<span class="nb">sudo </span>apt <span class="nb">install </span>ltsp-server-standalone
+<span class="nb">sudo </span>ltsp-build-client
+</code></pre></div></div>
+
+<h2 id="dhcp-server-setup">DHCP server setup</h2>
+
+<p>You should configure the network interface from which the server should respond to requests:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nano /etc/default/isc-dhcp-server
+</code></pre></div></div>
+
+<p>Append a suitable line like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>INTERFACES="enp3s0"
+</code></pre></div></div>
+
+<p>Configure your subnet:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nano /etc/ltsp/dhcpd.conf
+</code></pre></div></div>
+
+<p>Add a suitable subnet stanza like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>subnet 147.102.246.0 netmask 255.255.255.0 {
+    range 147.102.246.212 147.102.246.213;
+    option domain-name "central.ntua.gr";
+    option domain-name-servers 147.102.224.243;
+    option broadcast-address 147.102.246.255;
+    option routers 147.102.246.200;
+#    next-server 147.102.246.211;
+#    get-lease-hostnames true;
+    option subnet-mask 255.255.255.0;
+    option root-path "/opt/ltsp/amd64";
+    if substring( option vendor-class-identifier, 0, 9 ) = "PXEClient" {
+        filename "/ltsp/amd64/pxelinux.0";
+    } else {
+        filename "/ltsp/amd64/nbi.img";
+    }
+}
+</code></pre></div></div>
+
+<p>Finally restart the server:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service isc-dhcp-server start
+</code></pre></div></div>
+
+<h2 id="tftp-server-setup">TFTP server setup</h2>
+
+<p>You might need to configure properly the <code class="language-plaintext highlighter-rouge">tftpd-hpa</code> server:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nano /etc/default/tftpd-hpa
+</code></pre></div></div>
+
+<p>The file should contain something like the following:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/var/lib/tftpboot"
+TFTP_ADDRESS="0.0.0.0:69"
+TFTP_OPTIONS="--secure"
+</code></pre></div></div>
+
+<p>Start the server if it is not running:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo service tftpd-hpa start
+</code></pre></div></div>
+
+<h2 id="chroot-updateupgrade">chroot update/upgrade</h2>
+
+<p>You can use the following script to install a specific package in the chroot:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CHROOT_DIR</span><span class="o">=</span>/opt/ltsp/amd64
+
+<span class="nb">sudo chroot</span> <span class="nv">$CHROOT_DIR</span> mount <span class="nt">-t</span> proc /proc /proc
+<span class="nb">sudo chroot</span> <span class="nv">$CHROOT_DIR</span> apt update
+
+<span class="k">while</span> <span class="o">[</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">!=</span> <span class="s2">""</span> <span class="o">]</span><span class="p">;</span> <span class="k">do
+  </span><span class="nb">sudo chroot</span> <span class="nv">$CHROOT_DIR</span> <span class="nb">env </span><span class="nv">LTSP_HANDLE_DAEMONS</span><span class="o">=</span><span class="nb">false </span>apt <span class="nt">-y</span> <span class="nb">install</span> <span class="nv">$1</span>
+  <span class="nb">shift
+</span><span class="k">done
+
+</span><span class="nb">sudo </span>umount /opt/ltsp/amd64/proc
+<span class="nb">sudo </span>ltsp-update-image
+</code></pre></div></div>
+
+<p>… after a <em>chroot upgrade</em> when a new kernel is installed you should:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ltsp-update-sskeys
+</code></pre></div></div>
+
+<p>….</p>
+
+<h2 id="electronic-exams">Electronic exams</h2>
+
+<p>You can support <em>electonic exams</em> in your <em>LTSP</em> classroom and collect the exam folders using the following script:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">EXAMSDIR</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">DEPARTMENT</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">DIRTOCOLLECT</span><span class="o">=</span><span class="nv">$3</span>
+<span class="nv">USERS</span><span class="o">=</span><span class="sb">`</span><span class="nb">ls</span> <span class="nv">$EXAMSDIR</span> | <span class="nb">grep</span> <span class="nv">$2</span>.....<span class="sb">`</span>
+
+<span class="k">for </span>USER <span class="k">in</span> <span class="nv">$USERS</span><span class="p">;</span> <span class="k">do
+  </span><span class="nv">FULLNAME</span><span class="o">=</span><span class="sb">`</span>ldapsearch <span class="nt">-x</span> <span class="s2">"(uid=</span><span class="nv">$USER</span><span class="s2">)"</span> cn | <span class="nb">grep </span>cn:: | <span class="nb">cut</span> <span class="nt">-d</span><span class="s2">" "</span> <span class="nt">-f2</span> | <span class="nb">base64</span> <span class="nt">-d</span> 2&gt; /dev/null<span class="sb">`</span>
+  <span class="nv">COLLECTDIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$USER</span><span class="s2">-</span><span class="nv">$FULLNAME</span><span class="s2">"</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="nv">$EXAMSDIR</span>/<span class="nv">$USER</span>/<span class="nv">$DIRTOCOLLECT</span>/ <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">mkdir</span> <span class="s2">"</span><span class="nv">$COLLECTDIR</span><span class="s2">"</span>
+    <span class="nb">cp</span> <span class="nt">-r</span> <span class="nv">$EXAMSDIR</span>/<span class="nv">$USER</span>/<span class="nv">$DIRTOCOLLECT</span>/<span class="k">*</span> <span class="s2">"</span><span class="nv">$COLLECTDIR</span><span class="s2">"</span>
+  <span class="k">else
+    if</span> <span class="o">[</span> <span class="nt">-d</span> <span class="nv">$EXAMSDIR</span>/<span class="nv">$USER</span>/Desktop/<span class="nv">$DIRTOCOLLECT</span>/ <span class="o">]</span><span class="p">;</span> <span class="k">then
+      </span><span class="nb">mkdir</span> <span class="s2">"</span><span class="nv">$COLLECTDIR</span><span class="s2">"</span>
+      <span class="nb">cp</span> <span class="nt">-r</span> <span class="nv">$EXAMSDIR</span>/<span class="nv">$USER</span>/Desktop/<span class="nv">$DIRTOCOLLECT</span>/<span class="k">*</span> <span class="s2">"</span><span class="nv">$COLLECTDIR</span><span class="s2">"</span>
+    <span class="k">else
+      </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$DIRTOCOLLECT</span><span class="s2"> not found in </span><span class="nv">$USER</span><span class="s2">'s home"</span>
+    <span class="k">fi
+  fi
+done</span>
+</code></pre></div></div>
+
+<h3 id="squid-setup">Squid setup</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install squid
+sudo vim /etc/squid/squid.conf
+
+...
+# TAG: visible_hostname
+#       If you want to present a special hostname in error messages, etc,
+#       define this.  Otherwise, the return value of gethostname()
+#       will be used. If you have multiple caches in a cluster and
+#       get errors about IP-forwarding you must set them to have individual
+#       names with this setting.
+#Default:
+# Automatically detect the system host name
+visible_hostname kerveros
+...
+# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
+#
+
+# Example rule allowing access from your local networks.
+# Adapt localnet in the ACL section to list your (internal) IP networks
+# from where browsing should be allowed
+#http_access allow localnet
+http_access allow localhost
+acl whitelist dstdomain mycourses.ntua.gr physics.ntua.gr
+http_access allow whitelist
+#http_access allow all
+...
+</code></pre></div></div>
+
+<p>During your exams it might be usefull to turn the <code class="language-plaintext highlighter-rouge">http_access</code> rules on and off. In order to enable your whitelist you could run:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'/http_access allow whitelist/ s/^#*//'</span> <span class="nt">-i</span> /etc/squid/squid.conf
+<span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'/http_access allow all/ s/^#*/#/'</span> <span class="nt">-i</span> /etc/squid/squid.conf
+service squid restart
+</code></pre></div></div>
+
+<p>After the exams you can disable the whitelist:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'/http_access allow whitelist/ s/^#*/#/'</span> <span class="nt">-i</span> /etc/squid/squid.conf
+<span class="nb">sed</span> <span class="nt">-e</span> <span class="s1">'/http_access allow all/ s/^#*//'</span> <span class="nt">-i</span> /etc/squid/squid.conf
+service squid restart
+</code></pre></div></div>
+
+<h3 id="firefox-lock-down">Firefox lock down</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /usr/lib/firefox/distribution/policies.json
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"policies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"DisableSetDesktopBackground"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DisableAppUpdate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"Homepage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.central.ntua.gr"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Locked"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"Proxy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"Mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"system"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"Locked"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"SanitizeOnShutdown"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"SearchBar"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unified"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DisplayBookmarksToolbar"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"NoDefaultBookmarks"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DisablePrivateBrowsing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DisableBuiltinPDFViewer"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DisableSetDesktopBackground"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"BlockAboutConfig"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"DisableSecurityBypass"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"InvalidCertificate"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"SafeBrowsing"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"Bookmarks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Κεντρική σελίδα ΕΜΠ"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.ntua.gr"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Placement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"toolbar"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Εθνικό Μετσόβιο Πολυτεχνείο"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Κέντρο Ηλεκτρονικών Υπολογιστών ΕΜΠ"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.central.ntua.gr"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Placement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"toolbar"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Εθνικό Μετσόβιο Πολυτεχνείο"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Κέντρο Δικτύων ΕΜΠ"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.noc.ntua.gr"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Placement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"toolbar"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Εθνικό Μετσόβιο Πολυτεχνείο"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"Title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ηλεκτρονικές Σελίδες Μαθημάτων"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://mycourses.ntua.gr"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Placement"</span><span class="p">:</span><span class="w"> </span><span class="s2">"toolbar"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"Folder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Εθνικό Μετσόβιο Πολυτεχνείο"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="lock-down-system-proxy-settings">Lock down system proxy settings</h3>
+
+<p>Install the necessary package for <code class="language-plaintext highlighter-rouge">dconf</code> updates:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chroot_install dconf-tools
+</code></pre></div></div>
+
+<p>Create the following directories:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mkdir -p /opt/ltsp/amd64/etc/dconf/profile
+sudo mkdir -p /opt/ltsp/amd64/etc/dconf/db/local.d
+sudo mkdir /opt/ltsp/amd64/etc/dconf/db/local.d/locks
+</code></pre></div></div>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">/opt/ltsp/amd64/etc/dconf/profile/user</code> file with contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>user-db:user
+system-db:local
+</code></pre></div></div>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">/opt/ltsp/amd64/etc/dconf/db/local.d/00_proxy_locksettings</code> file with contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[system/proxy]
+mode='manual'
+use-same-proxy=true
+
+[system/proxy/http]
+enabled=true
+host='server'
+port=3128
+
+[system/proxy/https]
+host='server'
+port=3128
+
+[system/proxy/ftp]
+host='server'
+port=3128
+
+[system/proxy/socks]
+host='server'
+port=3128
+</code></pre></div></div>
+
+<p>Create a <code class="language-plaintext highlighter-rouge">/opt/ltsp/amd6/etc/dconf/db/local.d/locks/00_proxy_locksettings</code> file with contents:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/system/proxy/mode
+/system/proxy/use-same-proxy
+/system/proxy/http/enabled
+/system/proxy/http/host
+/system/proxy/http/port
+/system/proxy/https/host
+/system/proxy/https/port
+/system/proxy/ftp/host
+/system/proxy/ftp/port
+/system/proxy/socks/host
+/system/proxy/socks/port
+</code></pre></div></div>
+
+<p>And finally, inside your <em>chroot</em> run:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dconf update
+</code></pre></div></div>
+
+<p>Dont forget to update your client:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo ltsp-update-image
+</code></pre></div></div>
+
+<p>Warning: If something goes wrong and the <em>LTSP client’s</em> GUI does not start, remove the <code class="language-plaintext highlighter-rouge">/opt/ltsp/amd64/etc/dconf</code> folder and start over again.</p>
+</article>
+        </div>
+        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+          <!-- Sidebar Section -->
+<aside>
+<div class="flex flex-col p-4">
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="far fa-address-card mr-2"></i> Contact
+    </p>
+    <p class="text-sm pb-5"> NTUA, Computer Center<br />
+        Room 1.08<br />
+        9, Iroon Polytechniou str<br />
+        15780 Zogragou, Greece<br />
+        <a  href="mailto:christodoulos.fragkoudakis@gmail.com">
+          <i class="fas fa-at"></i>
+        </a>
+        <a  href="https://www.linkedin.com/in/fragkoudakis/">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a  href="https://github.com/christodoulos">
+          <i class="fab fa-github"></i>
+        </a>
+        <a  href="https://www.facebook.com/christodoulos.fragkoudakis">
+          <i class="fab fa-facebook"></i>
+        </a>
+    </p>
+
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="fas fa-university mr-2"></i> Academic
+    </p>
+    <p><a href="/talks.html">Talks</a> <a href="/teaching.html">Teaching</a></a></p>
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap">
+      <i class="fas fa-laptop-code mr-2"></i> Software
+    </p>
+    <p><a href="/software/ucc2stl.html">ucc2stl</a></p>
+
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap"><i class="fas fa-bolt mr-2"></i>Powered By</p>
+    <p><a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://tailwindcss.com/">tailwindcss</a></a></p>
+
+    <div class="mt-10 text-xs border-t-2 pt-1">
+      <p>Christodoulos Fragkoudakis<br/>
+      <pre>https://fragkoudakis.gr</pre></p>
+    </div>
+</div>
+</aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <title>Curriculum Vitae - Christodoulos Fragkoudakis</title>
+    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+      <!-- This example requires Tailwind CSS v2.0+ -->
+<nav class="bg-gray-800">
+  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="relative flex items-center justify-between h-16">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <!-- Mobile menu button-->
+        <button
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed. -->
+          <!--
+              Heroicon name: menu
+  
+              Menu open: "hidden", Menu closed: "block"
+            -->
+          <svg
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+          <!-- Icon when menu is open. -->
+          <!--
+              Heroicon name: x
+  
+              Menu open: "block", Menu closed: "hidden"
+            -->
+          <svg
+            class="hidden h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+      >
+        <div class="flex-shrink-0 flex items-center text-white">
+          <div class="block md:hidden w-auto">
+            <div class="flex flex-col text-xs">
+              <div>Christodoulos</div>
+              <div>Fragkoudakis</div>
+            </div>
+          </div>
+          <div class="hidden md:block w-auto">Christodoulos Fragkoudakis</div>
+        </div>
+        <div class="hidden sm:block sm:ml-6">
+          <div class="flex space-x-4">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a
+              href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Home</a
+            >
+            <a
+              href="/cv.html"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >CV</a
+            >
+            <a
+              href="/blog"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >Blog</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <!-- <button
+          class="bg-gray-800 text-lg p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+        >
+          <a class="pl-6" href="https://github.com/christodoulos">
+            <i class="fab fa-github"></i>
+          </a>
+        </button> -->
+
+        <!-- Profile dropdown -->
+        <div class="ml-3 relative">
+          <div>
+            <button
+              class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="user-menu"
+              aria-haspopup="true"
+            >
+              <span class="sr-only">Open user menu</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="/assets/img/avatar.jpg"
+                alt=""
+              />
+            </button>
+          </div>
+          <!--
+              Profile dropdown panel, show/hide based on dropdown state.
+  
+              Entering: "transition ease-out duration-100"
+                From: "transform opacity-0 scale-95"
+                To: "transform opacity-100 scale-100"
+              Leaving: "transition ease-in duration-75"
+                From: "transform opacity-100 scale-100"
+                To: "transform opacity-0 scale-95"
+            -->
+          <div
+            class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Your Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Settings</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              role="menuitem"
+              >Sign out</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+      Mobile menu, toggle classes based on menu state.
+  
+      Menu open: "block", Menu closed: "hidden"
+    -->
+  <div class="hidden sm:hidden">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+      <a
+        href="#"
+        class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Dashboard</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Team</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Projects</a
+      >
+      <a
+        href="#"
+        class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+        >Calendar</a
+      >
+    </div>
+  </div>
+</nav>
+
+      <div class="md:flex md:flex-row">
+        <div class="md:w-3/4 mt-2">
+          <article class="prose"><h1 id="curriculum-vitae">Curriculum Vitae</h1>
+
+<h2 id="education">Education</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Ph.D. in Computer Science (2002 - 2007)</strong></dt>
+      <dd>National Technical University of Athens (NTUA), School of Electrical and
+Computer Engineering (ECE). Thesis Title: <em>Near Optimal Algorithms and
+Inapproximability Results for Art Gallery Problems</em> (in Greek). Advisor:
+<a href="https://en.wikipedia.org/wiki/Stathis_Zachos">Stathis Zachos</a>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Postgraduate degree (1995 - 1998)</strong></dt>
+      <dd>NTUA, ECE, Specialization in Computer Science. GPA: 9.63/10.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>B.Sc. in Geology (1989 - 1994)</strong></dt>
+      <dd>University of Athens, Geology Department. Thesis Title: <em>Computer Aided
+Fossil Leaf Identification</em> (in Greek). Advisor: <a href="http://users.uoa.gr/~velitzel/">Evangelos
+Velitzelos</a>.</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="academic-appointments">Academic Appointments</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Teaching Assignment (Oct 2008 to Feb 2009)</strong></dt>
+      <dd>Dept. of Informatics and Telecommunications, Univ. of Athens. Taught the
+undergraduate course <em>“Computational Geometry”</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Lecturer (Mar 2008 to Sep 2008)</strong></dt>
+      <dd>Dept. of Informatics, Athens University of Economics and Business. Taught
+the undergraduate course <em>“Theory of Computation”</em>.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Assistant Professor (Oct 2007 to Sep 2008)</strong></dt>
+      <dd>Dept of Informatics and Telecommunications, Univ. of Athens. Taught the
+undergraduate courses <em>“Computational Geometry”</em> and <em>“Discrete
+Mathematics”</em>.</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="journal-publication">Journal Publication</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Maximizing the Guarded Boundary of an Art Gallery is APX-complete</strong></dt>
+      <dd>(Joint work with Euripides Markou &amp; Stathis Zachos). In <em>Computational
+Geometry</em>, vol. 28, issue 3, (pp. 170-180), Elsevier, 2007. <a href="https://doi.org/10.1016/j.comgeo.2006.12.001" class="cvlink"><i class="fa fa-external-link-alt"></i></a></dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="book-chapters">Book Chapters</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Visualizing Content for Computational Geometry Courses</strong></dt>
+      <dd>(Joint work with Markos Karampatsis) In L. Lennex &amp; K. Nettleton (Eds.),
+<em>Cases on Inquiry through Instructional Technology in Math and Science</em> (pp.
+581-604). IGI Global, 2012.<a href="https://doi.org/10.4018/978-1-4666-0068-3.ch021" class="cvlink"><i class="fa fa-external-link-alt"></i></a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>The Geometry of Visibility</strong></dt>
+      <dd>In I. Emiris, <em>Computational Geometry: A modern algorithmic approach</em> (pp.
+67-82) (in greek). Klidarithmos, 2009. ISBN: 978-960-461-141-6</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="refereed-conference--workshop-publications">Refereed Conference &amp; Workshop Publications</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>E-Learning Content for Computational Geometry</strong></dt>
+      <dd>(Joint work with Markos Karampatsis) In J. Sanchez &amp; K. Zhang (Eds.),
+<em>Proceedings of World Conference on E-learning in Corporate, Goverment,
+Healthcare, and Higher Education</em> (pp. 90-95). AACE, 2010.
+<a href="https://www.learntechlib.org/p/35515/" class="cvlink"><i class="fa fa-external-link-alt"></i></a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Maximizing the Guarded Interior of an Art Gallery</strong></dt>
+      <dd>(Joint work with Ioannis Emiris &amp; Euripides Markou) <em>Proceedings of the
+22nd European Workshop on Computational Geometry</em> (pp. 165-168), 2006.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>How to Place Efficiently Guards and Paintings in an Art Gallery</strong></dt>
+      <dd>(Joint work with Euripides Markou &amp; Stathis Zachos) In P. Bozanis and E.N.
+Houstis (Eds.), <em>Advances in Informatics</em> (pp. 145-154), LNCS, Springer, 2005.
+<a href="https://doi.org/10.1007/11573036_14" class="cvlink"><i class="fa fa-external-link-alt"></i></a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Maximizing the Guarded Boundary of an Art Gallery is APX-complete</strong></dt>
+      <dd>(Joint work with Euripides Markou and Stathis Zachos) <em>Algorithms and
+Complexity</em> (pp. 24-35), LNCS, Springer, 2003.
+<a href="https://doi.org/10.1007/3-540-44849-7_10" class="cvlink"><i class="fa fa-external-link-alt"></i></a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Approximating Visibility Problems within a Constant</strong></dt>
+      <dd>(Joint work with Euripides Markou and Stathis Zachos) <em>Proc. of the 3rd
+Work. on Approx. and Random. Algorithms in Comm. Networks</em> (pp. 91-103), 2002.</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="other-puplications">Other Puplications</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Towards a “Cloud Enabled” University Computer Center</strong></dt>
+      <dd>(Joint work with Markos Karampatsis &amp; Petros Potikas) In proc. of the <em>8th
+International Conference on P2P, Parallel, Grid, Cloud and Internet
+Computing</em>, Compiegne, France, IEEE, 2013.
+<a href="https://doi.org/10.1109/3PGCIC.2013.35" class="cvlink"><i class="fa fa-external-link-alt"></i></a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Design, development and implementation of an interactive education environment for MSC.Patran</strong></dt>
+      <dd>(Joint work with Markos Karampatsis, Anna Moscha, Kyriakos Spyropoulos and
+Loudovikos Touratzidis) <em>Proc. of the 3rd Int. Conf. on Tech. in Teaching and
+Learning in Higher Education</em> (pp. 211-215), 2003.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Creating a secure Unix environment in a PC-lab with an inherent Windows OS</strong></dt>
+      <dd><em>Proc. of the 2nd International Conference on Internet Education and
+Science</em> (pp. 150-151), 2000.</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="technical-report">Technical Report</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>CGAL-Python experiences in NUA and TAU</strong></dt>
+      <dd>(Joint work with Ophir Setter), ACS Technical Report No: ACS-TR-363608-03, 2002.</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="student-advising">Student Advising</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Maria Sotiropoulou</strong></dt>
+      <dd>Graduate student in Computer Science, National University of Athens.
+<em><a href="http://efessos.lib.uoa.gr/applications/disserts.nsf/0f1ab5fee83fbb88c225770c0042ce4f/c8e9d6a54b3b02f4c2257b330014b8c8?OpenDocument">Robust Geometric Primitives in Python</a></em>, 2013.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Giorgos Koloventzos</strong></dt>
+      <dd>Undergraduate student in Informatics, National Technical University of
+Athens. <em><a href="http://www.di.uoa.gr/sites/default/files/Studbook_2012_low.pdf#studbook2012_final1.indd%3A.21050">EucliDIs: a Python geometric library imitating CGAL</a></em>, 2012.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Thomas Daskalakis</strong></dt>
+      <dd>Undergraduate student in Informatics. National University of Athens.
+<em>Efficient Visibility Computations in CGAL</em>, 2008.</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="invited-talks">Invited Talks</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Orthogonal Range Searching</strong></dt>
+      <dd><a href="https://www.corelab.ntua.gr/seminar">Corelab seminar</a>, NTUA, ECE, May 2007. <a href="/talks/07corelab.pdf" class="cvlink"><i class="fa fa-file-pdf"></i></a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>On the embedability of graphs in Euclidean Spaces</strong></dt>
+      <dd>NTUA, SEMFE, Dec 2004. <a href="/talks/04semfe.pdf" class="cvlink"><i class="fa fa-file-pdf"></i></a></dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Molecular structure detemination (Distance Geometry and Bound Smoothing)</strong></dt>
+      <dd><a href="https://www.corelab.ntua.gr/seminar">Corelab seminar</a>, NTUA, ECE, Dec 2004. <a href="/talks/04corelab.pdf" class="cvlink"><i class="fa fa-file-pdf"></i></a></dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="teaching-assistant">Teaching Assistant</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Computer Laboratory Support</strong></dt>
+      <dd>Supported the computer laboratory part of the undergraduate courses
+<em>Introduction to Programming</em> and <em>Programming Techniques</em> where groups of
+students complete assignments by programming in Pascal and C. Graded final
+exams. NTUA, ECE, 1994-1998.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Edition and Proofreading</strong></dt>
+      <dd>Edited and proofread handouts for the 7th semester course on Algorithms and
+Complexity. NTUA, ECE, 1995.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Course organization and Supervision</strong></dt>
+      <dd>Organized and supervised a postgraduate course on Computational Geometry.
+Developed assignments and graded final exams. NTUA, ECE, 2001.</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Lecture Presentations</strong></dt>
+      <dd>Presented lectures during various postgraduate courses (Theory of
+Computation, Non Traditional Databases, Graph Theory, Mathematical Logic,
+Advanced Data Structures). NTUA, ECE, 1994-1998.</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="professional-experience">Professional Experience</h2>
+
+<blockquote>
+  <p>Possessing concrete theoretical background as well as self developed skills that have been gained through establishing and developing full IT projects, networks and infrastructures from initial conception to completion. Experience covers design, testing to successful implementation, withing budget, scope and process limitations. Extensive LAN, WAN, Hardware and Software experience, up-to-date on IT developments. Seeking to utilize my skills in an encouraging environment that will optimize my potential and reward me fairly.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>SGI hardware administration (Computer Center, NTUA)</strong></dt>
+      <dd>Administered <em>IRIX</em> and <em>Linux</em> multiprocessor servers (<em>ORIGIN 2000</em>,
+<em>ALTIX 350</em>), and a storage area network (<em>TP9400</em>) (2002 - 2008)</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Directory services migration (Computer Center, NTUA)</strong></dt>
+      <dd>Designed and implemented the migration from <em>Active Directory</em> to
+<em>OpenLDAP</em> and <em>SAMBA</em>, implemented synchronization between <em>Lotus Domino</em>
+and <em>OpenLDAP</em> (2007)</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Network security (Computer Center, NTUA)</strong></dt>
+      <dd>Designed and implemented the Computer Center’s security policy using
+3 pairs of redundant <em>Cisco PIX 515E</em> firewalls. Implemented virtual private
+networks using <em>OpenVPN</em> (2004)</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Network license management (Computer Center, NTUA)</strong></dt>
+      <dd>Implemented the <em>FLEXlm</em> redundant mode licensing facility for the Computer
+Center’s commercial software. Implemented a license servers’ sanity check
+that guaranteed uninteruptible operations (2004)</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Windows NT, Active Directory</strong></dt>
+      <dd>Designed, implemented and administered the first personal computers
+laboratory in the Electrical and Computer Engineering Department in NTUA.
+Implemented the transition to Windows 2000 and Active Directory (48 PCs, 200
+users served weekly).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Windows 2000 administration, C programming (Research and Informatics Corps, Greek Army)</strong></dt>
+      <dd>Participated in top secret projects of the Greek Army Center of Research
+and Technology (1998 - 1999)</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>DBase III, Clipper programming (IT Department, NTUA Administration)</strong></dt>
+      <dd>Supported the NTUA’s postgraduate students management system. Participated
+in the design and analysis of the new integrated management system. (1996 - 1998).</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>MS-DOS, Lotus 123 (IT Department, Therapy Center for Depended Individuals)</strong></dt>
+      <dd>Assisted the IT manager of <a href="http://www.kethea.gr/en">ΚΕ.Θ.Ε.Α</a>. (1991 - 1992)</dd>
+    </dl>
+  </li>
+</ul>
+
+<h2 id="grands">Grands</h2>
+
+<ul>
+  <li>
+    <dl>
+      <dt><strong>Research Assistantship grand</strong></dt>
+      <dd>Institute of Communications and Computer Systems, NTUA, 1997, 2000</dd>
+    </dl>
+  </li>
+  <li>
+    <dl>
+      <dt><strong>Research grands PENED-ED 144 and PENED 95-ED 523</strong></dt>
+      <dd>General Secretariat of Research and Technology of Greece, 1996-1999</dd>
+    </dl>
+  </li>
+</ul>
+
+</article>
+        </div>
+        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+          <!-- Sidebar Section -->
+<aside>
+<div class="flex flex-col p-4">
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="far fa-address-card mr-2"></i> Contact
+    </p>
+    <p class="text-sm pb-5"> NTUA, Computer Center<br />
+        Room 1.08<br />
+        9, Iroon Polytechniou str<br />
+        15780 Zogragou, Greece<br />
+        <a  href="mailto:christodoulos.fragkoudakis@gmail.com">
+          <i class="fas fa-at"></i>
+        </a>
+        <a  href="https://www.linkedin.com/in/fragkoudakis/">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a  href="https://github.com/christodoulos">
+          <i class="fab fa-github"></i>
+        </a>
+        <a  href="https://www.facebook.com/christodoulos.fragkoudakis">
+          <i class="fab fa-facebook"></i>
+        </a>
+    </p>
+
+    <p class="font-semibold pb-5 whitespace-nowrap">
+      <i class="fas fa-university mr-2"></i> Academic
+    </p>
+    <p><a href="/talks.html">Talks</a> <a href="/teaching.html">Teaching</a></a></p>
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap">
+      <i class="fas fa-laptop-code mr-2"></i> Software
+    </p>
+    <p><a href="/software/ucc2stl.html">ucc2stl</a></p>
+
+    <p class="font-semibold pt-5 pb-5 whitespace-nowrap"><i class="fas fa-bolt mr-2"></i>Powered By</p>
+    <p><a href="https://jekyllrb.com/">Jekyll</a> and <a href="https://tailwindcss.com/">tailwindcss</a></a></p>
+
+    <div class="mt-10 text-xs border-t-2 pt-1">
+      <p>Christodoulos Fragkoudakis<br/>
+      <pre>https://fragkoudakis.gr</pre></p>
+    </div>
+</div>
+</aside>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

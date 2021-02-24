@@ -1,0 +1,16 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+  {% if page.math %}
+  <link rel="stylesheet" href="/assets/css/katex.min.css" />
+  {% endif %} {% if page.code %}
+  <link rel="stylesheet" href="/assets/css/prism.css" />
+  {% endif %}
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+    integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+    crossorigin="anonymous"
+  ></script>
+</head>

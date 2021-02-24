@@ -2,6 +2,7 @@
 layout: default
 title: ucc2stl
 math: true
+code: true
 cclicense: true
 permalink: software/ucc2stl
 ---
@@ -84,9 +85,9 @@ class Point(object):
 
   "A class for 3D points"
   def __init__(self, x, y, z):
-      self.x = x
-      self.y = y
-      self.z = z
+    self.x = x
+    self.y = y
+    self.z = z
 
   @classmethod
   def from_point(cls, point):

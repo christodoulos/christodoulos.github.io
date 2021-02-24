@@ -1,17 +1,14 @@
+---
+math-css:
+  - "/css/katex.min.css"
+math-js:
+  - "katex.min.js"
+  - "auto-render.min.js"
+---
+
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <title>{{ page.title }} - {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
-      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
-      crossorigin="anonymous"
-    ></script>
-  </head>
+  {% include head.html %}
   <body>
     <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
       {% include navbar.html %}
@@ -24,5 +21,6 @@
         </div>
       </div>
     </div>
+    {% include footer-scripts.html %}
   </body>
 </html>

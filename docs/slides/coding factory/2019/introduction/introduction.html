@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width" />
+  <title>Index</title>
+  <link rel="stylesheet"
+        type="text/css"
+        href="/assets/slides/css/apron.css">
+  </style>
+  <link rel="stylesheet"
+        type="text/css"
+        href="/assets/slides/css/descartes.css">
+  </style>
+  <link rel="stylesheet"
+        type="text/css"
+        href="/assets/slides/css/adirondack.css">
+  </style>
+  <style type="text/css">
+    @page {
+      size: 1216px 684px;
+      margin: 0;
+    }
+  </style>
+  <link rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i|Quattrocento:400,700|Spectral:400,400i,700,700i&amp;subset=latin-ext"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&family=Fira+Sans+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.css"
+        integrity="sha384-TEMocfGvRuD1rIAacqrknm5BQZ7W7uWitoih+jMNFXQIbNl16bO8OZmylH/Vi/Ei"
+        crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.js"
+          integrity="sha384-jmxIlussZWB7qCuB+PgKG1uLjjxbVVIayPJwi6cG6Zb4YKq0JIw+OMnkkEC7kYCq"
+          crossorigin="anonymous"></script>
+  <script src="/assets/slides/js/auto-render.min.js"></script>
+  <script src="/assets/slides/js/abcjs_basic_5.6.3-min.js"></script>
+  <script src="/assets/slides/js/story.js"></script>
+</head>
+
+<body class="ma0 bg-white section-slides page-kind-page is-page-true feature-math feature-qrcode feature-nohighlight feature-music">
+
+  <main role="main">
+    <textarea id="source">
+class: title, no-footer
+
+# Εισαγωγή στο Angular Framework
+
+---
+class: compact
+
+# Τι είναι το Angular Framework
+
+* Είναι ένα πλαίσιο (framework) ανάπτυξης εφαρμογών ιστού (web applications)
+* Xρήση της γλώσσας προγραμματισμού Javascript/Typescript
+* Οι εφαρμογές που αναπτύσσονται ονομάζονται *Single Page Applications (SPA)*
+* Μια SPA *τρέχει* σε μια διεύθυνση (URL) στο internet
+* Eνώ κατά τη χρήση της εφαρμογής το URL αλλάζει η σελίδα δεν ανανεώνεται
+  (refresh)
+
+## Τυπική χρήση (τελικός στόχος της ενότητας):
+
+* συντάσσονται HTML templates με χρήση των επεκτάσεων του Angular
+* αναπτύσσονται component classes που χειρίζονται τα templates
+* η λογική της εφαρμογής αναπτύσσεται στα services
+* τα componets και τα services _πακετάρονται_ σε modules
+
+---
+class: compact, img-right
+
+![angular overview](overview.png)
+
+# Τυπική χρήση του Angular Framework
+
+- Modules
+- Libraries
+- Components
+- Templates
+- Data Binding
+- Directives
+- Dependency Injection
+
+
+---
+
+# Εγκατάσταση του Angular CLI
+
+Το .alt[Angular CLI] (Angular Command Line Interface) προσφέρει διάφορες
+γεννήτριες κώδικα μέσω ειδικών εντολών που διευκολύνουν την ανάπτυξη με το
+Angular Framework.
+
+Χρησιμοποιούμε το εργαλείο .alt[npm] από την εγκατάσταση του .alt[Node.js]
+
+```
+npm install -g @angular/cli@latest
+...
++ @angular/cli@7.3.9
+added 295 packages from 180 contributors in 4.122s
+```
+
+Η εγκατάσταση ενδέχεται να διαρκέσει μερικά λεπτά. Στη συνέχεια όλα τα εργαλεία
+του .alt[Angular CLI] είναι διαθέσιμα.
+
+---
+
+class: compact
+
+# Η εντολή ng
+
+```
+$ ng
+Available Commands:
+  add Adds support for an external library to your project.
+  build (b) Compiles an Angular app into an output directory named dist/ at the given output path. Must be executed from within a workspace directory.
+  config Retrieves or sets Angular configuration values in the angular.json file for the workspace.
+  doc (d) Opens the official Angular documentation (angular.io) in a browser, and searches for a given keyword.
+  e2e (e) Builds and serves an Angular app, then runs end-to-end tests using Protractor.
+  generate (g) Generates and/or modifies files based on a schematic.
+  help Lists available commands and their short descriptions.
+  lint (l) Runs linting tools on Angular app code in a given project folder.
+  new (n) Creates a new workspace and an initial Angular app.
+  run Runs an Architect target with an optional custom builder configuration defined in your project.
+  serve (s) Builds and serves your app, rebuilding on file changes.
+  test (t) Runs unit tests in a project.
+  update Updates your application and its dependencies. See https://update.angular.io/
+  version (v) Outputs Angular CLI version.
+  xi18n Extracts i18n messages from source code.
+
+For more detailed help run "ng [command name] --help"
+```
+
+---
+
+class: compact
+
+# Η εντολή ng
+
+```
+$ ng version
+...
+Angular CLI: 7.3.9
+Node: 12.3.1
+OS: linux x64
+Angular:
+...
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.13.9
+@angular-devkit/core         7.3.9
+@angular-devkit/schematics   7.3.9
+@schematics/angular          7.3.9
+@schematics/update           0.13.9
+rxjs                         6.3.3
+typescript                   3.2.4
+```
+
+---
+
+class: compact
+
+# Η εντολή `ng`
+
+## Δημιουργία πρώτης εφαρμογής με το Angular CLI
+
+```
+$ ng new my-first-angular-app
+? Would you like to add Angular routing? No
+? Which stylesheet format would you like to use? CSS
+CREATE my-first-angular-app/README.md (1034 bytes)
+...
+CREATE my-first-angular-app/src/app/app.module.ts (314 bytes)
+CREATE my-first-angular-app/src/app/app.component.css (0 bytes)
+CREATE my-first-angular-app/src/app/app.component.html (1120 bytes)
+CREATE my-first-angular-app/src/app/app.component.spec.ts (1020 bytes)
+CREATE my-first-angular-app/src/app/app.component.ts (224 bytes)
+...
+added 1089 packages from 1027 contributors in 26.099s
+    Successfully initialized git.
+```
+
+Το εργαλείο `ng` υλοποιεί **βέλτιστες πρακτικές** στην ιεραρχία των φακέλων και στην ονοματοδοσία των αρχείων
+
+---
+
+class: compact
+
+# Η εντολή `ng`
+
+## Χρήση του Development Server
+
+Ξεκινά ένα *τοπικό web server* που *τρέχει* την εφαρμογή μας όσο την αναπτύσουμε:
+
+```
+$ ng serve
+Angular Live Development Server is listening on localhost:4200,
+open your browser on http://localhost:4200/
+
+Date: 2019-05-23T09:23:14.564Z
+Hash: 2b053441a7e443d14d11
+Time: 7703ms
+chunk {es2015-polyfills} es2015-polyfills.js, es2015-polyfills.js.map (es2015-polyfills)
+chunk {main} main.js, main.js.map (main) 9.94 kB [initial] [rendered]
+chunk {polyfills} polyfills.js, polyfills.js.map (polyfills) 236 kB [initial] [rendered]
+chunk {runtime} runtime.js, runtime.js.map (runtime) 6.08 kB [entry] [rendered]
+chunk {styles} styles.js, styles.js.map (styles) 16.3 kB [initial] [rendered]
+chunk {vendor} vendor.js, vendor.js.map (vendor) 3.52 MB [initial] [rendered]
+i ｢wdm｣: Compiled successfully.
+```
+
+---
+
+# Η πρώτη Angular εφαρμογή
+
+![first angular app](0.png)
+
+---
+
+# Ο κώδικας HTML της πρώτης εφαρμογής
+
+Κάθε σελίδα στο Internet είναι το αποτέλεσμα κάποιου κώδικα .alt[HTML] που είναι προσβάσιμος με την επιλογή *View Source* του browser:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MyFirstAngularApp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root></app-root>
+ <script type="text/javascript" src="runtime.js"> ... </body>
+</html>
+```
+
+---
+
+# Που βρίσκεται αυτός ο κώδικας HTML;
+
+Το εργαλείο `ng` δημιούργησε χιλιάδες καταλόγους και αρχεία
+
+```
+.
+├── angular.json
+├── e2e ...
+├── node_modules ...
+├── package.json
+├── ...
+├── src ...
+│   ├── index.html      <-- Είναι αυτό το αρχείο
+│   └── ...
+├── tsconfig.json
+└── tslint.json
+
+3481 directories, 26032 files
+```
+
+---
+
+class: col-2
+
+# Οι δύο κώδικες διαφέρουν
+
+View Source στο browser:
+
+![](1.png)
+
+Αρχείο στο δίσκο:
+
+![](2.png)
+
+---
+
+class: compact
+
+# Τι έχει συμβεί;
+
+* Το *View Source* στον browser είναι ο κώδικας της εφαρμογής μας (HTML και Javascript)
+* Το αρχείο στο δίσκο *εμπλουτίστηκε* αυτόματα με κώδικα Javascript
+* Η HTML στον browser είναι επίσης *εμπλουτισμένη* με ένα νέο .alt[tag]
+* To `<app-root></app-root>` δεν ανήκει στην τυπική HTML
+* Το tag `app-root` *οριοθετεί* την εφαρμογή μας μέσα στη σελίδα
+* Το νέο tag έχει αποτέλεσμα **μόνο** σε συνδυασμό με τη Javascript του εμπλουτισμένου αρχείου
+* Όμως ο κώδικας στον browser *δεν θυμίζει* την όψη της σελίδας!
+
+> Στη σελίδα φαίνεται το αποτέλεσμα του κώδικα της εφαρμογής Angular
+> (εμπλουτισμένη HTML + Javascript)
+
+---
+
+class: col-2
+
+# Η όψη της σελίδας διαφέρει από τον κώδικα!
+
+Όψη της σελίδας
+
+![](0.png)
+
+Κώδικας στον browser
+
+![](1.png)
+
+---
+
+class: compact
+
+# Η σελίδα *τρέχει* μια εφαρμογή Angular
+
+Ο κώδικας της εφαρμογής Angular βρίσκεται στον κατάλογο `app` μέσα στον κατάλογο
+`src`:
+
+```bash
+...
+├── src
+│  ├── app
+│  │  ├── app.component.css
+│  │  ├── app.component.html
+│  │  ├── app.component.spec.ts
+│  │  ├── app.component.ts
+│  │  └── app.module.ts
+... ...
+```
+
+* Κάθε εφαρμογή Angular περιέχεται σε ένα Typescript module (`app.module.ts`)
+* To Typescript module περιέχει τουλάχιστον ένα Angular component (`app.component.ts`)
+* Κάθε component έχει ένα template (HTML + CSS) (`app.component.html` και `app.component.css`)
+
+---
+
+class: compact, col-2
+
+# Η όψη της σελίδας αντιστοιχεί στο _template_ της εφαρμογής
+
+Όψη της σελίδας
+
+![](0.png)
+
+`app.component.html`
+
+![](3.png)
+
+---
+
+class: compact, col-2
+
+# Μια πρώτη *επέμβαση* στον κώδικα
+
+Όψη της σελίδας
+
+![](4.png)
+
+`app.component.html`
+
+![](5.png)
+---
+class: compact
+
+# To `app.component.html` είναι μια *δυναμική σελίδα*
+
+* Παρατηρούμε πως η γραμμή της HTML: `<h2> This is {{title}}! </h2>`
+* Εμφανίζεται σαν: **This is my-first-angular-app!**
+* Γιατί λειτουργεί σε συνδυασμό με το `app.component.ts`:
+
+```typescript
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',                  // Ορισμός νέου HTML tag
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'my-first-angular-app';        // Μεταβλητή της εφαρμογής μας
+}
+```
+
+---
+
+# Άμεση σύνδεση template και component
+
+.center[ ![](img/0/overview.png) ]
+
+---
+class: compact, col-2
+
+# Μια πρώτη *επέμβαση* στον κώδικα του component
+
+`app.component.ts`
+
+```typescript
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Hello World Angular!';
+}
+```
+
+![](6.png)
+
+---
+
+class: compact
+
+# Angular Data Binding
+
+Είναι η **άμεση σύνδεση** των δεδομένων που ορίζονται στο component με το
+αντίστοιχο template:
+
+- Στην κλάση AppComponent στο αρχείο app.component.ts ορίσαμε τη μεταβλητή
+  title
+- Σε κάθε template μπορούμε να ορίσουμε *σχισμές (placeholders)* με χρήση των
+  
+- Ο χώρος ανάμεσα στα  **αντικατοπτρίζει άμεσα** οποιαδήποτε αλλαγή του
+  ονόματος της μεταβλητής που περιέχει
+- Η αλλαγή της τιμής `title = 'Hello World Angular!';` εμφανίστηκε άμεσα στο
+  χώρο του template που τις αναλογεί, δηλαδή στο `{{title}}`
+
+# One way Data Binding
+
+Η μεταβλητή αντικατοπτρίζεται από το component προς το template
+
+---
+
+class: compact, col-2
+
+# Angular Data Binding
+
+Angular component
+
+`app.component.ts`
+
+```typescript
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'Hello World Angular!';
+}
+```
+
+Angular template
+
+`app.component.html`
+
+```html
+<div style="text-align:center">
+  <h1>Hello stranger!</h1>
+  <h2> This is {{title}}!</h2>
+</div>
+<h2>Here are some links ... </h2>
+<ul>
+  <li>
+  ...
+</ul>
+```
+
+* Η τιμή του `title` θα μπορούσε να προέρχεται από υπολογισμό
+* Ή θα μπορούσε να ανακτηθεί από ένα web service
+
+---
+
+# Two way Data Binding
+
+## Δυναμική σύνδεση component και template
+
+Οι αλλαγές της μεταβλητής στο component αντικατοπτρίζονται άμεσα στο template, αλλά και οι αλλαγές στο template αντικατροπτίζονται άμεσα στο component.
+
+`app.component.ts`
+
+```typescript
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  name = 'Christodoulos';
+}
+```
+
+`app.component.html`
+
+```typescript
+<input type="text" [(ngModel)]="name">
+<p>
+    Hello !
+</p>
+```
+
+To `ngModel` είναι μια .alt[Angular οδηγία (directive)] που συνδέει το περιεχόμενο του πλαίσιου εισόδου HTML (input tag) στο template με μια μεταβλητή του component
+
+---
+
+# Το πρώτο μήνυμα λάθους
+
+
+## `app.component.html`
+
+```html
+<input type="text" [(ngModel)]="name">
+<p>
+    Hello !
+</p>
+```
+
+* H εφαρμογή μας δεν γνωρίζει την οδηγία `ngModel` για το input tag
+* Πρέπει να χρησιμοποιήσουμε την κατάλληλη ενότητα (module) του Angular που παρέχει την οδηγία `ngModel`
+
+
+##  Χρήση των Developer Tools
+
+![](img/0/7.png)]
+
+
+---
+
+# Η ενότητα (module) `app.module.ts`
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';    // Typescript import
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule                                  // Angular import
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
+---
+
+class: col-2
+
+# Δυναμική σύνδεση component και template σε δράση
+
+![](img/0/8.png)
+
+![](img/0/9.png)
+
+---
+
+# Χρήση του bootstrap (στυλ εμφάνισης της HTML)
+
+Τοπική εγκατάσταση στην εφαρμογή:
+
+```
+$ npm install --save bootstrap
+...
+
++ bootstrap@4.3.1
+added 1 package from 2 contributors and audited 42618 packages in 7.38s
+found 0 vulnerabilities
+```
+
+Θα χρησιμοποιήσουμε την έκδοση 3:
+
+```
+$ npm install --save bootstrap@3
+```
+
+---
+
+# Ενημέρωση της εφαρμογής στο αρχείο `angular.json`
+
+```json
+{
+ ...
+ "projects": {
+  "my-first-angular-app": {
+   ...
+   "architect": {
+    "build": {
+     "builder": "@angular-devkit/build-angular:browser",
+     "options": {
+      ...
+      "styles": [
+       "node_modules/bootstrap/dist/css/bootstrap.min.css",
+       "src/styles.css",
+      ],
+      "scripts": [],
+...
+}
+```
+
+---
+
+# To bootstrap είναι διαθέσιμο για χρήση
+
+.center[ ![](img/0/10.png) ]
+
+<!-- vim: set ft=markdown: -->
+
+    </textarea>
+  </main>
+
+  <script type="text/javascript" src="/assets/slides/js/qrcode.js"></script>
+  <script type="text/javascript" src="/assets/slides/js/remark.js"></script>
+  <script>
+    var slideshow = remark.create({
+      ratio: "16:9",
+      navigation: {
+        scroll: true
+      },
+      countIncrementalSlides: false,
+      slideNumberFormat: '%current%',
+      highlightLanguage: "xaprb",
+      placeholder: "dummy value to end the list without a comma"
+    });
+
+    $(".remark-slide-content.fit-h1 h1").each(function(i, e) {
+      var $e = $(e);
+      var $p = $e.closest('div.remark-slide-container');
+      var needsToggle = !$p.hasClass('remark-visible');
+      if (needsToggle) $p.toggleClass('remark-visible');
+      while (e.scrollHeight > e.clientHeight + 1 && $e.css('font-size') != '1px') {
+        $e.css('font-size', (parseInt($e.css('font-size')) - 1) + "px");
+      }
+      if (needsToggle) $p.toggleClass('remark-visible');
+    });
+
+    $(function() {
+      if ($("body.feature-qrcode:not(.feature-noqrcode)").length) {
+        if ($(".qrcode").length) {
+          new QRCode($(".qrcode")[0], {
+            "useSVG": true,
+            "text": window.location.href.replace(/#\d*$/, "")
+          });
+        }
+      }
+    });
+  </script>
+
+
+  </main>
+
+</body>
+
+</html>

@@ -1,124 +1,122 @@
 ---
+title: NX workspace primer
 layout: default
+code: true
 ---
 
-Create a new workspace:
+# Nx workspace primer
 
+We are going to use Nx to build a full-stack application out of common libraries.
+
+## Node Version Manager
+
+We use `nvm` as a version manager for `node.js`. `nvm` is installed per user, and invoked per-shell. To install `nvm` use the following cURL or Wget command:
+
+```bash
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 ```
-npx create-nx-workspace --preset=angular
-npx: installed 190 in 21.814s
-? Workspace name (e.g., org name)     infinite-loops
-? Application name                    optistructure
-? Default stylesheet format           CSS
-? Default linter                      ESLint [ Modern linting tool ]
-? Use Nx Cloud? (It's free and doesn't require registration.) Yes [Faster builds, run details, Github integration. Learn
- more at https://nx.app]
-Creating a sandbox with Nx...
-added 190 packages from 152 contributors and audited 191 packages in 8.35s
 
-24 packages are looking for funding
-  run `npm fund` for details
+```bash
+$ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+```
 
-found 0 vulnerabilities
+Running either of the above commands downloads a script and runs it. The script clones the nvm repository to `~/.nvm`, and attempts to add the following source line to `~/.bashrc`:
 
-new infinite-loops --preset=angular --no-interactive --appName=optistructure --style=css --linter=eslint --nxCloud --collection=@nrwl/workspace
-✔ Packages installed successfully.
-✔ Packages installed successfully.
-CREATE jest.config.js
-CREATE jest.preset.js
-CREATE apps/optistructure/tsconfig.editor.json
-CREATE apps/optistructure/tsconfig.json
-CREATE apps/optistructure/src/favicon.ico
-CREATE apps/optistructure/.browserslistrc
-CREATE apps/optistructure/tsconfig.app.json
-CREATE apps/optistructure/src/index.html
-CREATE apps/optistructure/src/main.ts
-CREATE apps/optistructure/src/polyfills.ts
-CREATE apps/optistructure/src/styles.css
-CREATE apps/optistructure/src/assets/.gitkeep
-CREATE apps/optistructure/src/environments/environment.prod.ts
-CREATE apps/optistructure/src/environments/environment.ts
-CREATE apps/optistructure/src/app/app.module.ts
-CREATE apps/optistructure/src/app/app.component.css
-CREATE apps/optistructure/src/app/app.component.html
-CREATE apps/optistructure/src/app/app.component.spec.ts
-CREATE apps/optistructure/src/app/app.component.ts
-CREATE .eslintrc.json
-CREATE apps/optistructure/.eslintrc.json
-CREATE apps/optistructure/jest.config.js
-CREATE apps/optistructure/src/test-setup.ts
-CREATE apps/optistructure/tsconfig.spec.json
-CREATE apps/optistructure-e2e/.eslintrc.json
-CREATE apps/optistructure-e2e/cypress.json
-CREATE apps/optistructure-e2e/tsconfig.e2e.json
-CREATE apps/optistructure-e2e/tsconfig.json
-CREATE apps/optistructure-e2e/src/fixtures/example.json
-CREATE apps/optistructure-e2e/src/integration/app.spec.ts
-CREATE apps/optistructure-e2e/src/plugins/index.js
-CREATE apps/optistructure-e2e/src/support/app.po.ts
-CREATE apps/optistructure-e2e/src/support/commands.ts
-CREATE apps/optistructure-e2e/src/support/index.ts
-UPDATE angular.json
-UPDATE package.json
-UPDATE .vscode/extensions.json
-UPDATE nx.json
-✔ Packages installed successfully.
-    Successfully initialized git.
-CREATE infinite-loops/nx.json
-CREATE infinite-loops/tsconfig.base.json
-CREATE infinite-loops/README.md
-CREATE infinite-loops/.editorconfig
-CREATE infinite-loops/.gitignore
-CREATE infinite-loops/.prettierignore
-CREATE infinite-loops/.prettierrc
-CREATE infinite-loops/angular.json
-CREATE infinite-loops/package.json
-CREATE infinite-loops/decorate-angular-cli.js
-CREATE infinite-loops/tools/tsconfig.tools.json
-CREATE infinite-loops/tools/generators/.gitkeep
-CREATE infinite-loops/.vscode/extensions.json
-CREATE infinite-loops/apps/.gitkeep
-CREATE infinite-loops/libs/.gitkeep
+```bash
+export NVM_DIR="$HOME/.nvm"
+# This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
+# This loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  
+```
 
+Lets use the latest LTS `node.js` version as of today (May 2021):
+
+```command-line
+$ nvm install 14.16.1
+$ nvm alias default 14.16.1
+$ node -v
+v14.16.1
+```
+
+Lets install globally the `nx` command:
+
+```bash
+$ npm install -g nx
+/home/christodoulos/.nvm/versions/node/v14.16.1/bin/nx -> /home/christodoulos/.nvm/versions/node/v14.16.1/lib/node_modules/nx/bin/nx.js
++ nx@12.2.0
+updated 1 package in 9.339s
+```
+
+## Create a New Workspace
+
+We start by creating a new workspace:
+
+```bash
+$ cd workspace
+$ npx create-nx-workspace@latest
+npx: installed 48 in 5.034s
+✔ Workspace name (e.g., org name)     · central
+✔ What to create in the new workspace · angular
+✔ Application name                    · authoring
+✔ Default stylesheet format           · css
+✔ Default linter                      · eslint
+✔ Use Nx Cloud? (It's free and doesn't require registration.) · Yes
+>  NX  Nx is creating your workspace.
+  To make sure the command works reliably in all environments, and that the preset is applied correctly,
+  Nx will run "npm install" several times. Please wait.
+>  NX   SUCCESS  Nx has successfully created the workspace.
 ———————————————————————————————————————————————
-
 UPDATE nx.json
-
 >  NX   NOTE  Nx Cloud has been enabled
-
-  Your workspace is currently public. Anybody with code access can view the workspace on nx.app.
-  You can connect the workspace to your Nx Cloud account at https://nx.app/orgs/workspace-setup?accessToken=ZjVmMzMzNjMtMDY5OC00MzgxLTg0MGQtNGU3YWM1NWNkMWQ1fHJlYWQtd3JpdGU=. (You can do this later.)
-
-
+  <several lines truncated>
 ———————————————————————————————————————————————
-
-
->  NX   NOTE  First time using Nx? Check out this interactive Nx tutorial.
-
-  https://nx.dev/angular/tutorial/01-create-application
-
-  Prefer watching videos? Check out this free Nx course on YouTube.
-  https://www.youtube.com/watch?v=2mYLe9Kp9VM&list=PLakNactNC1dH38AfqmwabvOszDmKriGco
+<several lines truncated>
 ```
 
-Create new plain repo on Github
+Now our `authoring` application is setup, and we can run in locally using the `nx` command:
 
-…or create a new repository on the command line
+```bash
+$ cd workspace/central
+$ nx serve authoring
+> nx run authoring:serve 
+✔ Browser application bundle generation complete.
+Initial Chunk Files | Names         |      Size
+vendor.js           | vendor        |   2.44 MB
+polyfills.js        | polyfills     | 141.40 kB
+main.js             | main          |  23.32 kB
+runtime.js          | runtime       |   6.15 kB
+styles.css          | styles        | 119 bytes
+                    | Initial Total |   2.61 MB
+Build at: 2021-05-11T07:51:43.738Z - Hash: 46cd7aa8bda03adf1fcc - Time: 10184ms
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+✔ Compiled successfully.
+```
 
-```
-echo "# infinite-loops" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:christodoulos/infinite-loops.git
-git push -u origin main
+Lets open our browser to view our application running:
+
+![](/assets/img/nxprimer/nxprimer.png)
+
+## Create a GitHub repository for our workspace
+
+We create a new `nxcentral` GitHub repository for our `central` workspace and push our `central` workspace to our new `nxcentral` GitHub repository (issue the commands inside the `workspace/central` directory):
+
+```bash
+$ git remote add origin git@github.com:christodoulos/nxcentral.git
+$ git branch -M main
+$ git push -u origin main
+Enumerating objects: 63, done.
+Counting objects: 100% (63/63), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (54/54), done.
+Writing objects: 100% (63/63), 191.00 KiB | 1.08 MiB/s, done.
+Total 63 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To github.com:christodoulos/nxcentral.git
+ * [new branch]      main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
 ```
 
-…or push an existing repository from the command line
+Our new repository is now online:
 
-```
-git remote add origin git@github.com:christodoulos/infinite-loops.git
-git branch -M main
-git push -u origin main
-```
+![](/assets/img/nxprimer/githubnew.png)

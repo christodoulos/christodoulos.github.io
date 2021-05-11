@@ -3,16 +3,15 @@
   <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
-  <title>Nx Workspace - Christodoulos Fragkoudakis</title>
+  <title>NX workspace primer - Christodoulos Fragkoudakis</title>
   <link rel="stylesheet" href="/assets/css/main.css" />
    
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
-    integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
-    crossorigin="anonymous"
-  ></script>
+  <link rel="stylesheet" href="/assets/css/prism-ghcolors.css" />
+  <link rel="stylesheet" href="/assets/css/prism.css" />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+    integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
-
   <body>
     <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
       <!-- This example requires Tailwind CSS v2.0+ -->
@@ -204,123 +203,114 @@
 
       <div class="md:flex md:flex-row">
         <div class="md:w-3/4 mt-2">
-          <article class="prose"><p>Create a new workspace:</p>
+          <article class="prose"><h1 id="nx-workspace-primer">Nx workspace primer</h1>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npx create-nx-workspace --preset=angular
-npx: installed 190 in 21.814s
-? Workspace name (e.g., org name)     infinite-loops
-? Application name                    optistructure
-? Default stylesheet format           CSS
-? Default linter                      ESLint [ Modern linting tool ]
-? Use Nx Cloud? (It's free and doesn't require registration.) Yes [Faster builds, run details, Github integration. Learn
- more at https://nx.app]
-Creating a sandbox with Nx...
-added 190 packages from 152 contributors and audited 191 packages in 8.35s
+<p>We are going to use Nx to build a full-stack application out of common libraries.</p>
 
-24 packages are looking for funding
-  run `npm fund` for details
+<h2 id="node-version-manager">Node Version Manager</h2>
 
-found 0 vulnerabilities
+<p>We use <code class="language-plaintext highlighter-rouge">nvm</code> as a version manager for <code class="language-plaintext highlighter-rouge">node.js</code>. <code class="language-plaintext highlighter-rouge">nvm</code> is installed per user, and invoked per-shell. To install <code class="language-plaintext highlighter-rouge">nvm</code> use the following cURL or Wget command:</p>
 
-new infinite-loops --preset=angular --no-interactive --appName=optistructure --style=css --linter=eslint --nxCloud --collection=@nrwl/workspace
-✔ Packages installed successfully.
-✔ Packages installed successfully.
-CREATE jest.config.js
-CREATE jest.preset.js
-CREATE apps/optistructure/tsconfig.editor.json
-CREATE apps/optistructure/tsconfig.json
-CREATE apps/optistructure/src/favicon.ico
-CREATE apps/optistructure/.browserslistrc
-CREATE apps/optistructure/tsconfig.app.json
-CREATE apps/optistructure/src/index.html
-CREATE apps/optistructure/src/main.ts
-CREATE apps/optistructure/src/polyfills.ts
-CREATE apps/optistructure/src/styles.css
-CREATE apps/optistructure/src/assets/.gitkeep
-CREATE apps/optistructure/src/environments/environment.prod.ts
-CREATE apps/optistructure/src/environments/environment.ts
-CREATE apps/optistructure/src/app/app.module.ts
-CREATE apps/optistructure/src/app/app.component.css
-CREATE apps/optistructure/src/app/app.component.html
-CREATE apps/optistructure/src/app/app.component.spec.ts
-CREATE apps/optistructure/src/app/app.component.ts
-CREATE .eslintrc.json
-CREATE apps/optistructure/.eslintrc.json
-CREATE apps/optistructure/jest.config.js
-CREATE apps/optistructure/src/test-setup.ts
-CREATE apps/optistructure/tsconfig.spec.json
-CREATE apps/optistructure-e2e/.eslintrc.json
-CREATE apps/optistructure-e2e/cypress.json
-CREATE apps/optistructure-e2e/tsconfig.e2e.json
-CREATE apps/optistructure-e2e/tsconfig.json
-CREATE apps/optistructure-e2e/src/fixtures/example.json
-CREATE apps/optistructure-e2e/src/integration/app.spec.ts
-CREATE apps/optistructure-e2e/src/plugins/index.js
-CREATE apps/optistructure-e2e/src/support/app.po.ts
-CREATE apps/optistructure-e2e/src/support/commands.ts
-CREATE apps/optistructure-e2e/src/support/index.ts
-UPDATE angular.json
-UPDATE package.json
-UPDATE .vscode/extensions.json
-UPDATE nx.json
-✔ Packages installed successfully.
-    Successfully initialized git.
-CREATE infinite-loops/nx.json
-CREATE infinite-loops/tsconfig.base.json
-CREATE infinite-loops/README.md
-CREATE infinite-loops/.editorconfig
-CREATE infinite-loops/.gitignore
-CREATE infinite-loops/.prettierignore
-CREATE infinite-loops/.prettierrc
-CREATE infinite-loops/angular.json
-CREATE infinite-loops/package.json
-CREATE infinite-loops/decorate-angular-cli.js
-CREATE infinite-loops/tools/tsconfig.tools.json
-CREATE infinite-loops/tools/generators/.gitkeep
-CREATE infinite-loops/.vscode/extensions.json
-CREATE infinite-loops/apps/.gitkeep
-CREATE infinite-loops/libs/.gitkeep
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+</code></pre></div></div>
 
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget <span class="nt">-qO-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+</code></pre></div></div>
+
+<p>Running either of the above commands downloads a script and runs it. The script clones the nvm repository to <code class="language-plaintext highlighter-rouge">~/.nvm</code>, and attempts to add the following source line to <code class="language-plaintext highlighter-rouge">~/.bashrc</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.nvm"</span>
+<span class="c"># This loads nvm</span>
+<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span>  
+<span class="c"># This loads nvm bash_completion</span>
+<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion"</span>  
+</code></pre></div></div>
+
+<p>Lets use the latest LTS <code class="language-plaintext highlighter-rouge">node.js</code> version as of today (May 2021):</p>
+
+<pre><code class="language-command-line">$ nvm install 14.16.1
+$ nvm alias default 14.16.1
+$ node -v
+v14.16.1
+</code></pre>
+
+<p>Lets install globally the <code class="language-plaintext highlighter-rouge">nx</code> command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm <span class="nb">install</span> <span class="nt">-g</span> nx
+/home/christodoulos/.nvm/versions/node/v14.16.1/bin/nx -&gt; /home/christodoulos/.nvm/versions/node/v14.16.1/lib/node_modules/nx/bin/nx.js
++ nx@12.2.0
+updated 1 package <span class="k">in </span>9.339s
+</code></pre></div></div>
+
+<h2 id="create-a-new-workspace">Create a New Workspace</h2>
+
+<p>We start by creating a new workspace:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>workspace
+<span class="nv">$ </span>npx create-nx-workspace@latest
+npx: installed 48 <span class="k">in </span>5.034s
+✔ Workspace name <span class="o">(</span>e.g., org name<span class="o">)</span>     · central
+✔ What to create <span class="k">in </span>the new workspace · angular
+✔ Application name                    · authoring
+✔ Default stylesheet format           · css
+✔ Default linter                      · eslint
+✔ Use Nx Cloud? <span class="o">(</span>It<span class="s1">'s free and doesn'</span>t require registration.<span class="o">)</span> · Yes
+<span class="o">&gt;</span>  NX  Nx is creating your workspace.
+  To make sure the <span class="nb">command </span>works reliably <span class="k">in </span>all environments, and that the preset is applied correctly,
+  Nx will run <span class="s2">"npm install"</span> several times. Please wait.
+<span class="o">&gt;</span>  NX   SUCCESS  Nx has successfully created the workspace.
 ———————————————————————————————————————————————
-
 UPDATE nx.json
-
-&gt;  NX   NOTE  Nx Cloud has been enabled
-
-  Your workspace is currently public. Anybody with code access can view the workspace on nx.app.
-  You can connect the workspace to your Nx Cloud account at https://nx.app/orgs/workspace-setup?accessToken=ZjVmMzMzNjMtMDY5OC00MzgxLTg0MGQtNGU3YWM1NWNkMWQ1fHJlYWQtd3JpdGU=. (You can do this later.)
-
-
+<span class="o">&gt;</span>  NX   NOTE  Nx Cloud has been enabled
+  &lt;several lines truncated&gt;
 ———————————————————————————————————————————————
-
-
-&gt;  NX   NOTE  First time using Nx? Check out this interactive Nx tutorial.
-
-  https://nx.dev/angular/tutorial/01-create-application
-
-  Prefer watching videos? Check out this free Nx course on YouTube.
-  https://www.youtube.com/watch?v=2mYLe9Kp9VM&amp;list=PLakNactNC1dH38AfqmwabvOszDmKriGco
+&lt;several lines truncated&gt;
 </code></pre></div></div>
 
-<p>Create new plain repo on Github</p>
+<p>Now our <code class="language-plaintext highlighter-rouge">authoring</code> application is setup, and we can run in locally using the <code class="language-plaintext highlighter-rouge">nx</code> command:</p>
 
-<p>…or create a new repository on the command line</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "# infinite-loops" &gt;&gt; README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:christodoulos/infinite-loops.git
-git push -u origin main
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>workspace/central
+<span class="nv">$ </span>nx serve authoring
+<span class="o">&gt;</span> nx run authoring:serve 
+✔ Browser application bundle generation complete.
+Initial Chunk Files | Names         |      Size
+vendor.js           | vendor        |   2.44 MB
+polyfills.js        | polyfills     | 141.40 kB
+main.js             | main          |  23.32 kB
+runtime.js          | runtime       |   6.15 kB
+styles.css          | styles        | 119 bytes
+                    | Initial Total |   2.61 MB
+Build at: 2021-05-11T07:51:43.738Z - Hash: 46cd7aa8bda03adf1fcc - Time: 10184ms
+<span class="k">**</span> Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ <span class="k">**</span>
+✔ Compiled successfully.
 </code></pre></div></div>
 
-<p>…or push an existing repository from the command line</p>
+<p>Lets open our browser to view our application running:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin git@github.com:christodoulos/infinite-loops.git
-git branch -M main
-git push -u origin main
+<p><img src="/assets/img/nxprimer/nxprimer.png" alt="" /></p>
+
+<h2 id="create-a-github-repository-for-our-workspace">Create a GitHub repository for our workspace</h2>
+
+<p>We create a new <code class="language-plaintext highlighter-rouge">nxcentral</code> GitHub repository for our <code class="language-plaintext highlighter-rouge">central</code> workspace and push our <code class="language-plaintext highlighter-rouge">central</code> workspace to our new <code class="language-plaintext highlighter-rouge">nxcentral</code> GitHub repository (issue the commands inside the <code class="language-plaintext highlighter-rouge">workspace/central</code> directory):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote add origin git@github.com:christodoulos/nxcentral.git
+<span class="nv">$ </span>git branch <span class="nt">-M</span> main
+<span class="nv">$ </span>git push <span class="nt">-u</span> origin main
+Enumerating objects: 63, <span class="k">done</span><span class="nb">.</span>
+Counting objects: 100% <span class="o">(</span>63/63<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+Delta compression using up to 4 threads
+Compressing objects: 100% <span class="o">(</span>54/54<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+Writing objects: 100% <span class="o">(</span>63/63<span class="o">)</span>, 191.00 KiB | 1.08 MiB/s, <span class="k">done</span><span class="nb">.</span>
+Total 63 <span class="o">(</span>delta 1<span class="o">)</span>, reused 0 <span class="o">(</span>delta 0<span class="o">)</span>
+remote: Resolving deltas: 100% <span class="o">(</span>1/1<span class="o">)</span>, <span class="k">done</span><span class="nb">.</span>
+To github.com:christodoulos/nxcentral.git
+ <span class="k">*</span> <span class="o">[</span>new branch]      main -&gt; main
+Branch <span class="s1">'main'</span> <span class="nb">set </span>up to track remote branch <span class="s1">'main'</span> from <span class="s1">'origin'</span><span class="nb">.</span>
 </code></pre></div></div>
+
+<p>Our new repository is now online:</p>
+
+<p><img src="/assets/img/nxprimer/githubnew.png" alt="" /></p>
 </article>
         </div>
         <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
@@ -369,7 +359,12 @@ git push -u origin main
         </div>
       </div>
     </div>
-     
+    
+
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/prism-python.js"></script>
+<script src="/assets/js/prism-normalize-whitespace.min.js"></script>
+<script type="text/javascript" src="/assets/js/myprism.js"></script>
 
   </body>
 </html>

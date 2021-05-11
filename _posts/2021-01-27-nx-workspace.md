@@ -6,7 +6,7 @@ code: true
 
 # Nx workspace primer
 
-We are going to use Nx to build a full-stack application out of common libraries.
+We are going to describe the basic steps towards using  Nx to build a full-stack application out of common libraries.
 
 ## Node Version Manager
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
+<head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
   <title>NX workspace primer - Christodoulos Fragkoudakis</title>
@@ -12,9 +12,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
     integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
-  <body>
-    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
-      <!-- This example requires Tailwind CSS v2.0+ -->
+
+<body>
+  <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+    <!-- This example requires Tailwind CSS v2.0+ -->
 <nav class="bg-gray-800">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
@@ -201,9 +202,9 @@
   </div>
 </nav>
 
-      <div class="md:flex md:flex-row">
-        <div class="md:w-3/4 mt-2">
-          <article class="prose"><h1 id="nx-workspace-primer">Nx workspace primer</h1>
+    <div class="md:flex md:flex-row">
+      <div class="md:w-3/4 mt-4">
+        <article class="prose"><h1 id="nx-workspace-primer">Nx workspace primer</h1>
 
 <p>We are going to describe the basic steps towards using  Nx to build a full-stack application out of common libraries.</p>
 
@@ -311,10 +312,26 @@ Branch <span class="s1">'main'</span> <span class="nb">set </span>up to track re
 <p>Our new repository is now online:</p>
 
 <p><img src="/assets/img/nxprimer/githubnew.png" alt="" /></p>
+
+<h2 id="workspace-directory-structure">Workspace directory structure</h2>
+
+<p>Our bare minimum workspace has a very simple directory structure:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── apps
+│   ├── authoring
+│   └── authoring-e2e
+├── libs
+├── node_modules
+│   ├── @angular
+│   └── ...
+└── tools
+    └── generators
+</code></pre></div></div>
 </article>
-        </div>
-        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
-          <!-- Sidebar Section -->
+      </div>
+      <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+        <!-- Sidebar Section -->
 <aside>
 <div class="flex flex-col p-4">
     <p class="font-semibold pb-5 whitespace-nowrap">
@@ -356,15 +373,16 @@ Branch <span class="s1">'main'</span> <span class="nb">set </span>up to track re
     </div>
 </div>
 </aside>
-        </div>
       </div>
     </div>
-    
+  </div>
+  
 
 <script src="/assets/js/prism.js"></script>
 <script src="/assets/js/prism-python.js"></script>
 <script src="/assets/js/prism-normalize-whitespace.min.js"></script>
 <script type="text/javascript" src="/assets/js/myprism.js"></script>
 
-  </body>
+</body>
+
 </html>

@@ -1,29 +1,28 @@
+---
+math-css:
+- "/css/katex.min.css"
+math-js:
+- "katex.min.js"
+- "auto-render.min.js"
+---
+
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <title>{{ page.title }} - {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+{% include head.html %}
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
-      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
-      {% include navbar.html %}
-      <div class="md:flex md:flex-row">
-        <div class="md:w-3/4 mt-2">
-          <h2 class="text-2xl font-bold">{{page.title}}</h2>
-          <article class="prose">{{ content }}</article>
-        </div>
-        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
-          {% include sidebar.html %}
-        </div>
+<body>
+  <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+    {% include navbar.html %}
+    <div class="md:flex md:flex-row">
+      <div class="md:w-3/4 mt-4">
+        <article class="prose">{{ content }}</article>
+      </div>
+      <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
+        {% include sidebar.html %}
       </div>
     </div>
-  </body>
+  </div>
+  {% include footer-scripts.html %}
+</body>
+
 </html>

@@ -3,9 +3,12 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
-  <title>Blog - Christodoulos Fragkoudakis</title>
+  <title>GIT cheatsheet - Christodoulos Fragkoudakis</title>
   <link rel="stylesheet" href="/assets/css/main.css" />
    
+  <link rel="stylesheet" href="/assets/css/prism-ghcolors.css" />
+  <link rel="stylesheet" href="/assets/css/prism.css" />
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
     integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
@@ -201,127 +204,38 @@
 
     <div class="md:flex md:flex-row">
       <div class="md:w-3/4 mt-4">
-        <article class="prose"><h1>Blog Posts</h1>
+        <article class="prose"><h2 id="how-to-create-a-new-local-branch">How to create a new local branch</h2>
 
-<dl>
+<p>First, let’s say you’re working on your project and have a couple of commits already on the master branch.</p>
 
-  <dt>12 May 2021</dt>
-  <dd><a href="/2021/05/12/nx-tailwindcss-integration.html">NX tailwindcss integration</a> <h2 id="about-tailwindcss">About tailwindcss</h2>
-</dd>
-
-  <dt>12 May 2021</dt>
-  <dd><a href="/2021/05/12/git-cheatsheet.html">GIT cheatsheet</a> <h2 id="how-to-create-a-new-local-branch">How to create a new local branch</h2>
-</dd>
-
-  <dt>11 May 2021</dt>
-  <dd><a href="/2021/05/11/nx-primer.html">NX workspace primer</a> <h1 id="nx-workspace-primer">Nx workspace primer</h1>
-</dd>
-
-  <dt>13 Dec 2019</dt>
-  <dd><a href="/2019/12/13/c-c++-c-playground.html">C, C++ and C# playground</a> <p>These are several tips and tricks collected from the web, during my first steps towards a better understanding of the <code class="language-plaintext highlighter-rouge">C</code>, <code class="language-plaintext highlighter-rouge">C++</code> and <code class="language-plaintext highlighter-rouge">C#</code> programming languages.</p>
-</dd>
-
-  <dt>30 Aug 2019</dt>
-  <dd><a href="/2019/08/30/node-nvm-install.html">Node installation using NVM</a> <p>Install NVM by running the following in Terminal:</p>
-</dd>
-
-  <dt>04 Feb 2019</dt>
-  <dd><a href="/2019/02/04/ltsp.html">LTSP setup for a university classroom</a> <p>Warning: <em>This is my personal notepad for such installations.<br />
-Use it at your own risk!</em></p>
-</dd>
-
-  <dt>04 Feb 2019</dt>
-  <dd><a href="/2019/02/04/linux.html">Basic Linux Installation</a> <p>Table Of Contents</p>
-</dd>
-
-  <dt>30 Jan 2019</dt>
-  <dd><a href="/2019/01/30/unit-cube-complexes.html">Unit Cube Complexes</a> <p class="abstract">The traditional Finite Element approach discetizes a continous orthogonal domain into smaller elements of a specific shape. We consider unit cube complexes (first picture below) that may be produced by Deep Learning methods as in \ref{kallioras}</p>
-</dd>
-
-  <dt>18 Apr 2017</dt>
-  <dd><a href="/2017/04/18/how-to-tie-a-shoelace-really-fast.html">How To Tie a Shoelace Really Fast</a> <iframe width="560" height="315" src="https://www.youtube.com/embed/6cBtqhq5P28" frameborder="0" allowfullscreen=""></iframe>
-</dd>
-
-  <dt>20 Mar 2016</dt>
-  <dd><a href="/2016/03/20/strip-line-endings-vim.html">VIM tips</a> <p>In vim’s command mode, type:</p>
-</dd>
-
-  <dt>15 Oct 2015</dt>
-  <dd><a href="/2015/10/15/vnc-websockets-proxy.html">Implementing a noVNC websocket proxy</a> <h3 id="a-websockets-novnc-proxy">A websockets noVNC proxy</h3>
-</dd>
-
-  <dt>01 Oct 2015</dt>
-  <dd><a href="/2015/10/01/apt-debian.html">How to remove apt-key added keys</a> <h4 id="how-to-remove-apt-key-added-keys">How to remove apt-key added keys</h4>
-</dd>
-
-  <dt>29 Sep 2015</dt>
-  <dd><a href="/2015/09/29/team-work.html">Team Work</a> <p>There are four people named <strong>Everybody</strong>, <strong>Somebody</strong>, <strong>Anybody</strong> and <strong>Nobody</strong>. There was an important job to be done and <strong>Everybody</strong> was asked to do it. <strong>Everybody</strong> was sure <strong>Somebody</strong> would do it, <strong>Anybody</strong> could have done it but <strong>Nobody</strong> did it.</p>
-</dd>
-
-  <dt>29 Sep 2015</dt>
-  <dd><a href="/2015/09/29/provlimata-praktikis-arithmitikis.html">Πρακτική αριθμητική</a> <h2 id="προβλήματα-πρακτικής-αριθμητικής">Προβλήματα Πρακτικής Αριθμητικής</h2>
-</dd>
-
-  <dt>29 Sep 2014</dt>
-  <dd><a href="/2014/09/29/legacy-centos-notes.html">CentOS 5.x notes</a> <p>My personal notebook for CentOS 5.x installations.</p>
-</dd>
-
-  <dt>22 Sep 2014</dt>
-  <dd><a href="/2014/09/22/python-strftime.html">Python's strftime directives</a> <h3 id="pythons-strftime-directives">Python’s strftime directives</h3>
-</dd>
-
-  <dt>01 Oct 2013</dt>
-  <dd><a href="/2013/10/01/towards-a-cloud-enabled.html">Towards a Cloud Enabled University Computer Center</a> <h3 id="towards-a-cloud-enabled-university-computer-center">Towards a Cloud Enabled University Computer Center</h3>
-</dd>
-
-  <dt>15 Feb 2012</dt>
-  <dd><a href="/2012/02/15/need-for-speed.html">Need for speed</a> <h3 id="άλλες-φορές-αργός-θάνατος">(άλλες φορές αργός θάνατος)</h3>
-</dd>
-
-  <dt>30 Nov 2011</dt>
-  <dd><a href="/2011/11/30/stelios.html">Στέλιος (RIP)</a> <p>Προαντιπαραπροχθές πήγαμε στο ένα πετ σοπ του Πικερμίου για να πάρουμε ένα χρυσόψαρο για το μικρό. Μετά τον εγκάρδιο χαιρετισμό του καταστηματάρχη μας σνόμπαρε τελείως όταν του είπαμε ότι θέλουμε χρυσόψαρο και γυάλα.</p>
-</dd>
-
-  <dt>05 Feb 2008</dt>
-  <dd><a href="/2008/02/05/kabafis.html">ΑΠΟΛΕΙΠΕΙΝ Ο ΘΕΟΣ ΑΝΤΩΝΙΟΝ</a> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Σαν έξαφνα ώρα μεσάνυχτ' ακουσθεί
-αόρατος θίασος να περνά
-με μουσικές εξαίσιες, με φωνές
-την τύχη σου που ενδίδει πιά, τα έργα σου
-που απέτυχαν, τα σχέδια της ζωής σου
-που βγήκαν όλα πλάνες μη ανοφέλετα θρηνήσεις.
-Σαν έτοιμος από καιρό, σα θαρραλέος,
-αποχαιρέτα την, την Αλεξάνδρεια που φεύγει.
-Προ πάντων να μη γελασθείς, μην πεις πως ήταν
-ένα όνειρο, πως απατήθηκεν η ακοή σου,
-μάταιες ελπίδες τέτοιες μην καταδεχθείς.
-Σαν έτοιμος από καιρό, σα θαρραλέος,
-σαν που ταιριάζει σε που αξιώθηκες μια τέτοια πόλι,
-πλησιάσε σταθερά προς το παράθυρο,
-κι άκουσε με συγκίνησιν, αλλ´ όχι
-με των δειλών τα παρακάλια και παράπονα,
-ως τελευταία απόλαυσι τους ήχους,
-τα εξαίσια όργανα του μυστικού θιάσου,
-κι αποχαιρέτα την, την Αλεξάνδρεια που χάνεις.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C0 &lt;-- C1 &lt;-- C2 &lt;-- master
 </code></pre></div></div>
-</dd>
 
-  <dt>01 Jan 2006</dt>
-  <dd><a href="/2006/01/01/mpourgos-portara-grotta.html">Μπούργος - Πορτάρα - Γρόττα</a> <p>Γραπτό του αείμνηστου πατέρα μου Γιώργου Φραγκουδάκη:</p>
-</dd>
+<p>You’ve decided that you’re going to work on issue #53 in whatever issue-tracking system your company uses. To create a new branch and switch to it at the same time, you can run the <code class="language-plaintext highlighter-rouge">git checkout</code> command with the <code class="language-plaintext highlighter-rouge">-b</code> switch:</p>
 
-  <dt>03 Feb 2005</dt>
-  <dd><a href="/2005/02/03/vyrsodepsia-tis-naksou.html">Βυρσοδεψία της Νάξου</a> <p>Διήγηση του αείμνηστου πατέρα μου Γιώργου Φραγκουδάκη:</p>
-</dd>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout -b iss53
+Switched to a new branch "iss53"
+</code></pre></div></div>
 
-  <dt>30 Jan 2005</dt>
-  <dd><a href="/2005/01/30/sidirourgia-ths-naksou.html">Σιδηρουργία της Νάξου</a> <p>Διήγηση του αείμνηστου πατέρα μου Γιώργου Φραγκουδάκη:</p>
-</dd>
+<p>This is shorthand for:</p>
 
-  <dt>24 Jan 2005</dt>
-  <dd><a href="/2005/01/24/alykes-ths-naksou.html">Αλυκές της Νάξου</a> <p>Διήγηση του αείμνηστου πατέρα μου Γιώργου Φραγκουδάκη:</p>
-</dd>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git branch iss53
+$ git checkout iss53
+</code></pre></div></div>
 
-</dl>
+<p>A new branch pointer is created:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C0 &lt;-- C1 &lt;-- C2 &lt;-- master
+               ^
+               |---- iss53
+</code></pre></div></div>
+
+<h2 id="how-to-delete-a-local-branch">How to delete a local branch</h2>
+
+<p>In some cases, Git might refuse to delete your local branch: when it contains commits that haven’t been merged into any other local branches or pushed to a remote repository. This is a very sensible rule that protects you from inadvertently losing commit data.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git branch <span class="nt">-d</span> &lt;local-branch&gt;
+</code></pre></div></div>
 </article>
       </div>
       <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
@@ -371,6 +285,11 @@ Use it at your own risk!</em></p>
     </div>
   </div>
   
+
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/prism-python.js"></script>
+<script src="/assets/js/prism-normalize-whitespace.min.js"></script>
+<script type="text/javascript" src="/assets/js/myprism.js"></script>
 
 </body>
 

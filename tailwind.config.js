@@ -6,19 +6,22 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Fira Sans", ...defaultTheme.fontFamily.sans],
-        mono: ["Fira Code", ...defaultTheme.fontFamily.mono]
+        mono: ["Fira Code", ...defaultTheme.fontFamily.mono],
       },
       typography: {
         DEFAULT: {
           css: {
-            'code::before': {
-              content: '""'
+            "code::before": {
+              content: '""',
             },
-            'code::after': {
-              content: '""'
-            }
-          }
-        }
+            "code::after": {
+              content: '""',
+            },
+          },
+        },
+      },
+      screens: {
+        print: { raw: "print" },
       },
     },
     container: {

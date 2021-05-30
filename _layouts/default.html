@@ -1,28 +1,28 @@
 ---
 math-css:
-- "/css/katex.min.css"
+  - "/css/katex.min.css"
 math-js:
-- "katex.min.js"
-- "auto-render.min.js"
+  - "katex.min.js"
+  - "auto-render.min.js"
 ---
 
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
-{% include head.html %}
+  {% include head.html %}
 
-<body>
-  <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
-    {% include navbar.html %}
-    <div class="md:flex md:flex-row">
-      <div class="md:w-3/4 mt-4">
-        <article class="prose">{{ content }}</article>
-      </div>
-      <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
-        {% include sidebar.html %}
+  <body>
+    <div class="container mx-auto max-w-4xl pt-4 md:flex md:flex-col">
+      {% include navbar.html %}
+      <div class="md:flex md:flex-row">
+        <div class="md:w-3/4 mt-4">
+          <article class="prose">{{ content }}</article>
+        </div>
+        <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100 print:hidden">
+          {% include sidebar.html %}
+        </div>
       </div>
     </div>
-  </div>
-  {% include footer-scripts.html %}
-</body>
-
+    {% include footer-scripts.html %}
+  </body>
 </html>
+

@@ -3,9 +3,12 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta charset="utf-8" />
-  <title>Team Work - Christodoulos Fragkoudakis</title>
+  <title>neovim setup - Christodoulos Fragkoudakis</title>
   <link rel="stylesheet" href="/assets/css/main.css" />
    
+  <link rel="stylesheet" href="/assets/css/prism-ghcolors.css" />
+  <link rel="stylesheet" href="/assets/css/prism.css" />
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
     integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
@@ -317,9 +320,105 @@
 
     <div class="md:flex md:flex-row">
       <div class="md:w-3/4 mt-4">
-        <article class="prose"><p>There are four people named <strong>Everybody</strong>, <strong>Somebody</strong>, <strong>Anybody</strong> and <strong>Nobody</strong>. There was an important job to be done and <strong>Everybody</strong> was asked to do it. <strong>Everybody</strong> was sure <strong>Somebody</strong> would do it, <strong>Anybody</strong> could have done it but <strong>Nobody</strong> did it.</p>
+        <article class="prose"><h1 id="initial-install-and-configuration">Initial install and configuration</h1>
 
-<p><strong>Somebody</strong> got angry about that because it was <strong>Everybody’s</strong> job. <strong>Everybody</strong> thought <strong>Anybody</strong> could do it, but <strong>Nobody</strong> realized that <strong>Everybody</strong> wouldn’t do it. It ended up that <strong>Everybody</strong> blamed <strong>Somebody</strong> when <strong>Nobody</strong> did what <strong>Anybody</strong> could have done.</p>
+<p>sudo apt install neovim</p>
+
+<p>mkdir .config/nvim
+touch .config/nvim/init.vim</p>
+
+<p>nvim
+checkhealth
+…</p>
+<h2 id="python-2-provider-optional">Python 2 provider (optional)</h2>
+<ul>
+  <li>WARNING: No Python executable found that can <code class="language-plaintext highlighter-rouge">import neovim</code>. Using the first available           executable for diagnostics.</li>
+  <li>ERROR: Python provider error:
+    <ul>
+      <li>ADVICE:
+        <ul>
+          <li>provider/pythonx: Could not load Python 2:
+  python2 not found in search path or not executable.
+  python2.7 not found in search path or not executable.
+  python2.6 not found in search path or not executable.
+  python not found in search path or not executable.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>INFO: Executable: Not found
+…</li>
+</ul>
+
+<p>sudo apt install python2.7 python3-pip
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py –output get-pip.py</p>
+
+<p>python2.7 get-pip.py</p>
+
+<p>DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support pip 21.0 will remove support for this functionality.
+Defaulting to user installation because normal site-packages is not writeable
+Collecting pip&lt;21.0
+  Using cached pip-20.3.4-py2.py3-none-any.whl (1.5 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 20.3.4
+    Uninstalling pip-20.3.4:
+      Successfully uninstalled pip-20.3.4
+Successfully installed pip-20.3.4</p>
+
+<p>pip2 install neovim</p>
+
+<p>nvim check health
+…</p>
+<h2 id="python-3-provider-optional">Python 3 provider (optional)</h2>
+<ul>
+  <li>INFO: <code class="language-plaintext highlighter-rouge">g:python3_host_prog</code> is not set.  Searching for python3 in the environment.</li>
+  <li>INFO: Multiple python3 executables found.  Set <code class="language-plaintext highlighter-rouge">g:python3_host_prog</code> to avoid surprises.</li>
+  <li>INFO: Executable: /bin/python3</li>
+  <li>INFO: Other python executable: /usr/bin/python3</li>
+  <li>INFO: Python version: 3.8.5</li>
+  <li>INFO: pynvim version: 0.4.1 (outdated; from /usr/lib/python3/dist-packages/neovim)</li>
+  <li>WARNING: Latest pynvim is NOT installed: 0.4.3
+…</li>
+</ul>
+
+<p>sudo apt install python3-pip
+sudo apt purge python3-neovim python3-pynvim</p>
+
+<p>…
+The following packages were automatically installed and are no longer required:
+  python3-greenlet python3-msgpack
+Use ‘sudo apt autoremove’ to remove them.
+…</p>
+
+<p>sudo apt autoremove</p>
+
+<p>pip3 install pynvim</p>
+
+<p>gem install neovim</p>
+
+<p>npm install -g neovim</p>
+
+<p>nvim checkhealth ALL OK</p>
+
+<h1 id="plugin-manager">Plugin manager</h1>
+
+<p>Vim Plug install</p>
+
+<p>sh -c ‘curl -fLo “${XDG_DATA_HOME:-$HOME/.local/share}”/nvim/site/autoload/plug.vim –create-dirs <br />
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim’</p>
+
+<p>init.vim</p>
+
+<p>” Plugin Manager
+call plug#begin(‘~/.vim/plugged’)
+call plug#end()</p>
+
+<p>coc nvim:
+Plug ‘neoclide/coc.nvim’, {‘branch’: ‘release’}</p>
+
+<p>:CocInstall coc-tsserver coc-eslint coc-json coc-prettier coc-css</p>
+
 </article>
       </div>
       <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">
@@ -369,6 +468,11 @@
     </div>
   </div>
   
+
+<script src="/assets/js/prism.js"></script>
+<script src="/assets/js/prism-python.js"></script>
+<script src="/assets/js/prism-normalize-whitespace.min.js"></script>
+<script type="text/javascript" src="/assets/js/myprism.js"></script>
 
 </body>
 

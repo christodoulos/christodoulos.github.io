@@ -320,105 +320,79 @@
 
     <div class="md:flex md:flex-row">
       <div class="md:w-3/4 mt-4">
-        <article class="prose"><h1 id="initial-install-and-configuration">Initial install and configuration</h1>
+        <article class="prose"><h1 id="setup-neovim-like-an-ide">Setup neovim like an IDE</h1>
 
-<p>sudo apt install neovim</p>
+<p>The following setup runs in WSL2 (Ubuntu 20.04) in a Windows 10 machine. Start by installing
+neovim and creating an empty configuration file:</p>
 
-<p>mkdir .config/nvim
-touch .config/nvim/init.vim</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>neovim
+<span class="nb">mkdir</span> .config/nvim
+<span class="nb">touch</span> .config/nvim/init.vim
+</code></pre></div></div>
 
-<p>nvim
-checkhealth
-…</p>
-<h2 id="python-2-provider-optional">Python 2 provider (optional)</h2>
-<ul>
-  <li>WARNING: No Python executable found that can <code class="language-plaintext highlighter-rouge">import neovim</code>. Using the first available           executable for diagnostics.</li>
-  <li>ERROR: Python provider error:
-    <ul>
-      <li>ADVICE:
-        <ul>
-          <li>provider/pythonx: Could not load Python 2:
-  python2 not found in search path or not executable.
-  python2.7 not found in search path or not executable.
-  python2.6 not found in search path or not executable.
-  python not found in search path or not executable.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>INFO: Executable: Not found
-…</li>
-</ul>
+<p>I proceeded with repeated “checkhealth” commands in neovim and tried to fix the errors. These
+were the required steps:</p>
 
-<p>sudo apt install python2.7 python3-pip
-curl https://bootstrap.pypa.io/pip/2.7/get-pip.py –output get-pip.py</p>
+<h3 id="python-2-installation">Python 2 installation</h3>
 
-<p>python2.7 get-pip.py</p>
+<p>In Ubuntu 20.04 there is neither python2 installed nor a pip2 command available. So I installed
+python2 and downloaded the get-pip.py helper script:</p>
 
-<p>DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. pip 21.0 will drop support for Python 2.7 in January 2021. More details about Python 2 support in pip can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support pip 21.0 will remove support for this functionality.
-Defaulting to user installation because normal site-packages is not writeable
-Collecting pip&lt;21.0
-  Using cached pip-20.3.4-py2.py3-none-any.whl (1.5 MB)
-Installing collected packages: pip
-  Attempting uninstall: pip
-    Found existing installation: pip 20.3.4
-    Uninstalling pip-20.3.4:
-      Successfully uninstalled pip-20.3.4
-Successfully installed pip-20.3.4</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>python2.7
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py <span class="nt">--output</span> get-pip.py
+python2.7 get-pip.py
+pip2 <span class="nb">install </span>neovim
+</code></pre></div></div>
 
-<p>pip2 install neovim</p>
+<h3 id="python-3-pynvim-package-upgrade">Python 3 pynvim package upgrade</h3>
 
-<p>nvim check health
-…</p>
-<h2 id="python-3-provider-optional">Python 3 provider (optional)</h2>
-<ul>
-  <li>INFO: <code class="language-plaintext highlighter-rouge">g:python3_host_prog</code> is not set.  Searching for python3 in the environment.</li>
-  <li>INFO: Multiple python3 executables found.  Set <code class="language-plaintext highlighter-rouge">g:python3_host_prog</code> to avoid surprises.</li>
-  <li>INFO: Executable: /bin/python3</li>
-  <li>INFO: Other python executable: /usr/bin/python3</li>
-  <li>INFO: Python version: 3.8.5</li>
-  <li>INFO: pynvim version: 0.4.1 (outdated; from /usr/lib/python3/dist-packages/neovim)</li>
-  <li>WARNING: Latest pynvim is NOT installed: 0.4.3
-…</li>
-</ul>
+<p>In Ubuntu 20.04 the pynvim library is outdated. Start by installing pip3 and then purge the
+existing pynvim library. The install pynvim using pip3:</p>
 
-<p>sudo apt install python3-pip
-sudo apt purge python3-neovim python3-pynvim</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>python3-pip
+<span class="nb">sudo </span>apt purge python3-neovim python3-pynvim
+<span class="nb">sudo </span>apt autoremove
+pip3 <span class="nb">install </span>pynvim
+</code></pre></div></div>
 
-<p>…
-The following packages were automatically installed and are no longer required:
-  python3-greenlet python3-msgpack
-Use ‘sudo apt autoremove’ to remove them.
-…</p>
+<h3 id="ruby-and-nodejs-libaries">Ruby and Nodejs libaries</h3>
 
-<p>sudo apt autoremove</p>
+<p>Towards an error free “checkhealth” command output install the necessary libraries:</p>
 
-<p>pip3 install pynvim</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>neovim
+npm <span class="nb">install</span> <span class="nt">-g</span> neovim
+</code></pre></div></div>
 
-<p>gem install neovim</p>
+<p>Now your “checkhealth” output must be error free.</p>
 
-<p>npm install -g neovim</p>
-
-<p>nvim checkhealth ALL OK</p>
-
-<h1 id="plugin-manager">Plugin manager</h1>
+<h2 id="plugin-manager">Plugin manager</h2>
 
 <p>Vim Plug install</p>
 
-<p>sh -c ‘curl -fLo “${XDG_DATA_HOME:-$HOME/.local/share}”/nvim/site/autoload/plug.vim –create-dirs <br />
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim’</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh <span class="nt">-c</span> <span class="s1">'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'</span>
+</code></pre></div></div>
 
-<p>init.vim</p>
+<p>Start by editing your <code class="language-plaintext highlighter-rouge">init.vim</code> file in <code class="language-plaintext highlighter-rouge">.config/nvim</code>:</p>
 
-<p>” Plugin Manager
-call plug#begin(‘~/.vim/plugged’)
-call plug#end()</p>
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">" Plugin Manager</span>
+<span class="k">call</span> plug#begin<span class="p">(</span><span class="s1">'~/.vim/plugged'</span><span class="p">)</span>
+<span class="k">call</span> plug#end<span class="p">()</span>
+</code></pre></div></div>
 
-<p>coc nvim:
-Plug ‘neoclide/coc.nvim’, {‘branch’: ‘release’}</p>
+<h2 id="coc-plugin">COC plugin</h2>
 
-<p>:CocInstall coc-tsserver coc-eslint coc-json coc-prettier coc-css</p>
+<p>The COC plugin provides the VSCode like experience. So in your init.vim:</p>
 
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Plug <span class="s1">'neoclide/coc.nvim'</span><span class="p">,</span> <span class="p">{</span><span class="s1">'branch'</span><span class="p">:</span> <span class="s1">'release'</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>And then inside neovim:</p>
+
+<div class="language-vim highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">:</span>CocInstall coc<span class="p">-</span>tsserver coc<span class="p">-</span>eslint coc<span class="p">-</span>json coc<span class="p">-</span>prettier coc<span class="p">-</span>css
+</code></pre></div></div>
+
+<p>TBC</p>
 </article>
       </div>
       <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">

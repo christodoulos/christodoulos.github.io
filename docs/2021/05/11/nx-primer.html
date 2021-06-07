@@ -322,11 +322,13 @@
       <div class="md:w-3/4 mt-4">
         <article class="prose"><h1 id="nx-workspace-primer">Nx workspace primer</h1>
 
-<p>We are going to describe the basic steps towards using  Nx to build a full-stack application out of common libraries.</p>
+<p>We are going to describe the basic steps towards using Nx to build a
+full-stack application out of common libraries.</p>
 
 <h2 id="node-version-manager">Node Version Manager</h2>
 
-<p>We use <code class="language-plaintext highlighter-rouge">nvm</code> as a version manager for <code class="language-plaintext highlighter-rouge">node.js</code>. <code class="language-plaintext highlighter-rouge">nvm</code> is installed per user, and invoked per-shell. To install <code class="language-plaintext highlighter-rouge">nvm</code> use the following cURL or Wget command:</p>
+<p>We use <code class="language-plaintext highlighter-rouge">nvm</code> as a version manager for <code class="language-plaintext highlighter-rouge">node.js</code>. <code class="language-plaintext highlighter-rouge">nvm</code> is installed per user,
+and invoked per-shell. To install <code class="language-plaintext highlighter-rouge">nvm</code> use the following cURL or Wget command:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>curl <span class="nt">-o-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 </code></pre></div></div>
@@ -334,21 +336,23 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>wget <span class="nt">-qO-</span> https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 </code></pre></div></div>
 
-<p>Running either of the above commands downloads a script and runs it. The script clones the nvm repository to <code class="language-plaintext highlighter-rouge">~/.nvm</code>, and attempts to add the following source line to <code class="language-plaintext highlighter-rouge">~/.bashrc</code>:</p>
+<p>Running either of the above commands downloads a script and runs it. The script
+clones the nvm repository to <code class="language-plaintext highlighter-rouge">~/.nvm</code>, and attempts to add the following source
+line to <code class="language-plaintext highlighter-rouge">~/.bashrc</code>:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">NVM_DIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.nvm"</span>
 <span class="c"># This loads nvm</span>
-<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span>  
+<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/nvm.sh"</span>
 <span class="c"># This loads nvm bash_completion</span>
-<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion"</span>  
+<span class="o">[</span> <span class="nt">-s</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion"</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="se">\.</span> <span class="s2">"</span><span class="nv">$NVM_DIR</span><span class="s2">/bash_completion"</span>
 </code></pre></div></div>
 
-<p>Lets use the latest LTS <code class="language-plaintext highlighter-rouge">node.js</code> version as of today (May 2021):</p>
+<p>Lets use the latest <code class="language-plaintext highlighter-rouge">node.js</code> version as of today (May 2021):</p>
 
-<pre><code class="language-command-line">$ nvm install 14.16.1
-$ nvm alias default 14.16.1
+<pre><code class="language-command-line">$ nvm install 16.3.0
+$ nvm alias default 16.3.0
 $ node -v
-v14.16.1
+v16.3.0
 </code></pre>
 
 <p>Lets install globally the <code class="language-plaintext highlighter-rouge">nx</code> command:</p>
@@ -388,7 +392,7 @@ UPDATE nx.json
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>workspace/central
 <span class="nv">$ </span>nx serve authoring
-<span class="o">&gt;</span> nx run authoring:serve 
+<span class="o">&gt;</span> nx run authoring:serve
 ✔ Browser application bundle generation complete.
 Initial Chunk Files | Names         |      Size
 vendor.js           | vendor        |   2.44 MB
@@ -444,6 +448,7 @@ Branch <span class="s1">'main'</span> <span class="nb">set </span>up to track re
 └── tools
     └── generators
 </code></pre></div></div>
+
 </article>
       </div>
       <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">

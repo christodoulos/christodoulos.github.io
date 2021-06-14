@@ -364,32 +364,24 @@ v16.3.0
 
 <p>We start by creating a new workspace:</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>workspace
-<span class="nv">$ </span>npx create-nx-workspace@latest
-npx: installed 48 <span class="k">in </span>5.034s
-✔ Workspace name <span class="o">(</span>e.g., org name<span class="o">)</span>     · central
-✔ What to create <span class="k">in </span>the new workspace · angular
-✔ Application name                    · authoring
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd workspace
+$ npx create-nx-workspace@latest
+npx: installed 48 in 5.034s
+✔ Workspace name (e.g., org name)     · central
+✔ What to create in the new workspace · angular
+✔ Application name                    · grafis
 ✔ Default stylesheet format           · css
 ✔ Default linter                      · eslint
-✔ Use Nx Cloud? <span class="o">(</span>It<span class="s1">'s free and doesn'</span>t require registration.<span class="o">)</span> · Yes
-<span class="o">&gt;</span>  NX  Nx is creating your workspace.
-  To make sure the <span class="nb">command </span>works reliably <span class="k">in </span>all environments, and that the preset is applied correctly,
-  Nx will run <span class="s2">"npm install"</span> several times. Please wait.
-<span class="o">&gt;</span>  NX   SUCCESS  Nx has successfully created the workspace.
-———————————————————————————————————————————————
-UPDATE nx.json
-<span class="o">&gt;</span>  NX   NOTE  Nx Cloud has been enabled
-  &lt;several lines truncated&gt;
-———————————————————————————————————————————————
-&lt;several lines truncated&gt;
+✔ Use Nx Cloud? (It's free and doesn't require …
+&gt;  NX  Nx is creating your workspace.
+…
 </code></pre></div></div>
 
-<p>Now our <code class="language-plaintext highlighter-rouge">authoring</code> application is setup, and we can run in locally using the <code class="language-plaintext highlighter-rouge">nx</code> command:</p>
+<p>Now our <code class="language-plaintext highlighter-rouge">grafis</code> application is setup, and we can run in locally using the <code class="language-plaintext highlighter-rouge">nx</code> command:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd </span>workspace/central
-<span class="nv">$ </span>nx serve authoring
-<span class="o">&gt;</span> nx run authoring:serve
+<span class="nv">$ </span>nx serve grafis
+<span class="o">&gt;</span> nx run grafis:serve
 ✔ Browser application bundle generation complete.
 Initial Chunk Files | Names         |      Size
 vendor.js           | vendor        |   2.44 MB
@@ -398,18 +390,18 @@ main.js             | main          |  23.32 kB
 runtime.js          | runtime       |   6.15 kB
 styles.css          | styles        | 119 bytes
                     | Initial Total |   2.61 MB
-Build at: 2021-05-11T07:51:43.738Z - Hash: 46cd7aa8bda03adf1fcc - Time: 10184ms
-<span class="k">**</span> Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ <span class="k">**</span>
+Build at: 2021-05-11T07:51:43.738Z - Hash: …
+… Live Development Server is listening on localhost:4200 …
 ✔ Compiled successfully.
 </code></pre></div></div>
 
-<p>Lets open our browser to view our application running:</p>
-
-<p><img src="/assets/img/nxprimer/nxprimer.png" alt="" /></p>
+<p>We browse to <code class="language-plaintext highlighter-rouge">http://localhost:4200</code> to view our application running.</p>
 
 <h2 id="create-a-github-repository-for-our-workspace">Create a GitHub repository for our workspace</h2>
 
-<p>We create a new <code class="language-plaintext highlighter-rouge">nxcentral</code> GitHub repository for our <code class="language-plaintext highlighter-rouge">central</code> workspace and push our <code class="language-plaintext highlighter-rouge">central</code> workspace to our new <code class="language-plaintext highlighter-rouge">nxcentral</code> GitHub repository (issue the commands inside the <code class="language-plaintext highlighter-rouge">workspace/central</code> directory):</p>
+<p>We create a new <code class="language-plaintext highlighter-rouge">nxcentral</code> GitHub repository for our <code class="language-plaintext highlighter-rouge">central</code> workspace and
+push our <code class="language-plaintext highlighter-rouge">central</code> workspace to our new <code class="language-plaintext highlighter-rouge">nxcentral</code> GitHub repository (issue
+the commands inside the <code class="language-plaintext highlighter-rouge">workspace/central</code> directory):</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote add origin git@github.com:christodoulos/nxcentral.git
 <span class="nv">$ </span>git branch <span class="nt">-M</span> main
@@ -426,9 +418,7 @@ To github.com:christodoulos/nxcentral.git
 Branch <span class="s1">'main'</span> <span class="nb">set </span>up to track remote branch <span class="s1">'main'</span> from <span class="s1">'origin'</span><span class="nb">.</span>
 </code></pre></div></div>
 
-<p>Our new repository is now online:</p>
-
-<p><img src="/assets/img/nxprimer/githubnew.png" alt="" /></p>
+<p>Our new repository is now online.</p>
 
 <h2 id="workspace-directory-structure">Workspace directory structure</h2>
 
@@ -445,7 +435,6 @@ Branch <span class="s1">'main'</span> <span class="nb">set </span>up to track re
 └── tools
     └── generators
 </code></pre></div></div>
-
 </article>
       </div>
       <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">

@@ -435,6 +435,32 @@ Branch <span class="s1">'main'</span> <span class="nb">set </span>up to track re
 └── tools
     └── generators
 </code></pre></div></div>
+
+<h2 id="nx-tailwindcss-integration">NX tailwindcss integration</h2>
+
+<p><a href="https://github.com/ngneat/tailwind"><code class="language-plaintext highlighter-rouge">@ngneat/tailwind</code></a> is an angular schematic that adds <a href="https://tailwindcss.com/">Tailwind CSS</a> to our NX workspace. We install <code class="language-plaintext highlighter-rouge">@ngneat/tailwind</code> first:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>npm i <span class="nt">-D</span> @ngneat/tailwind tailwindcss postcss autoprefixer
+&lt;several lines truncated&gt;
++ postcss@8.2.15
++ autoprefixer@10.2.5
++ tailwindcss@2.1.2
++ @ngneat/tailwind@7.0.3
+added 46 packages from 63 contributors, removed 1 package, updated 2 packages and audited 1988 packages <span class="k">in </span>30.339s
+…
+</code></pre></div></div>
+
+<p>The installation process might find some vulnerabilities of varying severity. We can issue the <code class="language-plaintext highlighter-rouge">npm audit</code> command for details and try to fix them using the <code class="language-plaintext highlighter-rouge">npm audit fix</code> command.</p>
+
+<p>When we wrote the post, there was a bug in the schematic affecting the dark mode option. A workaround was to define the dark mode setting in the command line. We execute the schematic:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>nx generate @ngneat/tailwind:nx-setup  <span class="nt">--darkMode</span><span class="o">=</span>none
+✔ What project would you like to use? <span class="o">(</span>skip to use default project<span class="o">)</span> · authoring
+✔ Would you like to <span class="nb">enable </span>Tailwind JIT <span class="o">(</span>preview feature<span class="o">)</span>? <span class="o">(</span>y/N<span class="o">)</span> · <span class="nb">false</span>
+    ✔ Added tailwindcss@2.1.2
+CREATE tailwind.config.js
+UPDATE apps/authoring/src/styles.css
+</code></pre></div></div>
 </article>
       </div>
       <div class="md:w-1/4 md:mt-0 md:ml-4 bg-gray-100">

@@ -3,6 +3,7 @@ title: "About Me"
 date: 2022-03-10T09:51:17+02:00
 draft: false
 ---
+
 My name is Christodoulos Fragkoudakis. I am the associate director of the central [Computer Center][computer center]
 facility of the National Technical University of Athens ([NTUA][ntua]) in
 Greece. For more than fifteen years in the computer center, I administer the
@@ -63,4 +64,3 @@ unpronounceable _Fragkoudakis_ on my ID card.
 [floss]: https://www.gnu.org/philosophy/floss-and-foss.html
 [cloudpaper]: https://ieeexplore.ieee.org/document/6681228
 [open mind]: https://quoteinvestigator.com/2014/04/13/open-mind/
-

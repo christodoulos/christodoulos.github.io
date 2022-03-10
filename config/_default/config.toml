@@ -1,14 +1,15 @@
 baseURL = 'http://fragkoudakis.gr/hugo.fragkoudakis.gr'
-languageCode = 'en-us'
+languageCode = 'en'
 title = "Christodoulos Fragkoudakis"
 
 [author]
 name = "Christodoulos Fragkoudakis"
 image = "img/me.jpg"
-headline = "Infinite Loops around the clock"
-bio = "A little bit about me"
+headline = "Welcome to my homepage"
+bio = "A nerd, too old to grow up"
 links = [
-{ twitter = "https://twitter.com/username"},
 { github = "https://github.com/christodoulos"},
-{ facebook = "https://www.facebook.com/christodoulos.fragkoudakis/"}
+{ linkedin = "https://www.linkedin.com/in/fragkoudakis/"},
+{ facebook = "https://www.facebook.com/christodoulos.fragkoudakis/"},
+{ twitter = "https://twitter.com/CFragkoudakis"},
 ]

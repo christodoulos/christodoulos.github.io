@@ -1,0 +1,12 @@
+baseURL = 'http://fragkoudakis.gr/'
+languageCode = 'en-us'
+title = "Christodoulos Fragkoudakis"
+
+[author]
+name = "Christodoulos Fragkoudakis"
+image = "img/me.jpg"
+headline = "Infinite Loops around the clock"
+bio = "A little bit about me"
+links = [
+{ twitter = "https://twitter.com/username"}
+]

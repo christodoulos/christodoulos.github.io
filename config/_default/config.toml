@@ -9,4 +9,5 @@ headline = "Infinite Loops around the clock"
 bio = "A little bit about me"
 links = [
 { twitter = "https://twitter.com/username"}
+{ github = "https://github.com/christodoulos"}
 ]

@@ -10,4 +10,5 @@ bio = "A little bit about me"
 links = [
 { twitter = "https://twitter.com/username"}
 { github = "https://github.com/christodoulos"}
+{ facebook = "https://www.facebook.com/christodoulos.fragkoudakis/"}
 ]

@@ -1,7 +1,7 @@
 ---
 title: "About Me"
-date: 2022-03-10T09:51:17+02:00
-draft: false
+showDate: false
+showReadingTime: false
 ---
 
 My name is Christodoulos Fragkoudakis. I am the associate director of the central [Computer Center][computer center]

@@ -1,22 +1,25 @@
 ---
 title: "Curriculum Vitae"
-date: 2021-09-24T10:35:45+03:00
-draft: false
+showDate: false
+showReadingTime: false
 ---
 
 ## Education
 
-**Ph.D. in Computer Science (2002 - 2007)**
-: National Technical University of Athens (NTUA), School of Electrical and
-Computer Engineering (ECE). Thesis Title: _Near Optimal Algorithms and
-Inapproximability Results for Art Gallery Problems_ (in Greek). Advisor:
-[Stathis Zachos][stathis zachos].
+- **Ph.D. in Computer Science (2002 - 2007)**
 
-**Postgraduate degree (1995 - 1998)**
-: NTUA, ECE, Specialization in Computer Science. GPA: 9.63/10.
+  National Technical University of Athens (NTUA), School of Electrical and
+  Computer Engineering (ECE). Thesis Title: _Near Optimal Algorithms and
+  Inapproximability Results for Art Gallery Problems_ (in Greek). Advisor:
+  [Stathis Zachos][stathis zachos].
 
-**B.Sc. in Geology (1989 - 1994)**
-: University of Athens, Geology Department. Thesis Title: _Computer Aided Fossil Leaf Identification_ (in Greek). Advisor: [Evangelos Velitzelos][evangelos velitzelos].
+- **Postgraduate degree (1995 - 1998)**
+
+  NTUA, ECE, Specialization in Computer Science. GPA: 9.63/10.
+
+- **B.Sc. in Geology (1989 - 1994)**
+
+  University of Athens, Geology Department. Thesis Title: _Computer Aided Fossil Leaf Identification_ (in Greek). Advisor: [Evangelos Velitzelos][evangelos velitzelos].
 
 ## Academic Appointments
 

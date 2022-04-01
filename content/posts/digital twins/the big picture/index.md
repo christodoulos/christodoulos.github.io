@@ -4,8 +4,6 @@ date: 2022-04-01
 tags: [digital twins]
 ---
 
-# The big picture
-
 A bird’s eye view of a Digital Twin implementation that incorporates modern technological
 advancements could be depicted in the following figure. Clients are running the Digital Twin’s
 frontend that displays objects bound to backend entities. The front-end implementation uses

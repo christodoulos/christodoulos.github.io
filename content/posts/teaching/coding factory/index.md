@@ -1,7 +1,7 @@
 ---
 title: Μαθησιακό υλικό Coding Factory 2022
 showReadingTime: false
-showDate: false
+date: 2022-03-10
 showTableOfContents: true
 ---
 

@@ -10,6 +10,6 @@ bio = "A nerd, too old to grow up"
 links = [
 { github = "https://github.com/christodoulos"},
 { linkedin = "https://www.linkedin.com/in/fragkoudakis/"},
-{ facebook = "https://www.facebook.com/christodoulos.fragkoudakis/"},
 { twitter = "https://twitter.com/CFragkoudakis"},
+{ facebook = "https://www.facebook.com/christodoulos.fragkoudakis/"},
 ]

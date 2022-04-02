@@ -2,7 +2,6 @@
 title: "Curriculum Vitae"
 showDate: false
 showReadingTime: false
-showTableOfContents: true
 ---
 
 ## Education

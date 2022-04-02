@@ -17,3 +17,4 @@ showScrollToTop = true
 
 [article]
 showTaxonomies = true
+showTableOfContents = true

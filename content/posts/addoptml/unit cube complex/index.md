@@ -152,9 +152,15 @@ Point(4,5,6)
 
 The traditional Finite Element approach discretizes a continuous orthogonal domain into more minor elements of a specific shape. We consider unit cube complexes produced by various finite element analysis models. The constructed complexes are dense, and to 3D print them, we need to determine their outer shell, i.e., to calculate the complex's surface geometry.
 
+![](ucc.png "A unit cube complex")
+
 The unit cube complex's surface is already a tesselation comprised of rectangles that have no overlaps or leave no gaps. Our purpose is to employ the STL file format specification, which is to tessellate the outer surface of the complex using triangles and store information about the triangles in a file. For example, the unit cube in the following image has two triangles per face, and since the cube has six faces, it adds up to twelve triangles. Many small triangles can also cover a 3D model of a sphere with a corresponding STL representation. Curved objects are out of the scope of our research, so that we will stick to rectangular constructions.
 
-Let us fix a data structure that represents unit cubes. Consider a unit cube aligned to the cartesian coordinate system and that the "xz" plane represents a traditional map where the common practice defines the four points of the horizon. There are six simple directions towards each cube's face: north, south, east, west, top, and bottom. We label the cube's faces according to the direction.
+![](tesselation.png "Examples of tesselations")
+
+Let us fix a data structure that represents unit cubes. Consider a unit cube aligned to the cartesian coordinate system and that the "xz" plane represents a traditional map where the common practice defines the four points of the horizon. There are six primary directions towards each cube's face: north, south, east, west, top, and bottom. We label the cube's faces according to the direction.
+
+![](primal.png "The six primary directions")
 
 We represent each labeled cube face as a counterclockwise or clockwise list of its vertices regarding its interior. We use a counterclockwise listing when the interior is below, left of, or behind the face. We use a clockwise listing when the interior is above, right, or in front of the face:
 
@@ -165,7 +171,7 @@ We represent each labeled cube face as a counterclockwise or clockwise list of i
 - The _east_ face is \\(6512\\)
 - The _west_ face is \\(0473\\)
 - The _top_ face is \\(3762\\)
-- The _bottom_ face is \\(01\\)
+- The _bottom_ face is \\(1265\\)
 
 The centroid of a unit cube is simply the arithmetic mean of its vertices, and we calculate it twenty-four additions and three divisions:
 
@@ -275,9 +281,9 @@ class Cuboid(object):
         return Cuboid(translated)
 ```
 
-Let us use our classes and create two cuboids. We make the first one by explicitly defining its eight vertices, while the second one is a translation of the first using the (1,1,1) vector. We print the cuboids and finally check their order.
+Let us use our classes and create two cuboids. We make the first one by explicitly defining its eight vertices, while the second one is a translation of the first using the \\((1,1,1)\\) vector. We print the cuboids and finally check their order.
 
-```
+```python
 from ucc2stl.cuboids import Cuboid
 from ucc2stl import Point, Vector
 
@@ -361,7 +367,7 @@ We include the above script’s output by representing the cuboids side by side 
 
 ## A Python class for cuboid complexes
 
-We are now ready to capitalize on our already made classes and assemble a Python class that handles unit cube complexes in 3D space. We initialize an instance of CuboidComplex by passing as a parameter an iterable of cuboids, each indexed using its centroid into the instance’s “cubdict” attribute. We initialize the triangle and vertex lists that comprise the final complex as empty lists.
+We are now ready to capitalize on our already made classes and assemble a Python class that handles unit cube complexes in 3D space. We initialize an instance of CuboidComplex by passing as a parameter an iterable of cuboids, each indexed using its centroid into the instance’s `cubdict` attribute. We initialize the triangle and vertex lists that comprise the final complex as empty lists.
 
 ```python
 class CuboidComplex(object):
@@ -377,11 +383,11 @@ class CuboidComplex(object):
         print("Done inserting {} cuboids".format(len(cuboids)))
 ```
 
-Let us focus on the insert method that uses the “cubdict” dictionary to hold the data of the inserted cuboids, indexed by their centroid. The dictionary’s key is the cuboid’s centroid, while the data indexed is another dictionary indexed by the cuboid’s faces orientation. The indexed data are the face itself and a boolean indication of whether it is outer or not. Imagine here that we need to insert every given cuboid and that the very first cuboid comprises a complex with six outer faces.
+Let us focus on the insert method that uses the `cubdict` dictionary to hold the data of the inserted cuboids, indexed by their centroid. The dictionary’s key is the cuboid’s centroid, while the data indexed is another dictionary indexed by the cuboid’s faces orientation. The indexed data are the face itself and a boolean indication of whether it is outer or not. Imagine here that we need to insert every given cuboid and that the very first cuboid comprises a complex with six outer faces.
 
-Our next task is to identify all the immediate neighbors of the inserted cuboid. Our “cubdict” dictionary is a handy construct as we can locate them by looking towards the six faces orientation of the inserted cuboid. To that direction, we calculate the neighbors’ indexes, i.e., the neighbors’ centroids, as described above in section 4. If the currently inserted cuboid has actual neighbors in the complex, their centroids must already be indexes of the “cubdict” dictionary.
+Our next task is to identify all the immediate neighbors of the inserted cuboid. Our `cubdict` dictionary is a handy construct as we can locate them by looking towards the six faces orientation of the inserted cuboid. To that direction, we calculate the neighbors’ indexes, i.e., the neighbors’ centroids, as already described. If the currently inserted cuboid has actual neighbors in the complex, their centroids must already be indexes of the `cubdict` dictionary.
 
-Our last task is to update the complex’s faces’ boolean “out” indicator. If a cuboid is on top of the inserted one, then the inserted cuboid’s top face and the neighbor’s bottom face reside inside the complex. If there is a cuboid west of the inserted one, then the inserted cuboid’s west face and the neighbor’s east face both reside inside the complex. The same reasoning applies to every other direction by refreshing the touching faces as inside ones, i.e., updating the boolean “out” indicator. These operations are well-defined and repeatedly performed for every inserted cuboid. It must now be evident that after the insertion of the last cuboid, our “cubdict” construct holds all the complex’s faces, and for every face, the correct indicator of whether the face is outer or not.
+Our last task is to update the complex’s faces’ boolean `out` indicator. If a cuboid is on _top_ of the inserted one, then the inserted cuboid’s top face and the neighbor’s bottom face reside inside the complex. If there is a cuboid _west_ of the inserted one, then the inserted cuboid’s west face and the neighbor’s east face both reside inside the complex. The same reasoning applies to every other direction by refreshing the touching faces as inside ones, i.e., updating the boolean `out` indicator. These operations are well-defined and repeatedly performed for every inserted cuboid. It must now be evident that after the insertion of the last cuboid, our `cubdict` construct holds all the complex’s faces, and for every face, the correct indicator of whether the face is outer or not.
 
 ```python
     def insert(self, cuboid):
@@ -417,7 +423,7 @@ Our last task is to update the complex’s faces’ boolean “out” indicator.
             self.cubdict[cuboid_id]["south"]["out"] = False
 ```
 
-We are now ready to calculate the complex’s outer shell vertices and triangles. To that end, we iterate over the “cubdict” dictionary items. We are only interested in outer faces, so we take action only when we find an appropriate “out” indicator. A local “vdict” dictionary construct keeps track of already found vertices to avoid inserting the same vertex to the shell’s vertices list more than once. When we process an outer face, we iterate over its vertices to update the shell’s vertices and identify the two triangles that comprise the face. We finally insert the triangles into the shell’s triangle list.
+We are now ready to calculate the complex’s outer shell vertices and triangles. To that end, we iterate over the `cubdict` dictionary items. We are only interested in outer faces, so we take action only when we find an appropriate `out` indicator. A local `vdict` dictionary construct keeps track of already found vertices to avoid inserting the same vertex to the shell’s vertices list more than once. When we process an outer face, we iterate over its vertices to update the shell’s vertices and identify the two triangles that comprise the face. We finally insert the triangles into the shell’s triangle list.
 
 ```python
     def shell(self):
@@ -446,7 +452,7 @@ We are now ready to calculate the complex’s outer shell vertices and triangles
         )
 ```
 
-To export the shell’s representation into the STL file format, we use the excellent “numpy-stl” Python module. We import the module’s mesh library that constructs STL meshes by utilizing our already calculated list of shell’s vertices and triangles. We save the calculated mesh to the “model.stl” file.
+To export the shell’s representation into the STL file format, we use the excellent `numpy-stl` Python module. We import the module’s mesh library that constructs STL meshes by utilizing our already calculated list of shell’s vertices and triangles. We save the calculated mesh to the `model.stl` file.
 
 ```python
     def export_stl(self):
@@ -485,9 +491,9 @@ complex.export_stl()
 ```
 
 ```
-“Started inserting cuboids ... Done inserting 1 cuboids
+Started inserting cuboids ... Done inserting 1 cuboids
 Started outer shell calculation  ... Done
-There are 8 vertices and 12 triangles.”
+There are 8 vertices and 12 triangles.
 ```
 
 ![](example0.png)
@@ -517,9 +523,9 @@ complex.export_stl()
 ```
 
 ```
-“Started inserting cuboids ... Done inserting 2 cuboids
+Started inserting cuboids ... Done inserting 2 cuboids
 Started outer shell calculation  ... Done
-There are 12 vertices and 20 triangles.”
+There are 12 vertices and 20 triangles.
 ```
 
 ![](example1.png)
@@ -557,14 +563,14 @@ complex.export_stl()
 ```
 
 ```
-“Started inserting cuboids ... Done inserting 4 cuboids
+Started inserting cuboids ... Done inserting 4 cuboids
 Started outer shell calculation  ... Done
-There are 18 vertices and 32 triangles.”
+There are 18 vertices and 32 triangles.
 ```
 
 ![](example2.png)
 
-### Three columns
+### Three connected columns
 
 ```python
 from ucc2stl.cuboids import Cuboid, CuboidComplex
@@ -602,9 +608,9 @@ complex.export_stl()
 ```
 
 ```
-“Started inserting cuboids ... Done inserting 65 cuboids
+Started inserting cuboids ... Done inserting 65 cuboids
 Started outer shell calculation  ... Done
-There are 56 vertices and 108 triangles.”
+There are 56 vertices and 108 triangles.
 ```
 
 ![](example3.png)

@@ -18,3 +18,4 @@ showScrollToTop = true
 [article]
 showTaxonomies = true
 showTableOfContents = true
+showDateUpdated = true

@@ -1,5 +1,5 @@
 ---
-title: On determining the outer shell <br> of a unit cube complex
+title: On determining the outer shell of a unit cube complex
 date: 2021-12-15
 showTableOfContents: true
 ---
@@ -652,7 +652,7 @@ def dense_cuboids(nodes_file, connectivity_file, density_file, threshold):
     return alist
 ```
 
-We had a set of nodes-connectivity-density files regarding the optimization output of a finite element analysis process. We utilized the above helper functions to convert this set of files to a suitable input of our CuboidComplex class.
+We had a set of nodes-connectivity-density files regarding the optimization output of a finite element analysis process. We utilized the above helper functions to convert this set of files to a suitable input of our `CuboidComplex` class.
 
 ```python
 from ucc2stl import dense_cuboids, CuboidComplex

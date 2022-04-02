@@ -5,6 +5,7 @@ showAppearanceSwitcher = false
 
 enableSearch = false
 enableCodeCopy = true
+css=["custom.css"]
 
 # mainSections = ["section1", "section2"]
 # robots = ""

@@ -1,0 +1,210 @@
+<!doctype html><html lang=en dir=ltr class=scroll-smooth data-default-appearance=light data-auto-appearance=true><head><meta charset=utf-8><meta http-equiv=content-language content="en"><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><title>LTSP setup for a university classroom &#183; Christodoulos Fragkoudakis</title><meta name=title content="LTSP setup for a university classroom &#183; Christodoulos Fragkoudakis"><link rel=canonical href=http://fragkoudakis.gr/posts/linux/ltsp/><link type=text/css rel=stylesheet href=/css/main.bundle.min.58404a3d14b7fe876cc4428f0655eb63fde7e72c33fc47d6eda3f6e5d2424956d290ad807f65eb5fedbff4b10d1252e0acfe4d09a80e84af7a915b5711632e18.css integrity="sha512-WEBKPRS3/odsxEKPBlXrY/3n5ywz/EfW7aP25dJCSVbSkK2Af2XrX+2/9LENElLgrP5NCagOhK96kVtXEWMuGA=="><script type=text/javascript src=/js/appearance.min.1dc37605fc23844fe9adb9081ca82717d710e68c83b51e4f7b66549306a870fb615f1a99aab3ccce0599b6cdbc29bba751d8225fb67893310310a31013e05827.js integrity="sha512-HcN2BfwjhE/prbkIHKgnF9cQ5oyDtR5Pe2ZUkwaocPthXxqZqrPMzgWZts28KbunUdgiX7Z4kzEDEKMQE+BYJw=="></script>
+<script defer type=text/javascript id=script-bundle src=/js/main.bundle.min.9ae0a991bb442898e9bc60cf318b4de3ff878325ff3821625a5564b32b2f66aec0e7f7d0e00ca3ac7df59d9f01c18c88b6bdd213184f86ac9ce06d7bdffbadf8.js integrity="sha512-muCpkbtEKJjpvGDPMYtN4/+HgyX/OCFiWlVksysvZq7A5/fQ4AyjrH31nZ8BwYyItr3SExhPhqyc4G173/ut+A==" data-copy=Copy data-copied=Copied></script>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><meta property="og:title" content="LTSP setup for a university classroom"><meta property="og:description" content="Warning: This is my personal notepad for such installations.
+Use it at your own risk!
+First steps # Start with a fresh and minimal ubuntu installation as it is depicted here. A functional (but with limited functionality) LTSP server is just a matter of the following commands:
+sudo apt get update sudo apt get upgrade sudo apt install ltsp-server-standalone sudo ltsp-build-client DHCP server setup # You should configure the network interface from which the server should respond to requests:"><meta property="og:type" content="article"><meta property="og:url" content="http://fragkoudakis.gr/posts/linux/ltsp/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-02-04T00:00:00+00:00"><meta property="article:modified_time" content="2019-02-04T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="LTSP setup for a university classroom"><meta name=twitter:description content="Warning: This is my personal notepad for such installations.
+Use it at your own risk!
+First steps # Start with a fresh and minimal ubuntu installation as it is depicted here. A functional (but with limited functionality) LTSP server is just a matter of the following commands:
+sudo apt get update sudo apt get upgrade sudo apt install ltsp-server-standalone sudo ltsp-build-client DHCP server setup # You should configure the network interface from which the server should respond to requests:"><script type=application/ld+json>[{"@context":"https://schema.org","@type":"Article","articleSection":"Posts","name":"LTSP setup for a university classroom","headline":"LTSP setup for a university classroom","abstract":"Warning: This is my personal notepad for such installations.\nUse it at your own risk!\nFirst steps # Start with a fresh and minimal ubuntu installation as it is depicted here. A functional (but with limited functionality) LTSP server is just a matter of the following commands:\nsudo apt get update sudo apt get upgrade sudo apt install ltsp-server-standalone sudo ltsp-build-client DHCP server setup # You should configure the network interface from which the server should respond to requests:","inLanguage":"en","url":"http:\/\/fragkoudakis.gr\/posts\/linux\/ltsp\/","author":{"@type":"Person","name":"Christodoulos Fragkoudakis"},"copyrightYear":"2019","dateCreated":"2019-02-04T00:00:00\u002b00:00","datePublished":"2019-02-04T00:00:00\u002b00:00","dateModified":"2019-02-04T00:00:00\u002b00:00","keywords":["linux","ubuntu","ltsp"],"mainEntityOfPage":"true","wordCount":"796"}]</script><meta name=generator content="Hugo 0.96.0"><meta name=author content="Christodoulos Fragkoudakis"><link href=https://github.com/christodoulos rel=me><link href=https://www.linkedin.com/in/fragkoudakis/ rel=me><link href=https://twitter.com/CFragkoudakis rel=me><link href=https://www.facebook.com/christodoulos.fragkoudakis/ rel=me></head><body class="flex flex-col h-screen px-6 m-auto text-lg leading-7 bg-neutral text-neutral-900 sm:px-14 md:px-24 lg:px-32 dark:bg-neutral-800 dark:text-neutral max-w-7xl"><div id=the-top class="absolute flex self-center"><a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 dark:bg-neutral-600 focus:translate-y-0" href=#main-content><span class="font-bold ltr:pr-2 rtl:pl-2 text-primary-600 dark:text-primary-400">&darr;</span>Skip to main content</a></div><header class="flex justify-between py-6 font-semibold sm:items-center sm:py-10 text-neutral-900 dark:text-neutral"><div><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" rel=me href=/>Christodoulos Fragkoudakis</a></div><nav><ul class="flex flex-col list-none sm:flex-row"><li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=/about/ title="About Me">About</a></li><li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=/posts/ title=Posts>Blog</a></li><li class="mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0"><a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2" href=/tags/ title=Tags>Topics</a></li></ul></nav></header><main id=main-content class="relative grow"><article><header class=max-w-prose><h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">LTSP setup for a university classroom</h1><div class="mt-8 mb-12 text-base text-neutral-500 dark:text-neutral-400"><div class="flex flex-row flex-wrap items-center"><time datetime="2019-02-04 00:00:00 +0000 UTC">February 4, 2019</time><span class="px-2 text-primary-500">&#183;</span><span title="Reading time">4 mins</span></div><div class="my-1 text-xs text-neutral-500 dark:text-neutral-400"><a href=/tags/linux/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">linux</a>
+<a href=/tags/ubuntu/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">ubuntu</a>
+<a href=/tags/ltsp/ class="px-1 py-[1px] border rounded-md border-neutral-200 dark:border-neutral-600 hover:border-primary-300 hover:text-primary-700 dark:hover:border-primary-600 dark:hover:text-primary-400">ltsp</a></div></div></header><section class="flex flex-col max-w-full mt-0 prose lg:flex-row dark:prose-invert"><div class="order-first px-0 lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8 lg:order-last"><div class="ltr:pl-5 rtl:pr-5 toc lg:sticky lg:top-10"><details open class="mt-0 overflow-hidden rounded-lg rtl:pr-5 ltr:pl-5 ltr:-ml-5 rtl:-mr-5 lg:mt-3"><summary class="block py-1 text-lg font-semibold cursor-pointer rtl:pr-5 ltr:pl-5 ltr:-ml-5 rtl:-mr-5 text-neutral-800 dark:text-neutral-100 lg:hidden bg-neutral-100 dark:bg-neutral-700">Table of Contents</summary><div class="py-2 border-dotted ltr:border-l rtl:border-r rtl:pr-5 ltr:pl-5 ltr:-ml-5 rtl:-mr-5 border-neutral-300 dark:border-neutral-600"><nav id=TableOfContents><ul><li><a href=#first-steps>First steps</a></li><li><a href=#dhcp-server-setup>DHCP server setup</a></li><li><a href=#tftp-server-setup>TFTP server setup</a></li><li><a href=#chroot-updateupgrade>chroot update/upgrade</a></li><li><a href=#electronic-exams>Electronic exams</a><ul><li><a href=#squid-setup>Squid setup</a></li><li><a href=#firefox-lock-down>Firefox lock down</a></li><li><a href=#lock-down-system-proxy-settings>Lock down system proxy settings</a></li></ul></li></ul></nav></div></details></div></div><div class="min-w-0 min-h-0 max-w-prose"><p>Warning: <em>This is my personal notepad for such installations.<br>Use it at your own risk!</em></p><h2 id=first-steps class="relative group">First steps <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#first-steps aria-label=Anchor>#</a></span></h2><p>Start with a <em>fresh and minimal</em> ubuntu installation as it is depicted <a href=#!linux/install/install.md#Ubuntu>here</a>. A functional (but with limited functionality) LTSP server is just a matter of the following commands:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt get update
+</span></span><span class=line><span class=cl>sudo apt get upgrade
+</span></span><span class=line><span class=cl>sudo apt install ltsp-server-standalone
+</span></span><span class=line><span class=cl>sudo ltsp-build-client
+</span></span></code></pre></div><h2 id=dhcp-server-setup class="relative group">DHCP server setup <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#dhcp-server-setup aria-label=Anchor>#</a></span></h2><p>You should configure the network interface from which the server should respond to requests:</p><pre tabindex=0><code>sudo nano /etc/default/isc-dhcp-server
+</code></pre><p>Append a suitable line like the following:</p><pre tabindex=0><code>INTERFACES=&#34;enp3s0&#34;
+</code></pre><p>Configure your subnet:</p><pre tabindex=0><code>sudo nano /etc/ltsp/dhcpd.conf
+</code></pre><p>Add a suitable subnet stanza like the following:</p><pre tabindex=0><code>subnet 147.102.246.0 netmask 255.255.255.0 {
+    range 147.102.246.212 147.102.246.213;
+    option domain-name &#34;central.ntua.gr&#34;;
+    option domain-name-servers 147.102.224.243;
+    option broadcast-address 147.102.246.255;
+    option routers 147.102.246.200;
+#    next-server 147.102.246.211;
+#    get-lease-hostnames true;
+    option subnet-mask 255.255.255.0;
+    option root-path &#34;/opt/ltsp/amd64&#34;;
+    if substring( option vendor-class-identifier, 0, 9 ) = &#34;PXEClient&#34; {
+        filename &#34;/ltsp/amd64/pxelinux.0&#34;;
+    } else {
+        filename &#34;/ltsp/amd64/nbi.img&#34;;
+    }
+}
+</code></pre><p>Finally restart the server:</p><pre tabindex=0><code>sudo service isc-dhcp-server start
+</code></pre><h2 id=tftp-server-setup class="relative group">TFTP server setup <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#tftp-server-setup aria-label=Anchor>#</a></span></h2><p>You might need to configure properly the <code>tftpd-hpa</code> server:</p><pre tabindex=0><code>sudo nano /etc/default/tftpd-hpa
+</code></pre><p>The file should contain something like the following:</p><pre tabindex=0><code>TFTP_USERNAME=&#34;tftp&#34;
+TFTP_DIRECTORY=&#34;/var/lib/tftpboot&#34;
+TFTP_ADDRESS=&#34;0.0.0.0:69&#34;
+TFTP_OPTIONS=&#34;--secure&#34;
+</code></pre><p>Start the server if it is not running:</p><pre tabindex=0><code>sudo service tftpd-hpa start
+</code></pre><h2 id=chroot-updateupgrade class="relative group">chroot update/upgrade <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#chroot-updateupgrade aria-label=Anchor>#</a></span></h2><p>You can use the following script to install a specific package in the chroot:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>CHROOT_DIR</span><span class=o>=</span>/opt/ltsp/amd64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo chroot <span class=nv>$CHROOT_DIR</span> mount -t proc /proc /proc
+</span></span><span class=line><span class=cl>sudo chroot <span class=nv>$CHROOT_DIR</span> apt update
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span> !<span class=o>=</span> <span class=s2>&#34;&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>  sudo chroot <span class=nv>$CHROOT_DIR</span> env <span class=nv>LTSP_HANDLE_DAEMONS</span><span class=o>=</span><span class=nb>false</span> apt -y install <span class=nv>$1</span>
+</span></span><span class=line><span class=cl>  <span class=nb>shift</span>
+</span></span><span class=line><span class=cl><span class=k>done</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sudo umount /opt/ltsp/amd64/proc
+</span></span><span class=line><span class=cl>sudo ltsp-update-image
+</span></span></code></pre></div><p>&mldr; after a <em>chroot upgrade</em> when a new kernel is installed you should:</p><pre tabindex=0><code>sudo ltsp-update-sskeys
+</code></pre><p>&mldr;.</p><h2 id=electronic-exams class="relative group">Electronic exams <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#electronic-exams aria-label=Anchor>#</a></span></h2><p>You can support <em>electonic exams</em> in your <em>LTSP</em> classroom and collect the exam folders using the following script:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=nv>EXAMSDIR</span><span class=o>=</span><span class=nv>$1</span>
+</span></span><span class=line><span class=cl><span class=nv>DEPARTMENT</span><span class=o>=</span><span class=nv>$2</span>
+</span></span><span class=line><span class=cl><span class=nv>DIRTOCOLLECT</span><span class=o>=</span><span class=nv>$3</span>
+</span></span><span class=line><span class=cl><span class=nv>USERS</span><span class=o>=</span><span class=sb>`</span>ls <span class=nv>$EXAMSDIR</span> <span class=p>|</span> grep <span class=nv>$2</span>.....<span class=sb>`</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> USER in <span class=nv>$USERS</span><span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>  <span class=nv>FULLNAME</span><span class=o>=</span><span class=sb>`</span>ldapsearch -x <span class=s2>&#34;(uid=</span><span class=nv>$USER</span><span class=s2>)&#34;</span> cn <span class=p>|</span> grep cn:: <span class=p>|</span> cut -d<span class=s2>&#34; &#34;</span> -f2 <span class=p>|</span> base64 -d 2&gt; /dev/null<span class=sb>`</span>
+</span></span><span class=line><span class=cl>  <span class=nv>COLLECTDIR</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$USER</span><span class=s2>-</span><span class=nv>$FULLNAME</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=o>[</span> -d <span class=nv>$EXAMSDIR</span>/<span class=nv>$USER</span>/<span class=nv>$DIRTOCOLLECT</span>/ <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    mkdir <span class=s2>&#34;</span><span class=nv>$COLLECTDIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>    cp -r <span class=nv>$EXAMSDIR</span>/<span class=nv>$USER</span>/<span class=nv>$DIRTOCOLLECT</span>/* <span class=s2>&#34;</span><span class=nv>$COLLECTDIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[</span> -d <span class=nv>$EXAMSDIR</span>/<span class=nv>$USER</span>/Desktop/<span class=nv>$DIRTOCOLLECT</span>/ <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>      mkdir <span class=s2>&#34;</span><span class=nv>$COLLECTDIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>      cp -r <span class=nv>$EXAMSDIR</span>/<span class=nv>$USER</span>/Desktop/<span class=nv>$DIRTOCOLLECT</span>/* <span class=s2>&#34;</span><span class=nv>$COLLECTDIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>      <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$DIRTOCOLLECT</span><span class=s2> not found in </span><span class=nv>$USER</span><span class=s2>&#39;s home&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl>  <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=k>done</span>
+</span></span></code></pre></div><h3 id=squid-setup class="relative group">Squid setup <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#squid-setup aria-label=Anchor>#</a></span></h3><pre tabindex=0><code>sudo apt install squid
+sudo vim /etc/squid/squid.conf
+
+...
+# TAG: visible_hostname
+#       If you want to present a special hostname in error messages, etc,
+#       define this.  Otherwise, the return value of gethostname()
+#       will be used. If you have multiple caches in a cluster and
+#       get errors about IP-forwarding you must set them to have individual
+#       names with this setting.
+#Default:
+# Automatically detect the system host name
+visible_hostname kerveros
+...
+# INSERT YOUR OWN RULE(S) HERE TO ALLOW ACCESS FROM YOUR CLIENTS
+#
+
+# Example rule allowing access from your local networks.
+# Adapt localnet in the ACL section to list your (internal) IP networks
+# from where browsing should be allowed
+#http_access allow localnet
+http_access allow localhost
+acl whitelist dstdomain mycourses.ntua.gr physics.ntua.gr
+http_access allow whitelist
+#http_access allow all
+...
+</code></pre><p>During your exams it might be usefull to turn the <code>http_access</code> rules on and off. In order to enable your whitelist you could run:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span>sed -e <span class=s1>&#39;/http_access allow whitelist/ s/^#*//&#39;</span> -i /etc/squid/squid.conf
+</span></span><span class=line><span class=cl>sed -e <span class=s1>&#39;/http_access allow all/ s/^#*/#/&#39;</span> -i /etc/squid/squid.conf
+</span></span><span class=line><span class=cl>service squid restart
+</span></span></code></pre></div><p>After the exams you can disable the whitelist:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span>sed -e <span class=s1>&#39;/http_access allow whitelist/ s/^#*/#/&#39;</span> -i /etc/squid/squid.conf
+</span></span><span class=line><span class=cl>sed -e <span class=s1>&#39;/http_access allow all/ s/^#*//&#39;</span> -i /etc/squid/squid.conf
+</span></span><span class=line><span class=cl>service squid restart
+</span></span></code></pre></div><h3 id=firefox-lock-down class="relative group">Firefox lock down <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#firefox-lock-down aria-label=Anchor>#</a></span></h3><pre tabindex=0><code>vim /usr/lib/firefox/distribution/policies.json
+</code></pre><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;policies&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;DisableSetDesktopBackground&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;DisableAppUpdate&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;Homepage&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;URL&#34;</span><span class=p>:</span> <span class=s2>&#34;http://www.central.ntua.gr&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Locked&#34;</span><span class=p>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;Proxy&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Mode&#34;</span><span class=p>:</span> <span class=s2>&#34;system&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;Locked&#34;</span><span class=p>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;SanitizeOnShutdown&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;SearchBar&#34;</span><span class=p>:</span> <span class=s2>&#34;unified&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;DisplayBookmarksToolbar&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;NoDefaultBookmarks&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;DisablePrivateBrowsing&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;DisableBuiltinPDFViewer&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;DisableSetDesktopBackground&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;BlockAboutConfig&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;DisableSecurityBypass&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;InvalidCertificate&#34;</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;SafeBrowsing&#34;</span><span class=p>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;Bookmarks&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>      <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Title&#34;</span><span class=p>:</span> <span class=s2>&#34;Κεντρική σελίδα ΕΜΠ&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;URL&#34;</span><span class=p>:</span> <span class=s2>&#34;http://www.ntua.gr&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Placement&#34;</span><span class=p>:</span> <span class=s2>&#34;toolbar&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Folder&#34;</span><span class=p>:</span> <span class=s2>&#34;Εθνικό Μετσόβιο Πολυτεχνείο&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Title&#34;</span><span class=p>:</span> <span class=s2>&#34;Κέντρο Ηλεκτρονικών Υπολογιστών ΕΜΠ&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;URL&#34;</span><span class=p>:</span> <span class=s2>&#34;http://www.central.ntua.gr&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Placement&#34;</span><span class=p>:</span> <span class=s2>&#34;toolbar&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Folder&#34;</span><span class=p>:</span> <span class=s2>&#34;Εθνικό Μετσόβιο Πολυτεχνείο&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Title&#34;</span><span class=p>:</span> <span class=s2>&#34;Κέντρο Δικτύων ΕΜΠ&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;URL&#34;</span><span class=p>:</span> <span class=s2>&#34;http://www.noc.ntua.gr&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Placement&#34;</span><span class=p>:</span> <span class=s2>&#34;toolbar&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Folder&#34;</span><span class=p>:</span> <span class=s2>&#34;Εθνικό Μετσόβιο Πολυτεχνείο&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Title&#34;</span><span class=p>:</span> <span class=s2>&#34;Ηλεκτρονικές Σελίδες Μαθημάτων&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;URL&#34;</span><span class=p>:</span> <span class=s2>&#34;http://mycourses.ntua.gr&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Placement&#34;</span><span class=p>:</span> <span class=s2>&#34;toolbar&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;Folder&#34;</span><span class=p>:</span> <span class=s2>&#34;Εθνικό Μετσόβιο Πολυτεχνείο&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h3 id=lock-down-system-proxy-settings class="relative group">Lock down system proxy settings <span class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style=text-decoration-line:none!important href=#lock-down-system-proxy-settings aria-label=Anchor>#</a></span></h3><p>Install the necessary package for <code>dconf</code> updates:</p><pre tabindex=0><code>chroot_install dconf-tools
+</code></pre><p>Create the following directories:</p><pre tabindex=0><code>sudo mkdir -p /opt/ltsp/amd64/etc/dconf/profile
+sudo mkdir -p /opt/ltsp/amd64/etc/dconf/db/local.d
+sudo mkdir /opt/ltsp/amd64/etc/dconf/db/local.d/locks
+</code></pre><p>Create a <code>/opt/ltsp/amd64/etc/dconf/profile/user</code> file with contents:</p><pre tabindex=0><code>user-db:user
+system-db:local
+</code></pre><p>Create a <code>/opt/ltsp/amd64/etc/dconf/db/local.d/00_proxy_locksettings</code> file with contents:</p><pre tabindex=0><code>[system/proxy]
+mode=&#39;manual&#39;
+use-same-proxy=true
+
+[system/proxy/http]
+enabled=true
+host=&#39;server&#39;
+port=3128
+
+[system/proxy/https]
+host=&#39;server&#39;
+port=3128
+
+[system/proxy/ftp]
+host=&#39;server&#39;
+port=3128
+
+[system/proxy/socks]
+host=&#39;server&#39;
+port=3128
+</code></pre><p>Create a <code>/opt/ltsp/amd6/etc/dconf/db/local.d/locks/00_proxy_locksettings</code> file with contents:</p><pre tabindex=0><code>/system/proxy/mode
+/system/proxy/use-same-proxy
+/system/proxy/http/enabled
+/system/proxy/http/host
+/system/proxy/http/port
+/system/proxy/https/host
+/system/proxy/https/port
+/system/proxy/ftp/host
+/system/proxy/ftp/port
+/system/proxy/socks/host
+/system/proxy/socks/port
+</code></pre><p>And finally, inside your <em>chroot</em> run:</p><pre tabindex=0><code>dconf update
+</code></pre><p>Dont forget to update your client:</p><pre tabindex=0><code>sudo ltsp-update-image
+</code></pre><p>Warning: If something goes wrong and the <em>LTSP client&rsquo;s</em> GUI does not start, remove the <code>/opt/ltsp/amd64/etc/dconf</code> folder and start over again.</p></div></section><footer class="pt-8 max-w-prose"><div class=flex><img class="w-24 h-24 !mt-0 !mb-0 ltr:mr-4 rtl:ml-4 rounded-full" width=96 height=96 alt=Author src=/img/me_hu4a4bda7407dca251d7e6f8c1b46def45_474901_192x192_fill_q75_box_smart1.jpg><div class=place-self-center><div class="text-[0.6rem] leading-3 text-neutral-500 dark:text-neutral-400 uppercase">Author</div><div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">Christodoulos Fragkoudakis</div><div class="text-sm text-neutral-700 dark:text-neutral-400">A nerd, too old to grow up</div><div class="text-2xl sm:text-lg"><div class="flex flex-wrap text-neutral-400 dark:text-neutral-500"><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://github.com/christodoulos target=_blank aria-label=Github rel="me noopener noreferrer"><span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="github" class="svg-inline--fa fa-github fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentcolor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span></a><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://www.linkedin.com/in/fragkoudakis/ target=_blank aria-label=Linkedin rel="me noopener noreferrer"><span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin" class="svg-inline--fa fa-linkedin fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentcolor" d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"/></svg></span></a><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://twitter.com/CFragkoudakis target=_blank aria-label=Twitter rel="me noopener noreferrer"><span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" class="svg-inline--fa fa-twitter fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645.0 138.72-105.583 298.558-298.558 298.558-59.452.0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055.0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421.0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391.0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04.0-57.828 46.782-104.934 104.934-104.934 30.213.0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg></span></a><a class="px-1 hover:text-primary-700 dark:hover:text-primary-400" href=https://www.facebook.com/christodoulos.fragkoudakis/ target=_blank aria-label=Facebook rel="me noopener noreferrer"><span class="relative inline-block align-text-bottom icon"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" class="svg-inline--fa fa-facebook fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentcolor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14.0 55.52 4.84 55.52 4.84v61h-31.28c-30.8.0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></span></a></div></div></div></div><div class=pt-8><hr class="border-dotted border-neutral-300 dark:border-neutral-600"><div class="flex justify-between pt-3"><span><a class="flex group" href=/posts/writings/team-work/><span class="mr-3 ltr:inline rtl:hidden text-neutral-700 dark:text-neutral group-hover:text-primary-600 dark:group-hover:text-primary-400">&larr;</span>
+<span class="ml-3 ltr:hidden rtl:inline text-neutral-700 dark:text-neutral group-hover:text-primary-600 dark:group-hover:text-primary-400">&rarr;</span>
+<span class="flex flex-col"><span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500">Team Work</span>
+<span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400"><time datetime="2015-09-29 00:00:00 +0000 UTC">September 29, 2015</time></span></span></a></span>
+<span><a class="flex text-right group" href=/posts/linux/linux/><span class="flex flex-col"><span class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500">Basic Linux Installation</span>
+<span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400"><time datetime="2019-02-04 00:00:00 +0000 UTC">February 4, 2019</time></span></span>
+<span class="ml-3 ltr:inline rtl:hidden text-neutral-700 dark:text-neutral group-hover:text-primary-600 dark:group-hover:text-primary-400">&rarr;</span>
+<span class="mr-3 ltr:hidden rtl:inline text-neutral-700 dark:text-neutral group-hover:text-primary-600 dark:group-hover:text-primary-400">&larr;</span></a></span></div></div></footer></article><div class="absolute top-[110vh] ltr:right-0 rtl:left-0 w-12 pointer-events-none bottom-[-5.5rem]"><a href=#the-top class="w-12 h-12 sticky pointer-events-auto top-[calc(100vh-5rem)] bg-neutral/50 dark:bg-neutral-800/50 backdrop-blur rounded-full text-xl flex items-center justify-center text-neutral-700 dark:text-neutral hover:text-primary-600 dark:hover:text-primary-400" aria-label="Scroll to top" title="Scroll to top">&uarr;</a></div></main><footer class=py-10><div class="flex justify-between"><div><p class="text-sm text-neutral-500 dark:text-neutral-400">&copy;
+2022
+Christodoulos Fragkoudakis</p><p class="text-xs text-neutral-500 dark:text-neutral-400">Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href=https://gohugo.io/ target=_blank rel="noopener noreferrer">Hugo</a> & <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href=https://git.io/hugo-congo target=_blank rel="noopener noreferrer">Congo</a></p></div></div></footer></body></html>

@@ -50,7 +50,7 @@ unpronounceable _Fragkoudakis_ on my ID card.
 
 [ntua]: http://www.ntua.gr
 [computer center]: http://www.central.ntua.gr
-[teamwork]: /2015/09/29/team-work.html
+[teamwork]: https://fragkoudakis.gr/posts/writings/team-work/
 [wife]: http://michalakopoulou.gr
 [devoted]: https://xkcd.com/705/
 [shoelace]: /2017/04/18/how-to-tie-a-shoelace-really-fast.html

@@ -7,16 +7,16 @@ tags: [digital twins, fiware]
 ## The FIWARE ecosystem
 
 There is vast chaos of available software technologies regarding possible
-approaches to a Digital Twin implementation. I am a complete newbie in the area,
+approaches to a Digital Twin implementation. I am a complete newbie in the area, 
 having a background in computer science and IT implementations in [NTUA][ntua].
 It is a fortunate coincidence that I can capitalize on my experience and
-immediately utilize the plethora of excellent available tools and practices,
+immediately utilize the plethora of excellent available tools and practices, 
 most notably the [FIWARE][fiware] ecosystem.
 
 The heart of any Digital Twin implementation is a system for managing context
 information. The [Orion Context Broker][orion context broker] enables the
 management of context information in a highly decentralized and large-scale
-manner. It provides the [FIWARE NGSI v2 API][ngsi v2 api] that allows updates,
+manner. It provides the [FIWARE NGSI v2 API][ngsi v2 api] that allows updates, 
 queries, or subscriptions to changes in context information.
 
 ## Installing Orion
@@ -76,6 +76,7 @@ I decided to employ Python with the [requests][python requests] module for my
 early interactions with the just-installed Orion Context Broker. Following the
 [getting started][getting started] instructions, I created two new entities
 representing stores in Berlin. Any entity in Orion must have an `id` and `type`
+
 attributes, while additional details are optional and depend on the described
 system. Each other piece of information should define at least a `type` and a
 `value` attribute. Let's insert our first store.

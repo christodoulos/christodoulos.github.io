@@ -6,7 +6,7 @@ tags: [Angular, Typescript]
 
 ## How to chain observables
 
-If `observable2` depends on a finished `observable1` you can utilize `mergeMap` from `rxjs`:
+If `observable2` (`getAuthorizedApplications`) depends on a finished `observable1` (`getSubjectToken`) you can utilize `mergeMap` from `rxjs`:
 
 ```typescript
 class SomeClass {

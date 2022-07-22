@@ -66,6 +66,54 @@ flowchart LR
     style ORION fill:#f9f,stroke:#333,stroke-width:4px
 {{< /mermaid >}}
 
+#### Creating a Debian service
+
+In order to install Orion as a Debian service, we have to create a file in the appropriate system directory.
+
+```
+$ sudo vim /etc/systemd/system/contextBroker.service
+```
+
+We need at least the following setup:
+
+```ini
+[Unit]
+Description=Orion Context Broker Service
+
+[Service]
+User=orion
+ExecStart=contextBroker
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Finally enable and start the new service:
+
+```
+$ sudo systemctl daemon-reload
+$ sudo systemctl enable contextBroker.service
+$ sudo systemctl start contextBroker.service
+$ sudo systemctl status contextBroker.service
+```
+
+The outcome must be something like:
+
+```
+● contextBroker.service - Orion Context Broker Service
+     Loaded: loaded (/etc/systemd/system/contextBroker.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2022-07-19 10:09:06 EEST; 3 days ago
+   Main PID: 437 (contextBroker)
+      Tasks: 4 (limit: 19172)
+     Memory: 14.6M
+        CPU: 4.100s
+     CGroup: /system.slice/contextBroker.service
+             └─437 contextBroker
+
+Jul 19 10:09:06 ntuadt-debian11 systemd[1]: Started Orion Context Broker Service.
+```
+
 ### The Smart Data Models Initiative
 
 FIWARE Foundation, TM Forum, IUDX, and OASC lead a [collaborative initiative][smart data model] to support the adoption of a reference architecture and compatible standard data models. A Smart Data Model includes the technical representation that defines the specialized data types and structure, a human-readable specification, and examples of the payloads for NGSI v2 API calls.

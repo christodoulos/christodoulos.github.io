@@ -1,8 +1,10 @@
 ---
 title: "NTUA Digital Twin"
 date: 2022-07-19
-tags: [digital twins, mongodb]
+tags: [digital twins]
 ---
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 
 ## Introduction
 
@@ -68,9 +70,11 @@ flowchart LR
 
 #### Creating a Debian service
 
-In order to install Orion as a Debian service, we have to create a file in the appropriate system directory.
+In order to install Orion as a Debian service, we have to create a user and a file in the appropriate system directory.
 
 ```
+$ sudo useradd -M orion
+$ sudo usermod -L orion
 $ sudo vim /etc/systemd/system/contextBroker.service
 ```
 
@@ -315,6 +319,17 @@ The response is the following JSON data:
 ]
 ```
 
+## CKAN Installation
+
+1. [ckan package installation][ckan installation]
+2. [datastore extension][datastore extension]
+3. [FileStore and file uploads][filestore and file uploads]
+4. [Creating a sysadmin user][creating a sysadmin user]
+
+## Cygnus Installation
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
 [uwmh]: https://uwmh.civil.ntua.gr/
 [ntua]: http://www.ntua.gr
 [fiware]: https://www.fiware.org/
@@ -335,3 +350,7 @@ The response is the following JSON data:
 [sensor 564]: https://openmeteo.org/api/stations/1334/timeseriesgroups/564/timeseries/232/bottom/
 [sensor 499]: https://openmeteo.org/api/stations/1334/timeseriesgroups/499/timeseries/247/bottom/
 [sensor 669]: https://openmeteo.org/api/stations/1334/timeseriesgroups/669/timeseries/5461/bottom/
+[ckan installation]: http://docs.ckan.org/en/2.9/maintaining/installing/install-from-package.html
+[datastore extension]: http://docs.ckan.org/en/2.9/maintaining/datastore.html
+[filestore and file uploads]: http://docs.ckan.org/en/2.9/maintaining/filestore.html
+[creating a sysadmin user]: http://docs.ckan.org/en/2.9/maintaining/getting-started.html#create-admin-user

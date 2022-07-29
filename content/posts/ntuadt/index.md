@@ -15,6 +15,8 @@ We combine information from many different sources, including a weather station,
 
 Various applications constantly process and analyze current data values and generated history over time.
 
+... ELABORATE ...
+
 ## The FIWARE ecosystem
 
 There are a lot of available software technologies regarding possible approaches to a Digital Twin implementation. It was a fortunate coincidence that we could capitalize on our systems and network administration experience and immediately utilize the plethora of excellent tools and practices of the [FIWARE][fiware] ecosystem.

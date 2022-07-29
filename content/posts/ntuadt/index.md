@@ -1,14 +1,15 @@
 ---
-title: "NTUA Digital Twin"
+title: "NTUA Digital Twin using FIWARE tools"
 date: 2022-07-19
 tags: [digital twins]
 ---
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+[![cc-by-sa-4](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+I document how I utilized the [FIWARE][fiware] ecosystem to develop a Digital Twin for the NTUA Campus. I provide my work for disseminating knowledge about FIWARE under the [Creative Commons Attribution-ShareAlike 4.0](http://creativecommons.org/licenses/by-sa/4.0/) International License.
 
 ## Introduction
 
-This paper documents the approach of [Urban Water Management and Hydroinformatcs Group][uwmh] in [NTUA][ntua] to create a Digital Twin for the NTUA campus. We chose to employ the FIWARE tools ecosystem and apply the necessary technical glue for the assembly of a Digital Twin data representation of NTUA's campus environment.
+This paper documents the approach of [Urban Water Management and Hydroinformatcs Group][uwmh] in [NTUA][ntua] to create a Digital Twin for the NTUA campus. We chose to employ the [FIWARE][fiware] tools ecosystem and apply the necessary technical glue for the assembly of a Digital Twin data representation of NTUA's campus environment.
 
 We combine information from many different sources, including a weather station, public transportation telemetry, energy consumption sensors, and programmable logic controller data from the municipal sewer mining installation for the watering of the municipal plant nursery. We constantly synchronize our databases with the data sources, and information is accessible in almost real-time. Almost real-time in the sense that the interval between the instants of time at which the data is gathered and made accessible is short enough for a current digital snapshot of the NTUA campus.
 
@@ -319,6 +320,18 @@ The response is the following JSON data:
 ]
 ```
 
+##### Adding all active sensors
+
+... TO BE ADDED ...
+
+##### Establishing continuous Orion updates
+
+... TO BE ADDED ...
+
+#### Public Transportation Smart Data
+
+... TO BE ADDED ...
+
 ## CKAN Installation
 
 1. [ckan package installation][ckan installation]
@@ -328,7 +341,7 @@ The response is the following JSON data:
 
 ## Cygnus Installation
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+[![cc-by-sa-4](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
 [uwmh]: https://uwmh.civil.ntua.gr/
 [ntua]: http://www.ntua.gr

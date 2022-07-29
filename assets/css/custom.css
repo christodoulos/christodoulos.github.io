@@ -5,3 +5,12 @@ code::before {
 code::after {
   content: unset !important;
 }
+
+img[alt~="cc-by-sa-4"] {
+  float: right;
+  border-width: 1px;
+}
+
+h5, h6 {
+  font-weight: 600;
+}

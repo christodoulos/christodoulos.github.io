@@ -343,6 +343,10 @@ The response is the following JSON data:
 
 ## Cygnus Installation
 
+... TO BE ADDED ...
+
+... TO BE CONTINUED ...
+
 [![cc-by-sa-4](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
 [uwmh]: https://uwmh.civil.ntua.gr/

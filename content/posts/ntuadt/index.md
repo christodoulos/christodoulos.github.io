@@ -371,7 +371,7 @@ The response is the following JSON data:
 
 #### Public Transportation Smart Data
 
-The Smart Cities domain of FIWARE et al. [Smart Data Models][smart data models] initiative includes the [urban mobility][urban mobility] smart-data model collection. That collection includes several data models following the [General Transit Feed Specification][gtfs] (GTFS), which defines a standard format for public transportation, schedules, and associated geographic information. The [Athens Urban Transportation Organization][oasa] (OASA) provides a [telematics][oasa telematics] facility for bus line information on schedule and stops, bus arrival estimation, and best route searching using public transportation.
+The Smart Cities domain of FIWARE et al. [Smart Data Models][smart data model] initiative includes the [urban mobility][urban mobility] smart-data model collection. That collection includes several data models following the [General Transit Feed Specification][gtfs] (GTFS), which defines a standard format for public transportation, schedules, and associated geographic information. The [Athens Urban Transportation Organization][oasa] (OASA) provides a [telematics][oasa telematics] facility for bus line information on schedule and stops, bus arrival estimation, and best route searching using public transportation.
 
 ##### Forming intermediate MongoDB collections
 

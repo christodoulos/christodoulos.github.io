@@ -121,6 +121,45 @@ The outcome must be something like:
 Jul 19 10:09:06 ntuadt-debian11 systemd[1]: Started Orion Context Broker Service.
 ```
 
+#### The Orion wrapper scripts
+
+To interact with Orion, we use the following Python scripts that wrap the HTTP request details under meaningful function names. We define an iterator that yields Orion entities up to a specific limit imposed by the context broker. The default limit value is 20 and must be at most 1000. To update an entity, we use the payload object that usually originates from intermediate MongoDB sources (more on the intermediate sources later). We must [omit][entity update] the id and type key-value pairs for a successful update.
+
+```python
+def get_all_orion_entities(limit=20):
+    r = requests.get(f"{ORION_URL}?limit={limit if limit < 1000 else 1000}")
+    for entity in r.json():
+        yield entity
+
+
+def get_orion_entity(entity_id):
+    r = requests.get(f"{ORION_URL}/{entity_id}")
+    print(r.status_code, r.text)
+    if r.status_code == 200:
+        return r.json()
+
+
+def delete_orion_entity(entity_id):
+    r = requests.delete(f"{ORION_URL}/{entity_id}")
+    print(r.status_code, r.text)
+
+
+def insert_orion_entity(payload):
+    r = requests.post(ORION_URL, json=payload)
+    print(r.status_code, r.text)
+
+
+def update_orion_entity(payload):
+    update_url = f"{ORION_URL}/{payload['id']}/attrs"
+    pload = {
+        key: value
+        for (key, value) in payload.items()
+        if key not in ["id", "type"]
+    }
+    r = requests.patch(update_url, json=pload)
+    print(r.status_code, r.text)
+```
+
 ### The Smart Data Models Initiative
 
 FIWARE Foundation, TM Forum, IUDX, and OASC lead a [collaborative initiative][smart data model] to support the adoption of a reference architecture and compatible standard data models. A Smart Data Model includes the technical representation that defines the specialized data types and structure, a human-readable specification, and examples of the payloads for NGSI v2 API calls.
@@ -332,7 +371,206 @@ The response is the following JSON data:
 
 #### Public Transportation Smart Data
 
-... TO BE ADDED ...
+The Smart Cities domain of FIWARE et al. [Smart Data Models][smart data models] initiative includes the [urban mobility][urban mobility] smart-data model collection. That collection includes several data models following the [General Transit Feed Specification][gtfs] (GTFS), which defines a standard format for public transportation, schedules, and associated geographic information. The [Athens Urban Transportation Organization][oasa] (OASA) provides a [telematics][oasa telematics] facility for bus line information on schedule and stops, bus arrival estimation, and best route searching using public transportation.
+
+##### Forming intermediate MongoDB collections
+
+We utilize the public [API][oasa api] that powers the OASA telematics facility to extract information for populating Orion entities following an appropriate smart-data model. To that end, we need to populate several MongoDB collections to serve as a basis for the relevant Orion entities. We used Python along with the [requests][python requests] and [pymongo][pymongo] libraries and started by defining the public API endpoint and some MongoDB collections.
+
+```python
+import requests
+from pymongo import MongoClient
+from pymongo.errors import DuplicateKeyError
+
+API_END_POINT = "http://telematics.oasa.gr/api/?act="
+
+db_client = MongoClient("mongodb://localhost:27017")
+log = db_client.oasa.log
+lines_collection = db_client.oasa.lines
+stops_collection = db_client.oasa.stops
+```
+
+Athens Urbal Transporation is about bus and trolley line numbers connecting different city parts. The following iterator yields all bus and trolley line numbers that the public OASA [API][oasa api] provides.
+
+```python
+def all_lines():
+    response = requests.post(f"{API_END_POINT}webGetLinesWithMLInfo")
+    json_response = response.json()
+    for line in json_response:
+        yield line
+```
+
+We use the unique line code of every bus or trolley line number to extract more information for a specific line code.
+
+```python
+def routes_for_line_code(line_code):
+    response = requests.post(f"{API_END_POINT}getRoutesForLine&p1={line_code}")
+    json_response = response.json()
+    routes = []
+    for route in json_response:
+        routes.append({
+            "route_code": route["route_code"],
+            "route_descr": route["route_descr"],
+            "route_descr_eng": route["route_descr_eng"]
+        })
+    return routes
+```
+
+Every route code has a specific API endpoint for extracting the corresponding public transport stop information.
+
+```python
+def stops_for_route(route_code):
+    response = requests.post(f"{API_END_POINT}webGetStops&p1={route_code}")
+    return response.json()
+```
+
+We are now ready to form the intermediate line entity that will be the basis for the corresponding Orion entity.
+
+```python
+def line_entity(line):
+    line_id = line["line_id"]
+    line_code = line["line_code"]
+    routes = routes_for_line_code(line_code)
+    for route in routes:
+        route["stops"] = stops_for_route(route["route_code"])
+    return {"_id": f"{line_id}:{line_code}", "routes": routes}
+```
+
+We use our iterator with our intermediate line entity function to update a MongoDB collection with all the line entities.
+
+```python
+def update_all_line_entities():
+    for line in all_lines():
+        entity = line_entity(line)
+        try:
+            lines_collection.insert_one(entity)
+        except DuplicateKeyError:
+            lines_collection.replace_one(
+                {"_id": entity["_id"]},
+                entity,
+                upsert=True
+            )
+```
+
+We gathered 426 line entities.
+
+![orig](img/line_count.png)
+
+A typical intermediate line entity is the following.
+
+![](img/line_example.png)
+
+Bus and trolley stops have a corresponding smart-data representation, so extracting information for each end of every stop available in our intermediate line entities seems reasonable. To that end, we iterate over our intermediate lines collection, extracting all information about stops for every route. We build stop entities and index them by their unique latitude and longitude tuple. For every stop, we keep the set of the different line numbers and route data that include that stop.
+
+```python
+def update_all_stop_entities():
+    for line in lines_collection.find():
+        line_id = line["_id"]
+        for route in line["routes"]:
+            route_data = {
+                "route_code": route["route_code"],
+                "route_descr": route["route_descr"],
+                "route_descr_eng": route["route_descr_eng"]
+            }
+            for stop in route["stops"]:
+                stop_code = stop["StopCode"]
+                stop_lat = stop["StopLat"]
+                stop_lng = stop["StopLng"]
+                stop_id = f"{stop_lat}:{stop_lng}"
+                stop_descr = stop["StopDescr"]
+                stop_descr_eng = stop["StopDescrEng"]
+                stop_street = stop["StopStreet"]
+                stop_street_eng = stop["StopStreetEng"]
+                stop_heading = stop["StopHeading"]
+                stop_entity = {
+                    "_id": stop_id,
+                    "descr": stop_descr,
+                    "descr_eng": stop_descr_eng,
+                    "street": stop_street,
+                    "street_eng": stop_street_eng,
+                    "heading": stop_heading,
+                    "lines": [line_id],
+                    "routes": [route_data]
+                }
+
+                stop_found = stops_collection.find_one({"_id": stop_id})
+                if stop_found:
+                    stops_collection.update_one(
+                        {"_id": stop_entity["_id"]},
+                        {"$addToSet": {"lines": line_id, "routes": route_data, }}
+                    )
+                else:
+                    stops_collection.insert_one(stop_entity)
+```
+
+We gathered 7978 stop entities.
+
+![](img/stop_count.png)
+
+A typical intermediate stop entity is the following.
+
+![](img/stop_example.png)
+
+##### Transorming into smart-data
+
+Following the same approach as the sensor entities manipulation before inserting into Orion, let us fix a payload function for the [GTFS Stop][gtfs stop spec] smart-data entity.
+
+###### A payload function for GtfsStop data
+
+We use the `TextUnrestricted` type to store the exact text values that OASA provides that may include characters that [Orion forbids][orion forbid chars] for security reasons. Orion's update with OASA entities will be a wholly controlled procedure from Orion's administrators and has no security implications.
+
+```python
+def gtfs_stop_payload(oasa_stop):
+    latitude, longitude = oasa_stop["_id"].split(":")
+    name = oasa_stop["descr_eng"]
+    code = oasa_stop["code"]
+    return {
+        "id": f"urn:ngsi-ld:OASA:GtfsStop:Athens:{code}",
+        "type": "GtfsStop",
+        "code": {
+            "type": "Text",
+            "value": code
+        },
+        "location": {
+            "type": "geo:json",
+            "value": {
+                "type": "Point",
+                "coordinates": [float(latitude), float(longitude)]
+            }
+        },
+        "name": {
+            "type": "TextUnrestricted",
+            "value": name
+        },
+        "source": {
+            "type": "TextUnrestricted",
+            "value": f"http://telematics.oasa.gr/api/?act=getStopNameAndXY&p1={code}"
+        },
+    }
+```
+
+###### Populating Orion with all OASA stops
+
+We are now ready to populate Orion with all OASA stop entities. To that end, we use our Orion [wrapper scripts](#the-orion-wrapper-scripts). If the entity already exists, we update it; otherwise, we insert a new entity. This update procedure will be a background and offline job that will constantly update Orion from our intermediate MongoDB collection.
+
+```python
+def orion_update_all_oasa_stops():
+    for stop in stops_collection.find():
+        payload = gtfs_stop_payload(stop)
+        entity = get_orion_entity(payload["id"])
+        if entity:
+            update_orion_entity(payload)
+        else:
+            insert_orion_entity(payload)
+```
+
+There were 7978 GtfsStop entities created.
+
+![](img/gtfs_stop_count.png)
+
+An entire GtfsStop entity in Orion is the following.
+
+![](img/gtfs_stop_orion_example.png)
 
 ## CKAN Installation
 
@@ -357,6 +595,7 @@ The response is the following JSON data:
 [debian]: https://www.debian.org
 [orion on debian]: https://fiware-orion.readthedocs.io/en/master/admin/build_source/index.html
 [python requests]: https://pypi.org/project/requests/
+[pymongo]: https://pymongo.readthedocs.io/en/stable/
 [mongodb]: https://www.mongodb.com/
 [robomongo]: https://robomongo.org/
 [smart data model]: https://www.fiware.org/smart-data-models/
@@ -373,3 +612,11 @@ The response is the following JSON data:
 [datastore extension]: http://docs.ckan.org/en/2.9/maintaining/datastore.html
 [filestore and file uploads]: http://docs.ckan.org/en/2.9/maintaining/filestore.html
 [creating a sysadmin user]: http://docs.ckan.org/en/2.9/maintaining/getting-started.html#create-admin-user
+[urban mobility]: https://github.com/smart-data-models/dataModel.UrbanMobility/
+[gtfs]: https://developers.google.com/transit/gtfs
+[oasa]: https://www.oasa.gr/en/
+[oasa telematics]: https://telematics.oasa.gr/en/#main
+[oasa api]: https://telematics.oasa.gr/js/script.js
+[gtfs stop spec]: https://github.com/smart-data-models/dataModel.UrbanMobility/blob/master/GtfsStop/doc/spec.md
+[orion forbid chars]: https://fiware-orion.readthedocs.io/en/2.4.0/user/forbidden_characters/index.html
+[entity update]: https://fiware-orion.readthedocs.io/en/2.4.0/user/walkthrough_apiv2/index.html#update-entity

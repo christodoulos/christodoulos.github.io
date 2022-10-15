@@ -1,7 +1,7 @@
 colorScheme = "congo"
 defaultAppearance = "light" # valid options: light or dark
 autoSwitchAppearance = true
-showAppearanceSwitcher = true
+footer.showAppearanceSwitcher = true
 
 enableSearch = false
 enableCodeCopy = true
@@ -9,7 +9,7 @@ css=["custom.css"]
 
 # mainSections = ["section1", "section2"]
 # robots = ""
-showScrollToTop = true
+footer.showScrollToTop = true
 
 [homepage]
   layout = "profile" # valid options: page, profile, custom
